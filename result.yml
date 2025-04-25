@@ -27,6 +27,8 @@ tags:
   - name: Super Admin
   - name: Super Admin > Auth
   - name: Super Admin > School
+  - name: Admin
+  - name: Admin > Auth
 paths:
   /api/superadmin/login:
     post:
@@ -200,7 +202,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/superadmin/schools/1:
+  /api/superadmin/schools/{id}:
     post:
       tags:
         - Super Admin > School
@@ -249,6 +251,39 @@ paths:
                   example: PUT
       security:
         - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/login:
+    post:
+      tags:
+        - Admin > Auth
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                password:
+                  type: integer
+                  example: '12345'
       parameters:
         - name: Accept
           in: header

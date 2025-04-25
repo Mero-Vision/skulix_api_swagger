@@ -404,7 +404,7 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/superadmin/schools/1",
+									"raw": "{{url}}/api/superadmin/schools/{id}",
 									"host": [
 										"{{url}}"
 									],
@@ -412,7 +412,57 @@
 										"api",
 										"superadmin",
 										"schools",
-										"1"
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"login"
 									]
 								}
 							},
