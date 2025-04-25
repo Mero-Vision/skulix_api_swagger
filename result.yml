@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  title: Skulix API Swagger
+  description: Skulix API documentation
+  version: '1.0'
+  x-logo:
+    url: https://github.com/joolfe/logoBanner.png
+    backgroundColor: '#FFFFFF'
+    altText: logo
+  termsOfService: '#'
+  contact:
+    name: Mero Vision
+    url: https://merovision.com
+    email: merovision720@gmail.com
+  license:
+    name: MIT
+    url: https://es.wikipedia.org/wiki/Licencia_MIT
+servers:
+  - url: https://api.skulix.com/
+    description: server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Super Admin
+  - name: Super Admin > Auth
+  - name: Super Admin > School
+paths:
+  /api/superadmin/login:
+    post:
+      tags:
+        - Super Admin > Auth
+      summary: superadmin login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: superadmin@gmail.com
+                password:
+                  type: string
+                  example: Password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/schools:
+    post:
+      tags:
+        - Super Admin > School
+      summary: store school data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Siddhartha Shishu Sadan School
+                display_name:
+                  type: string
+                  example: Siddhartha
+                email:
+                  type: string
+                  example: siddhratha@gmail.com
+                phone:
+                  type: integer
+                  example: '12342435'
+                address:
+                  type: string
+                  example: Bhadrapur
+                vat_number:
+                  type: integer
+                  example: '2324325'
+                registration_number:
+                  type: string
+                  example: rwrertret
+                established_date:
+                  type: string
+                  example: 2002-01-2
+                website:
+                  type: string
+                  example: siddhartha.com
+                school_type:
+                  type: string
+                  example: public
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > School
+      summary: show all school list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
