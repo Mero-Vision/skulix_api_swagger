@@ -97,6 +97,9 @@ paths:
                 school_type:
                   type: string
                   example: public
+                school_logo:
+                  type: string
+                  format: binary
       security:
         - bearerAuth: []
       parameters:
@@ -131,6 +134,127 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/school-invite-admin:
+    post:
+      tags:
+        - Super Admin > School
+      summary: invite admin to school
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                school_id:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/verify-account:
+    post:
+      tags:
+        - Super Admin > School
+      summary: verify account and set password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/schools/1:
+    post:
+      tags:
+        - Super Admin > School
+      summary: update school
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Siddhartha Shishu Sadan School
+                display_name:
+                  type: string
+                  example: Siddhartha
+                email:
+                  type: string
+                  example: siddhratha@gmail.com
+                phone:
+                  type: integer
+                  example: '12342435'
+                address:
+                  type: string
+                  example: Bhadrapur
+                vat_number:
+                  type: integer
+                  example: '2324325'
+                registration_number:
+                  type: string
+                  example: rwrertret
+                established_date:
+                  type: string
+                  example: 2002-01-2
+                website:
+                  type: string
+                  example: siddhartha.com
+                school_type:
+                  type: string
+                  example: public
+                school_logo:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response

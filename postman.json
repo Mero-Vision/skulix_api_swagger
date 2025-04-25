@@ -145,6 +145,11 @@
 											"key": "school_type",
 											"value": "public",
 											"type": "text"
+										},
+										{
+											"key": "school_logo",
+											"type": "file",
+											"src": "/Users/hanciephago/Desktop/images.png"
 										}
 									]
 								},
@@ -202,6 +207,212 @@
 											"key": "search_keyword",
 											"value": null
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invite admin to school",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hancie Phago",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "school_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/school-invite-admin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"school-invite-admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verify account and set password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/verify-account",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"verify-account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update school",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Siddhartha Shishu Sadan School",
+											"type": "text"
+										},
+										{
+											"key": "display_name",
+											"value": "Siddhartha",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "siddhratha@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "12342435",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Bhadrapur",
+											"type": "text"
+										},
+										{
+											"key": "vat_number",
+											"value": "2324325",
+											"type": "text"
+										},
+										{
+											"key": "registration_number",
+											"value": "rwrertret",
+											"type": "text"
+										},
+										{
+											"key": "established_date",
+											"value": "2002-01-2",
+											"type": "text"
+										},
+										{
+											"key": "website",
+											"value": "siddhartha.com",
+											"type": "text"
+										},
+										{
+											"key": "school_type",
+											"value": "public",
+											"type": "text"
+										},
+										{
+											"key": "school_logo",
+											"type": "file",
+											"src": "/Users/hanciephago/Desktop/image_1024.jpeg"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/schools/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"schools",
+										"1"
 									]
 								}
 							},
