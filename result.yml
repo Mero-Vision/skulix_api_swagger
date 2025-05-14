@@ -33,6 +33,9 @@ tags:
   - name: Admin > Student Faculty
   - name: Admin > Admin
   - name: Admin > Student Level
+  - name: Admin > Student Program
+  - name: Admin > Student Classes
+  - name: Admin > Class Sections
 paths:
   /api/superadmin/login:
     post:
@@ -588,6 +591,219 @@ paths:
           schema:
             type: integer
           example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/programs:
+    post:
+      tags:
+        - Admin > Student Program
+      summary: store program
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                faculty_id:
+                  type: integer
+                  example: '1'
+                level_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: School
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Student Program
+      summary: list programs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/classes:
+    post:
+      tags:
+        - Admin > Student Classes
+      summary: store class data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                faculty_id:
+                  type: integer
+                  example: '1'
+                level_id:
+                  type: integer
+                  example: '1'
+                program_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: School
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Student Classes
+      summary: show all classes list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/sections:
+    post:
+      tags:
+        - Admin > Class Sections
+      summary: store section data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                faculty_id:
+                  type: integer
+                  example: '1'
+                level_id:
+                  type: integer
+                  example: '1'
+                program_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: A
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Class Sections
+      summary: show all sections
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
         - name: search_keyword
           in: query
           schema:
