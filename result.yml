@@ -40,6 +40,8 @@ tags:
   - name: Admin > Student Types
   - name: Admin > Exam Types
   - name: Admin > Student
+  - name: Admin > Visitor Logs
+  - name: Admin > Subjects
 paths:
   /api/superadmin/login:
     post:
@@ -1602,6 +1604,265 @@ paths:
       tags:
         - Admin > Student
       summary: show single student data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/visitor-logs:
+    post:
+      tags:
+        - Admin > Visitor Logs
+      summary: store visitor logs
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                phone:
+                  type: integer
+                  example: '23543546'
+                email:
+                  type: string
+                  example: johndoe@example.com
+                address:
+                  type: string
+                  example: Kathmandu
+                purpose:
+                  type: string
+                  example: Admission Inquiry
+                person_to_meet:
+                  type: string
+                  example: Admin Officer
+                check_in_date:
+                  type: string
+                  example: '2025-06-01'
+                check_in_time:
+                  type: string
+                  example: 07:20 PM
+                remarks:
+                  type: string
+                  example: Wants to discuss admission
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Visitor Logs
+      summary: show all visitor logs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '7'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: John Doe
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-01-20'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-02-01'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/visitor-logs/{id}:
+    delete:
+      tags:
+        - Admin > Visitor Logs
+      summary: delete visitor logs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/subjects:
+    post:
+      tags:
+        - Admin > Subjects
+      summary: store subjects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                subject_code:
+                  type: string
+                  example: NPL 002
+                subject_name:
+                  type: string
+                  example: Compulsory Nepali
+                theory_full_marks:
+                  type: integer
+                  example: '50'
+                theory_pass_marks:
+                  type: integer
+                  example: '20'
+                practical_full_marks:
+                  type: integer
+                  example: '50'
+                practical_pass_marks:
+                  type: integer
+                  example: '20'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Subjects
+      summary: show all subject list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/subjects/{id}:
+    post:
+      tags:
+        - Admin > Subjects
+      summary: update subject data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                subject_code:
+                  type: string
+                  example: NPL 002
+                subject_name:
+                  type: string
+                  example: Compulsory Nepali
+                theory_full_marks:
+                  type: integer
+                  example: '50'
+                theory_pass_marks:
+                  type: integer
+                  example: '20'
+                practical_full_marks:
+                  type: integer
+                  example: '50'
+                practical_pass_marks:
+                  type: integer
+                  example: '20'
+                _method:
+                  type: string
+                  example: PUT
       security:
         - bearerAuth: []
       parameters:
