@@ -39,6 +39,7 @@ tags:
   - name: Admin > Class Sections
   - name: Admin > Student Types
   - name: Admin > Exam Types
+  - name: Admin > Student
 paths:
   /api/superadmin/login:
     post:
@@ -81,7 +82,7 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Siddhartha Shishu Sadan 902
+                  example: Siddhartha Shishu Sadan
                 display_name:
                   type: string
                   example: Siddhartha
@@ -853,7 +854,7 @@ paths:
                   example: '1'
                 name:
                   type: string
-                  example: School
+                  example: Four
       security:
         - bearerAuth: []
       parameters:
@@ -1186,6 +1187,421 @@ paths:
       tags:
         - Admin > Exam Types
       summary: delete exam type
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/students:
+    post:
+      tags:
+        - Admin > Student
+      summary: store student data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: ' Sita'
+                middle_name:
+                  type: string
+                  example: ' Kumari'
+                last_name:
+                  type: string
+                  example: ' Thapa'
+                email:
+                  type: string
+                  example: ' sita.thapa@example.com'
+                dob:
+                  type: string
+                  example: ' 2005-03-25'
+                gender:
+                  type: string
+                  example: ' female'
+                address:
+                  type: string
+                  example: ' Kathmandu, Nepal'
+                blood_group:
+                  type: string
+                  example: ' O+'
+                food_preference:
+                  type: string
+                  example: ' Vegetarian'
+                batch_id:
+                  type: string
+                  example: ' 1'
+                class_id:
+                  type: string
+                  example: ' 1'
+                section_id:
+                  type: string
+                  example: ' 1'
+                student_type:
+                  type: string
+                  example: ' 1'
+                roll_no:
+                  type: string
+                  example: ' 22A'
+                addmission_date:
+                  type: string
+                  example: ' 2023-04-10'
+                emis_no:
+                  type: string
+                  example: ' 1234567890'
+                permanent_province:
+                  type: string
+                  example: ' Bagmati'
+                permanent_district:
+                  type: string
+                  example: ' Lalitpur'
+                permanent_municipality:
+                  type: string
+                  example: ' Godawari'
+                permanent_ward_no:
+                  type: string
+                  example: ' 3'
+                permanent_tole:
+                  type: string
+                  example: ' Chapagaun'
+                temporary_province:
+                  type: string
+                  example: ' Bagmati'
+                temporary_district:
+                  type: string
+                  example: ' Kathmandu'
+                temporary_municipality:
+                  type: string
+                  example: ' KMC'
+                temporary_ward_no:
+                  type: string
+                  example: ' 11'
+                temporary_tole:
+                  type: string
+                  example: ' Baneshwor'
+                father_name:
+                  type: string
+                  example: ' Ram Thapa'
+                father_phone:
+                  type: string
+                  example: ' 9800000001'
+                father_email:
+                  type: string
+                  example: ' ram.thapa@example.com'
+                father_education:
+                  type: string
+                  example: ' Bachelor'
+                father_occupation:
+                  type: string
+                  example: ' Engineer'
+                mother_name:
+                  type: string
+                  example: ' Maya Thapa'
+                mother_phone:
+                  type: string
+                  example: ' 9800000002'
+                mother_email:
+                  type: string
+                  example: ' maya.thapa@example.com'
+                mother_education:
+                  type: string
+                  example: ' Master'
+                mother_occupation:
+                  type: string
+                  example: ' Teacher'
+                guardian_name:
+                  type: string
+                  example: ' Dinesh Thapa'
+                guardian_phone:
+                  type: string
+                  example: ' 9800000003'
+                guardian_email:
+                  type: string
+                  example: ' dinesh.thapa@example.com'
+                guardian_education:
+                  type: string
+                  example: ' Bachelor'
+                guardian_occupation:
+                  type: string
+                  example: ' Business'
+                guardian_relation:
+                  type: string
+                  example: ' Uncle'
+                is_disabled:
+                  type: string
+                  example: ' 1'
+                student_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Student
+      summary: show all student list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/students/{id}:
+    post:
+      tags:
+        - Admin > Student
+      summary: update student data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: ' Sita'
+                middle_name:
+                  type: string
+                  example: ' Kumari'
+                last_name:
+                  type: string
+                  example: ' Thapa'
+                email:
+                  type: string
+                  example: ' sita.thapa@example.com'
+                dob:
+                  type: string
+                  example: ' 2005-03-25'
+                gender:
+                  type: string
+                  example: ' female'
+                address:
+                  type: string
+                  example: ' Kathmandu, Nepal'
+                blood_group:
+                  type: string
+                  example: ' O+'
+                food_preference:
+                  type: string
+                  example: ' Vegetarian'
+                batch_id:
+                  type: string
+                  example: ' 1'
+                class_id:
+                  type: string
+                  example: ' 1'
+                section_id:
+                  type: string
+                  example: ' 1'
+                student_type:
+                  type: string
+                  example: ' 1'
+                roll_no:
+                  type: string
+                  example: ' 22A'
+                addmission_date:
+                  type: string
+                  example: ' 2023-04-10'
+                emis_no:
+                  type: string
+                  example: ' 1234567890'
+                permanent_province:
+                  type: string
+                  example: ' Bagmati'
+                permanent_district:
+                  type: string
+                  example: ' Lalitpur'
+                permanent_municipality:
+                  type: string
+                  example: ' Godawari'
+                permanent_ward_no:
+                  type: string
+                  example: ' 3'
+                permanent_tole:
+                  type: string
+                  example: ' Chapagaun'
+                temporary_province:
+                  type: string
+                  example: ' Bagmati'
+                temporary_district:
+                  type: string
+                  example: ' Kathmandu'
+                temporary_municipality:
+                  type: string
+                  example: ' KMC'
+                temporary_ward_no:
+                  type: string
+                  example: ' 11'
+                temporary_tole:
+                  type: string
+                  example: ' Baneshwor'
+                father_name:
+                  type: string
+                  example: ' Ram Thapa'
+                father_phone:
+                  type: string
+                  example: ' 9800000001'
+                father_email:
+                  type: string
+                  example: ' ram.thapa@example.com'
+                father_education:
+                  type: string
+                  example: ' Bachelor'
+                father_occupation:
+                  type: string
+                  example: ' Engineer'
+                mother_name:
+                  type: string
+                  example: ' Maya Thapa'
+                mother_phone:
+                  type: string
+                  example: ' 9800000002'
+                mother_email:
+                  type: string
+                  example: ' maya.thapa@example.com'
+                mother_education:
+                  type: string
+                  example: ' Master'
+                mother_occupation:
+                  type: string
+                  example: ' Teacher'
+                guardian_name:
+                  type: string
+                  example: ' Dinesh Thapa'
+                guardian_phone:
+                  type: string
+                  example: ' 9800000003'
+                guardian_email:
+                  type: string
+                  example: ' dinesh.thapa@example.com'
+                guardian_education:
+                  type: string
+                  example: ' Bachelor'
+                guardian_occupation:
+                  type: string
+                  example: ' Business'
+                guardian_relation:
+                  type: string
+                  example: ' Uncle'
+                is_disabled:
+                  type: string
+                  example: ' 1'
+                student_image:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Student
+      summary: delete student data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Student
+      summary: show single student data
       security:
         - bearerAuth: []
       parameters:
