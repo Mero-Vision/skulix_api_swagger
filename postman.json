@@ -2670,6 +2670,418 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Visitor Logs",
+					"item": [
+						{
+							"name": "store visitor logs",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "John Doe",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "23543546",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "johndoe@example.com",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "purpose",
+											"value": "Admission Inquiry",
+											"type": "text"
+										},
+										{
+											"key": "person_to_meet",
+											"value": "Admin Officer",
+											"type": "text"
+										},
+										{
+											"key": "check_in_date",
+											"value": "2025-06-01",
+											"type": "text"
+										},
+										{
+											"key": "check_in_time",
+											"value": "07:20 PM",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "Wants to discuss admission",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/visitor-logs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"visitor-logs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all visitor logs",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/visitor-logs?pagination_limit=7&search_keyword=John Doe&start_date=2024-01-20&end_date=2024-02-01",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"visitor-logs"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "7"
+										},
+										{
+											"key": "search_keyword",
+											"value": "John Doe"
+										},
+										{
+											"key": "start_date",
+											"value": "2024-01-20"
+										},
+										{
+											"key": "end_date",
+											"value": "2024-02-01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete visitor logs",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/visitor-logs/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"visitor-logs",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Subjects",
+					"item": [
+						{
+							"name": "store subjects",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_code",
+											"value": "NPL 002",
+											"type": "text"
+										},
+										{
+											"key": "subject_name",
+											"value": "Compulsory Nepali",
+											"type": "text"
+										},
+										{
+											"key": "theory_full_marks",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "theory_pass_marks",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "practical_full_marks",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "practical_pass_marks",
+											"value": "20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/subjects",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all subject list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/subjects?pagination_limit=8&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"subjects"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update subject data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_code",
+											"value": "NPL 002",
+											"type": "text"
+										},
+										{
+											"key": "subject_name",
+											"value": "Compulsory Nepali",
+											"type": "text"
+										},
+										{
+											"key": "theory_full_marks",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "theory_pass_marks",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "practical_full_marks",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "practical_pass_marks",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/subjects/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"subjects",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
