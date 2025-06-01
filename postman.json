@@ -98,7 +98,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "Siddhartha Shishu Sadan 902",
+											"value": "Siddhartha Shishu Sadan",
 											"type": "text"
 										},
 										{
@@ -149,7 +149,7 @@
 										{
 											"key": "school_logo",
 											"type": "file",
-											"src": "/Users/hanciephago/Desktop/images.png"
+											"src": "/C:/Users/Hanci/Downloads/rd5TUX2wz4wS4QsBnpS6vQl6Hey1e4R5GC59NioT.png"
 										}
 									]
 								},
@@ -1394,7 +1394,7 @@
 										},
 										{
 											"key": "name",
-											"value": "School",
+											"value": "Four",
 											"type": "text"
 										}
 									]
@@ -1977,6 +1977,692 @@
 										"api",
 										"admin",
 										"exam-types",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "store student data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": " Sita",
+											"type": "text"
+										},
+										{
+											"key": "middle_name",
+											"value": " Kumari",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": " Thapa",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": " sita.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": " 2005-03-25",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": " female",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": " Kathmandu, Nepal",
+											"type": "text"
+										},
+										{
+											"key": "blood_group",
+											"value": " O+",
+											"type": "text"
+										},
+										{
+											"key": "food_preference",
+											"value": " Vegetarian",
+											"type": "text"
+										},
+										{
+											"key": "batch_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "class_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "section_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "student_type",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "roll_no",
+											"value": " 22A",
+											"type": "text"
+										},
+										{
+											"key": "addmission_date",
+											"value": " 2023-04-10",
+											"type": "text"
+										},
+										{
+											"key": "emis_no",
+											"value": " 1234567890",
+											"type": "text"
+										},
+										{
+											"key": "permanent_province",
+											"value": " Bagmati",
+											"type": "text"
+										},
+										{
+											"key": "permanent_district",
+											"value": " Lalitpur",
+											"type": "text"
+										},
+										{
+											"key": "permanent_municipality",
+											"value": " Godawari",
+											"type": "text"
+										},
+										{
+											"key": "permanent_ward_no",
+											"value": " 3",
+											"type": "text"
+										},
+										{
+											"key": "permanent_tole",
+											"value": " Chapagaun",
+											"type": "text"
+										},
+										{
+											"key": "temporary_province",
+											"value": " Bagmati",
+											"type": "text"
+										},
+										{
+											"key": "temporary_district",
+											"value": " Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "temporary_municipality",
+											"value": " KMC",
+											"type": "text"
+										},
+										{
+											"key": "temporary_ward_no",
+											"value": " 11",
+											"type": "text"
+										},
+										{
+											"key": "temporary_tole",
+											"value": " Baneshwor",
+											"type": "text"
+										},
+										{
+											"key": "father_name",
+											"value": " Ram Thapa",
+											"type": "text"
+										},
+										{
+											"key": "father_phone",
+											"value": " 9800000001",
+											"type": "text"
+										},
+										{
+											"key": "father_email",
+											"value": " ram.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "father_education",
+											"value": " Bachelor",
+											"type": "text"
+										},
+										{
+											"key": "father_occupation",
+											"value": " Engineer",
+											"type": "text"
+										},
+										{
+											"key": "mother_name",
+											"value": " Maya Thapa",
+											"type": "text"
+										},
+										{
+											"key": "mother_phone",
+											"value": " 9800000002",
+											"type": "text"
+										},
+										{
+											"key": "mother_email",
+											"value": " maya.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "mother_education",
+											"value": " Master",
+											"type": "text"
+										},
+										{
+											"key": "mother_occupation",
+											"value": " Teacher",
+											"type": "text"
+										},
+										{
+											"key": "guardian_name",
+											"value": " Dinesh Thapa",
+											"type": "text"
+										},
+										{
+											"key": "guardian_phone",
+											"value": " 9800000003",
+											"type": "text"
+										},
+										{
+											"key": "guardian_email",
+											"value": " dinesh.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "guardian_education",
+											"value": " Bachelor",
+											"type": "text"
+										},
+										{
+											"key": "guardian_occupation",
+											"value": " Business",
+											"type": "text"
+										},
+										{
+											"key": "guardian_relation",
+											"value": " Uncle",
+											"type": "text"
+										},
+										{
+											"key": "is_disabled",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "student_image",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Pictures/IMG_1534_11zon.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/students",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"students"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all student list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "student_image",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Pictures/IMG_1534_11zon.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/students?pagination_limit=8&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"students"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update student data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": " Sita",
+											"type": "text"
+										},
+										{
+											"key": "middle_name",
+											"value": " Kumari",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": " Thapa",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": " sita.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": " 2005-03-25",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": " female",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": " Kathmandu, Nepal",
+											"type": "text"
+										},
+										{
+											"key": "blood_group",
+											"value": " O+",
+											"type": "text"
+										},
+										{
+											"key": "food_preference",
+											"value": " Vegetarian",
+											"type": "text"
+										},
+										{
+											"key": "batch_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "class_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "section_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "student_type",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "roll_no",
+											"value": " 22A",
+											"type": "text"
+										},
+										{
+											"key": "addmission_date",
+											"value": " 2023-04-10",
+											"type": "text"
+										},
+										{
+											"key": "emis_no",
+											"value": " 1234567890",
+											"type": "text"
+										},
+										{
+											"key": "permanent_province",
+											"value": " Bagmati",
+											"type": "text"
+										},
+										{
+											"key": "permanent_district",
+											"value": " Lalitpur",
+											"type": "text"
+										},
+										{
+											"key": "permanent_municipality",
+											"value": " Godawari",
+											"type": "text"
+										},
+										{
+											"key": "permanent_ward_no",
+											"value": " 3",
+											"type": "text"
+										},
+										{
+											"key": "permanent_tole",
+											"value": " Chapagaun",
+											"type": "text"
+										},
+										{
+											"key": "temporary_province",
+											"value": " Bagmati",
+											"type": "text"
+										},
+										{
+											"key": "temporary_district",
+											"value": " Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "temporary_municipality",
+											"value": " KMC",
+											"type": "text"
+										},
+										{
+											"key": "temporary_ward_no",
+											"value": " 11",
+											"type": "text"
+										},
+										{
+											"key": "temporary_tole",
+											"value": " Baneshwor",
+											"type": "text"
+										},
+										{
+											"key": "father_name",
+											"value": " Ram Thapa",
+											"type": "text"
+										},
+										{
+											"key": "father_phone",
+											"value": " 9800000001",
+											"type": "text"
+										},
+										{
+											"key": "father_email",
+											"value": " ram.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "father_education",
+											"value": " Bachelor",
+											"type": "text"
+										},
+										{
+											"key": "father_occupation",
+											"value": " Engineer",
+											"type": "text"
+										},
+										{
+											"key": "mother_name",
+											"value": " Maya Thapa",
+											"type": "text"
+										},
+										{
+											"key": "mother_phone",
+											"value": " 9800000002",
+											"type": "text"
+										},
+										{
+											"key": "mother_email",
+											"value": " maya.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "mother_education",
+											"value": " Master",
+											"type": "text"
+										},
+										{
+											"key": "mother_occupation",
+											"value": " Teacher",
+											"type": "text"
+										},
+										{
+											"key": "guardian_name",
+											"value": " Dinesh Thapa",
+											"type": "text"
+										},
+										{
+											"key": "guardian_phone",
+											"value": " 9800000003",
+											"type": "text"
+										},
+										{
+											"key": "guardian_email",
+											"value": " dinesh.thapa@example.com",
+											"type": "text"
+										},
+										{
+											"key": "guardian_education",
+											"value": " Bachelor",
+											"type": "text"
+										},
+										{
+											"key": "guardian_occupation",
+											"value": " Business",
+											"type": "text"
+										},
+										{
+											"key": "guardian_relation",
+											"value": " Uncle",
+											"type": "text"
+										},
+										{
+											"key": "is_disabled",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "student_image",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Pictures/IMG_1534_11zon.jpg"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/students/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"students",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete student data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/students/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"students",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single student data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/students/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"students",
 										"{id}"
 									]
 								}
