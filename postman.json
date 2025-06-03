@@ -632,7 +632,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "2081",
+											"value": "2082",
 											"type": "text"
 										}
 									]
@@ -737,6 +737,158 @@
 										"api",
 										"admin",
 										"academic-sessions",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "School",
+					"item": [
+						{
+							"name": "update school details",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Siddhartha Shishu Sadan",
+											"type": "text"
+										},
+										{
+											"key": "display_name",
+											"value": "Siddhartha",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "siddhratha@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "12342435",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Bhadrapur",
+											"type": "text"
+										},
+										{
+											"key": "vat_number",
+											"value": "2324325",
+											"type": "text"
+										},
+										{
+											"key": "registration_number",
+											"value": "rwrertret",
+											"type": "text"
+										},
+										{
+											"key": "established_date",
+											"value": "2002-01-2",
+											"type": "text"
+										},
+										{
+											"key": "website",
+											"value": "siddhartha.com",
+											"type": "text"
+										},
+										{
+											"key": "school_type",
+											"value": "public",
+											"type": "text"
+										},
+										{
+											"key": "school_logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/schools/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"schools",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single school data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/schools/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"schools",
 										"{id}"
 									]
 								}
@@ -1110,6 +1262,66 @@
 									"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Admin\",\n        \"email\": \"superadmin@gmail.com\",\n        \"email_verified_at\": \"2025-05-04T17:15:08.000000Z\",\n        \"roles\": [\n            {\n                \"id\": 1,\n                \"name\": \"superadmin\",\n                \"permissions\": []\n            }\n        ],\n        \"last_login_at\": \"2025-05-04 11:03 PM\",\n        \"created_at\": \"2025-05-04 11:00 pm\",\n        \"updated_at\": \"2025-05-04 11:03 pm\"\n    }\n}"
 								}
 							]
+						},
+						{
+							"name": "change admin password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "current_password",
+											"value": "12345",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password@720",
+											"type": "text"
+										},
+										{
+											"key": "confirm_password",
+											"value": "Password@720",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"change-password"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3076,6 +3288,392 @@
 										"admin",
 										"subjects",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Employee Types",
+					"item": [
+						{
+							"name": "store employee type",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Teacher",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/employee-types",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"employee-types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all employee type list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/employee-types?pagination_limit=8&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"employee-types"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update employee type",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Teacher",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/employee-types/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"employee-types",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete employee type",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/employee-types/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"employee-types",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Staff",
+					"item": [
+						{
+							"name": "store staff data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Arun Shrestha",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "arun@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": "2023-03-20",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "Male",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "KTM",
+											"type": "text"
+										},
+										{
+											"key": "faculty_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "level_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "program_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "class_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "section_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "employee_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "employee_pan_no",
+											"value": "345436",
+											"type": "text"
+										},
+										{
+											"key": "citizenship_number",
+											"value": "234543543",
+											"type": "text"
+										},
+										{
+											"key": "blood_group",
+											"value": "A+",
+											"type": "text"
+										},
+										{
+											"key": "qualification",
+											"value": "Master Degree",
+											"type": "text"
+										},
+										{
+											"key": "designation",
+											"value": "Principal",
+											"type": "text"
+										},
+										{
+											"key": "joining_date",
+											"value": "2025-01-20",
+											"type": "text"
+										},
+										{
+											"key": "is_principal",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "staff_image",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Pictures/530-5300778_minion-banana-hd-hd-png-download.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/staffs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"staffs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all staffs",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/staffs?pagination_limit&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"staffs"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": null
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
 									]
 								}
 							},
