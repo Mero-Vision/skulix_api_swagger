@@ -30,6 +30,7 @@ tags:
   - name: Admin
   - name: Admin > Auth
   - name: Admin > Academic Sessions
+  - name: Admin > School
   - name: Admin > Student Batches
   - name: Admin > Student Faculty
   - name: Admin > Admin
@@ -42,6 +43,8 @@ tags:
   - name: Admin > Student
   - name: Admin > Visitor Logs
   - name: Admin > Subjects
+  - name: Admin > Employee Types
+  - name: Admin > Staff
 paths:
   /api/superadmin/login:
     post:
@@ -352,7 +355,7 @@ paths:
               properties:
                 name:
                   type: integer
-                  example: '2081'
+                  example: '2082'
       security:
         - bearerAuth: []
       parameters:
@@ -458,6 +461,103 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/schools/{id}:
+    post:
+      tags:
+        - Admin > School
+      summary: update school details
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Siddhartha Shishu Sadan
+                display_name:
+                  type: string
+                  example: Siddhartha
+                email:
+                  type: string
+                  example: siddhratha@gmail.com
+                phone:
+                  type: integer
+                  example: '12342435'
+                address:
+                  type: string
+                  example: Bhadrapur
+                vat_number:
+                  type: integer
+                  example: '2324325'
+                registration_number:
+                  type: string
+                  example: rwrertret
+                established_date:
+                  type: string
+                  example: 2002-01-2
+                website:
+                  type: string
+                  example: siddhartha.com
+                school_type:
+                  type: string
+                  example: public
+                school_logo:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > School
+      summary: show single school data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
         - name: id
           in: path
           schema:
@@ -700,6 +800,44 @@ paths:
                   last_login_at: 2025-05-04 11:03 PM
                   created_at: 2025-05-04 11:00 pm
                   updated_at: 2025-05-04 11:03 pm
+  /api/admin/change-password:
+    post:
+      tags:
+        - Admin > Admin
+      summary: change admin password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: integer
+                  example: '12345'
+                password:
+                  type: string
+                  example: Password@720
+                confirm_password:
+                  type: string
+                  example: Password@720
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/levels:
     post:
       tags:
@@ -1881,6 +2019,242 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employee-types:
+    post:
+      tags:
+        - Admin > Employee Types
+      summary: store employee type
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Teacher
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Employee Types
+      summary: show all employee type list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employee-types/{id}:
+    post:
+      tags:
+        - Admin > Employee Types
+      summary: update employee type
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Teacher
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Employee Types
+      summary: delete employee type
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/staffs:
+    post:
+      tags:
+        - Admin > Staff
+      summary: store staff data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Arun Shrestha
+                email:
+                  type: string
+                  example: arun@gmail.com
+                dob:
+                  type: string
+                  example: '2023-03-20'
+                gender:
+                  type: string
+                  example: Male
+                address:
+                  type: string
+                  example: KTM
+                faculty_id:
+                  type: integer
+                  example: '1'
+                level_id:
+                  type: integer
+                  example: '1'
+                program_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                section_id:
+                  type: integer
+                  example: '1'
+                employee_type_id:
+                  type: integer
+                  example: '1'
+                employee_pan_no:
+                  type: integer
+                  example: '345436'
+                citizenship_number:
+                  type: integer
+                  example: '234543543'
+                blood_group:
+                  type: string
+                  example: A+
+                qualification:
+                  type: string
+                  example: Master Degree
+                designation:
+                  type: string
+                  example: Principal
+                joining_date:
+                  type: string
+                  example: '2025-01-20'
+                is_principal:
+                  type: boolean
+                  example: 'true'
+                staff_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Staff
+      summary: show all staffs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
