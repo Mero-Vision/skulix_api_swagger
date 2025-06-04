@@ -45,6 +45,8 @@ tags:
   - name: Admin > Subjects
   - name: Admin > Employee Types
   - name: Admin > Staff
+  - name: Admin > Class Rooms
+  - name: Admin > Class Routine
 paths:
   /api/superadmin/login:
     post:
@@ -1038,6 +1040,34 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/classes/{class_id}/sections:
+    get:
+      tags:
+        - Admin > Student Classes
+      summary: search sections from class
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -2255,6 +2285,239 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-rooms:
+    post:
+      tags:
+        - Admin > Class Rooms
+      summary: store class room
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: integer
+                  example: '106'
+                room_capacity:
+                  type: integer
+                  example: '30'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Class Rooms
+      summary: show all class rooms list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-rooms/{id}:
+    post:
+      tags:
+        - Admin > Class Rooms
+      summary: update  class room
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: integer
+                  example: '106'
+                room_capacity:
+                  type: integer
+                  example: '30'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Class Rooms
+      summary: delete class room
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-routines:
+    post:
+      tags:
+        - Admin > Class Routine
+      summary: store class routine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                routines:
+                  - class_id: 1
+                    section_id: 1
+                    subject_id: 1
+                    teacher_id: 1
+                    day: Tuesday
+                    from_time: '08:00'
+                    to_time: '08:40'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Class Routine
+      summary: show class routines
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-routines/{id}:
+    delete:
+      tags:
+        - Admin > Class Routine
+      summary: delete class routine
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
