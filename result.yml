@@ -47,6 +47,11 @@ tags:
   - name: Admin > Staff
   - name: Admin > Class Rooms
   - name: Admin > Class Routine
+  - name: Admin > Outing Purpose
+  - name: Admin > Outing
+  - name: Admin > Scholarship
+  - name: Admin > Account Heads
+  - name: Admin > Bus Stops
 paths:
   /api/superadmin/login:
     post:
@@ -2513,6 +2518,602 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/outing-purpose:
+    post:
+      tags:
+        - Admin > Outing Purpose
+      summary: store outing porse
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Excursion
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Outing Purpose
+      summary: show all outing purposes
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/outing-purpose/{id}:
+    post:
+      tags:
+        - Admin > Outing Purpose
+      summary: update outing purpose
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Excursion
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Outing Purpose
+      summary: delete outing purpose
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/outings:
+    post:
+      tags:
+        - Admin > Outing
+      summary: store outing data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                student_id:
+                  type: integer
+                  example: '1'
+                outing_purpose_id:
+                  type: integer
+                  example: '1'
+                outing_date:
+                  type: string
+                  example: '2024-02-20'
+                approved_by:
+                  type: string
+                  example: Alex
+                received_by:
+                  type: string
+                  example: Father
+                contact_no:
+                  type: integer
+                  example: '345465'
+                remarks:
+                  type: string
+                  example: Emergency
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Outing
+      summary: show all outing list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+        - name: end_date
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/scholarships:
+    post:
+      tags:
+        - Admin > Scholarship
+      summary: store scholarship
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: 30% Scholarships
+                description:
+                  type: string
+                  example: >-
+                    This Scholarship are Provided to Children of Teachers. This
+                    Scholarship provided Students are Discounted 30% of Monthly
+                    fee, Exam fee and Bus Fee.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Scholarship
+      summary: show all scholarship list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/scholarships/{id}:
+    post:
+      tags:
+        - Admin > Scholarship
+      summary: update scholarship
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: 30% Scholarships
+                description:
+                  type: string
+                  example: >-
+                    This Scholarship are Provided to Children of Teachers. This
+                    Scholarship provided Students are Discounted 30% of Monthly
+                    fee, Exam fee and Bus Fee.
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Scholarship
+      summary: delete scholarship
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/account-heads:
+    get:
+      tags:
+        - Admin > Account Heads
+      summary: show all account heads
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/account-sub-heads:
+    post:
+      tags:
+        - Admin > Account Heads
+      summary: store account sub heads
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Academy Incomes
+                account_head_id:
+                  type: integer
+                  example: '7'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/account-sub-sub-heads:
+    post:
+      tags:
+        - Admin > Account Heads
+      summary: store account sub sub head
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Academy Incomes
+                account_head_id:
+                  type: integer
+                  example: '7'
+                account_sub_head_id:
+                  type: integer
+                  example: '20'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bus-stops:
+    post:
+      tags:
+        - Admin > Bus Stops
+      summary: store bus stops
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Lagankhel
+                landmark:
+                  type: string
+                  example: Near Bus Park
+                vehicle_no:
+                  type: string
+                  example: AR496
+                monthly_fee:
+                  type: integer
+                  example: '550'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Bus Stops
+      summary: show all bus stops
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bus-stops/{id}:
+    post:
+      tags:
+        - Admin > Bus Stops
+      summary: update bus stop
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Lagankhel
+                landmark:
+                  type: string
+                  example: Near Bus Park
+                vehicle_no:
+                  type: string
+                  example: AR496
+                monthly_fee:
+                  type: integer
+                  example: '550'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Bus Stops
+      summary: delete bus stop
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
         - name: id
           in: path
           schema:
