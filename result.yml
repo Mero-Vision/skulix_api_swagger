@@ -52,6 +52,8 @@ tags:
   - name: Admin > Scholarship
   - name: Admin > Account Heads
   - name: Admin > Bus Stops
+  - name: Admin > School Account Head
+  - name: Admin > Class Fee Particulars
 paths:
   /api/superadmin/login:
     post:
@@ -3114,6 +3116,257 @@ paths:
           schema:
             type: integer
           example: '6'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/school-account-heads:
+    post:
+      tags:
+        - Admin > School Account Head
+      summary: store account head
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account_head_id:
+                  type: integer
+                  example: '1'
+                account_sub_head_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: Admission Fee
+                nepali_heading:
+                  type: string
+                  example: Admission Fee
+                period_name:
+                  type: string
+                  example: OneTime
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > School Account Head
+      summary: show all school account heads
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/school-account-heads/{id}:
+    post:
+      tags:
+        - Admin > School Account Head
+      summary: update school account head
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account_head_id:
+                  type: integer
+                  example: '1'
+                account_sub_head_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: Admission Fee
+                nepali_heading:
+                  type: string
+                  example: Admission Fee
+                period_name:
+                  type: string
+                  example: OneTime
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > School Account Head
+      summary: delete school account head
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-fee-particulars:
+    post:
+      tags:
+        - Admin > Class Fee Particulars
+      summary: store class fee particulars
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                school_account_head_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                amount:
+                  type: integer
+                  example: '1500'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Class Fee Particulars
+      summary: show all class fee particulars
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-fee-particulars/{id}:
+    post:
+      tags:
+        - Admin > Class Fee Particulars
+      summary: update class fee particular
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                school_account_head_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                amount:
+                  type: integer
+                  example: '1500'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
         - name: id
           in: path
           schema:
