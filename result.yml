@@ -57,9 +57,11 @@ tags:
   - name: Admin > Bus Stops
   - name: Admin > School Account Head
   - name: Admin > Class Fee Particulars
+  - name: Admin > Student Login Logs
   - name: Student
   - name: Student > Auth
   - name: Student > Student
+  - name: Student > Student Class Routine
 paths:
   /api/superadmin/login:
     post:
@@ -3383,6 +3385,34 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/student-login-logs/{student-id}:
+    get:
+      tags:
+        - Admin > Student Login Logs
+      summary: show single student login logs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student-id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/student/login:
     post:
       tags:
@@ -3400,6 +3430,12 @@ paths:
                 password:
                   type: integer
                   example: '12345'
+                device_name:
+                  type: string
+                  example: Samsung Galaxy S25
+                model_name:
+                  type: string
+                  example: SM-G998B
       security:
         - noauthAuth: []
       parameters:
@@ -3469,6 +3505,39 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/class-routines:
+    get:
+      tags:
+        - Student > Student Class Routine
+      summary: show student class routine
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
