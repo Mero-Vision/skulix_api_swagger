@@ -5423,6 +5423,52 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Student Login Logs",
+					"item": [
+						{
+							"name": "show single student login logs",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/student-login-logs/{student-id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-login-logs",
+										"{student-id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -5471,6 +5517,16 @@
 										{
 											"key": "password",
 											"value": "12345",
+											"type": "text"
+										},
+										{
+											"key": "device_name",
+											"value": "Samsung Galaxy S25",
+											"type": "text"
+										},
+										{
+											"key": "model_name",
+											"value": "SM-G998B",
 											"type": "text"
 										}
 									]
@@ -5592,6 +5648,61 @@
 										"student",
 										"student",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Student Class Routine",
+					"item": [
+						{
+							"name": "show student class routine",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/class-routines?class_id=1&section_id=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"class-routines"
+									],
+									"query": [
+										{
+											"key": "class_id",
+											"value": "1"
+										},
+										{
+											"key": "section_id",
+											"value": "1"
+										}
 									]
 								}
 							},
