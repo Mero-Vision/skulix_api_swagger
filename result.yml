@@ -27,47 +27,75 @@ components:
       type: http
       scheme: noauth
 tags:
+  - name: Authentication
   - name: Super Admin
-  - name: Super Admin > Auth
-  - name: Super Admin > School
-  - name: Admin
-  - name: Admin > Auth
-  - name: Admin > Academic Sessions
-  - name: Admin > School
-  - name: Admin > Student Batches
-  - name: Admin > Student Faculty
-  - name: Admin > Admin
-  - name: Admin > Student Level
-  - name: Admin > Student Program
-  - name: Admin > Student Classes
-  - name: Admin > Class Sections
-  - name: Admin > Student Types
-  - name: Admin > Exam Types
-  - name: Admin > Student
-  - name: Admin > Visitor Logs
-  - name: Admin > Subjects
-  - name: Admin > Employee Types
-  - name: Admin > Staff
-  - name: Admin > Class Rooms
-  - name: Admin > Class Routine
-  - name: Admin > Outing Purpose
-  - name: Admin > Outing
-  - name: Admin > Scholarship
-  - name: Admin > Account Heads
-  - name: Admin > Bus Stops
-  - name: Admin > School Account Head
-  - name: Admin > Class Fee Particulars
-  - name: Admin > Student Login Logs
+  - name: Super Admin > User Data
+  - name: Super Admin > Site Setting
+  - name: Super Admin > Master Data
+  - name: Super Admin > Country Master Data
+  - name: Super Admin > Country Master Data > Nepal
+  - name: Super Admin > Company
+  - name: Super Admin > University Application Period
+  - name: Super Admin > Universities
+  - name: Super Admin > CMS
+  - name: Super Admin > CMS > Contact Us
+  - name: Super Admin > CMS > Blog
+  - name: Super Admin > CMS > Website Banner Statistics
+  - name: Super Admin > CMS > About CEO
+  - name: Super Admin > CMS > Our Team
+  - name: Super Admin > CMS > FAQ
+  - name: Super Admin > CMS > Testimonial
+  - name: Super Admin > Agent
+  - name: Super Admin > University Courses
+  - name: Super Admin > University Features
+  - name: Super Admin > Course Tags
+  - name: Super Admin > Program Level
+  - name: Super Admin > Requirement Category Documents
+  - name: Super Admin > Financial Requirements
+  - name: Super Admin > Application Financial Requirement
+  - name: Super Admin > Visa Requirements
+  - name: Super Admin > Application Visa Requirements
+  - name: Super Admin > Application Enrollment Status
+  - name: Super Admin > Commissions
+  - name: Super Admin > Student Applications
+  - name: Super Admin > Track Applications
+  - name: Super Admin > My Students
+  - name: Super Admin > Roles and Permission
+  - name: Recruit Partners
+  - name: Recruit Partners > Authentication
+  - name: Recruit Partners > Events
+  - name: Recruit Partners > University
+  - name: Recruit Partners > Courses
+  - name: Recruit Partners > Students
+  - name: Recruit Partners > Student Application
+  - name: Recruit Partners > Dashboard
+  - name: Recruit Partners > Company Payment Option
+  - name: Recruit Partners > Student Payment
+  - name: Recruit Partners > Application Documents
+  - name: Recruit Partners > Student Scores
+  - name: Recruit Partners > Application Financial Requirements
+  - name: Recruit Partners > Application Visa Requirements
+  - name: Recruit Partners > Commissions
+  - name: Website
+  - name: Website > Contact Us
+  - name: Website > Blog
+  - name: Website > FAQ
+  - name: Website > Our Team
+  - name: Website > Site Settings
+  - name: Website > Testimonial
   - name: Student
-  - name: Student > Auth
+  - name: Student > Login
+  - name: Student > University
+  - name: Student > Courses
   - name: Student > Student
-  - name: Student > Student Class Routine
+  - name: Student > Student Application
+  - name: Student > Site Settings
 paths:
-  /api/superadmin/login:
+  /api/super-admin-login:
     post:
       tags:
-        - Super Admin > Auth
-      summary: superadmin login
+        - Authentication
+      summary: super admin login
       requestBody:
         content:
           multipart/form-data:
@@ -79,7 +107,7 @@ paths:
                   example: superadmin@gmail.com
                 password:
                   type: string
-                  example: Password
+                  example: password
       parameters:
         - name: Accept
           in: header
@@ -91,67 +119,27 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/superadmin/schools:
-    post:
-      tags:
-        - Super Admin > School
-      summary: store school data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Siddhartha Shishu Sadan
-                display_name:
-                  type: string
-                  example: Siddhartha
-                email:
-                  type: string
-                  example: siddhratha@gmail.com
-                phone:
-                  type: integer
-                  example: '12342435'
-                address:
-                  type: string
-                  example: Bhadrapur
-                vat_number:
-                  type: integer
-                  example: '2324325'
-                registration_number:
-                  type: string
-                  example: rwrertret
-                established_date:
-                  type: string
-                  example: 2002-01-2
-                website:
-                  type: string
-                  example: siddhartha.com
-                school_type:
-                  type: string
-                  example: public
-                school_logo:
-                  type: string
-                  format: binary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/set-password:
     get:
       tags:
-        - Super Admin > School
-      summary: show all school list
+        - Authentication
+      summary: set password and verify account
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/user/{id}:
+    get:
+      tags:
+        - Super Admin > User Data
+      summary: show single user data
       security:
         - bearerAuth: []
       parameters:
@@ -160,25 +148,20 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '5'
-        - name: search_keyword
-          in: query
+        - name: id
+          in: path
           schema:
             type: string
+          required: true
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/superadmin/school-invite-admin:
     post:
       tags:
-        - Super Admin > School
-      summary: invite admin to school
+        - Super Admin > User Data
+      summary: update user details
       requestBody:
         content:
           multipart/form-data:
@@ -187,96 +170,8 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Hancie Phago
-                email:
-                  type: string
-                  example: hanciephago@gmail.com
-                school_id:
-                  type: integer
-                  example: '1'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/verify-account:
-    post:
-      tags:
-        - Super Admin > School
-      summary: verify account and set password
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                token:
-                  type: string
-                password:
-                  type: string
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/schools/{id}:
-    post:
-      tags:
-        - Super Admin > School
-      summary: update school
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Siddhartha Shishu Sadan School
-                display_name:
-                  type: string
-                  example: Siddhartha
-                email:
-                  type: string
-                  example: siddhratha@gmail.com
-                phone:
-                  type: integer
-                  example: '12342435'
-                address:
-                  type: string
-                  example: Bhadrapur
-                vat_number:
-                  type: integer
-                  example: '2324325'
-                registration_number:
-                  type: string
-                  example: rwrertret
-                established_date:
-                  type: string
-                  example: 2002-01-2
-                website:
-                  type: string
-                  example: siddhartha.com
-                school_type:
-                  type: string
-                  example: public
-                school_logo:
+                  example: Hancie Phago5
+                profile_image:
                   type: string
                   format: binary
                 _method:
@@ -300,11 +195,80 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/login:
+  /api/super-admin/change-password:
     post:
       tags:
-        - Admin > Auth
-      summary: admin login
+        - Super Admin > User Data
+      summary: change password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  example: fdgg
+                password:
+                  type: integer
+                  example: '12345678'
+                password_confirmation:
+                  type: integer
+                  example: '12345678'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/add-users:
+    post:
+      tags:
+        - Super Admin > User Data
+      summary: add user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Harry
+                email:
+                  type: string
+                  example: info2@harry.com
+                password:
+                  type: string
+                  example: Password
+                role:
+                  type: string
+                  example: admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/forgot-password:
+    post:
+      tags:
+        - Super Admin > User Data
+      summary: forgot password
       requestBody:
         content:
           multipart/form-data:
@@ -313,66 +277,76 @@ paths:
               properties:
                 email:
                   type: string
-                  example: hanciephago@gmail.com
-                password:
-                  type: integer
-                  example: '12345'
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/academic-sessions:
-    get:
-      tags:
-        - Admin > Academic Sessions
-      summary: show all academic sessions
+                  example: superadmin@gmail.com
       security:
-        - bearerAuth: []
+        - noauthAuth: []
       parameters:
         - name: Accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '3'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
+  /api/super-admin/reset-password:
     post:
       tags:
-        - Admin > Academic Sessions
-      summary: store academic session
+        - Super Admin > User Data
+      summary: reset password
       requestBody:
         content:
           multipart/form-data:
             schema:
               type: object
               properties:
-                name:
+                token:
+                  type: string
+                  example: fgdfghfhgfhj
+                password:
                   type: integer
-                  example: '2082'
+                  example: '123'
+                password_confirmation:
+                  type: integer
+                  example: '123'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/site-settings:
+    post:
+      tags:
+        - Super Admin > CMS > About CEO
+      summary: store ceo detail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                ceo_name:
+                  type: string
+                  example: Rochak Bhattrai
+                ceo_message:
+                  type: string
+                  example: hfghghh
+                ceo_image:
+                  type: string
+                  format: binary
+                settingable_type:
+                  type: string
+                  example: CEO
       security:
         - bearerAuth: []
       parameters:
@@ -381,21 +355,657 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '3'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/academic-sessions/status/3:
+    get:
+      tags:
+        - Super Admin > CMS > About CEO
+      summary: show about consultancy CEO
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: settingable_type
+          in: query
+          schema:
+            type: string
+          example: CEO
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/master-data/genders:
+    get:
+      tags:
+        - Super Admin > Master Data
+      summary: gender master data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/master-data/country-list:
+    get:
+      tags:
+        - Super Admin > Master Data
+      summary: country list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/master-data/education-levels:
+    get:
+      tags:
+        - Super Admin > Master Data
+      summary: education levels
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/master-data/payment-methods:
+    get:
+      tags:
+        - Super Admin > Master Data
+      summary: payment methods
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/master-data/countries/nepal:
+    get:
+      tags:
+        - Super Admin > Country Master Data > Nepal
+      summary: Nepal Province with district list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/master-data/countries/nepal/province/districts/{district_id}:
+    get:
+      tags:
+        - Super Admin > Country Master Data > Nepal
+      summary: municipality list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: district_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/company:
+    get:
+      tags:
+        - Super Admin > Company
+      summary: Company get api
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/company/{company_id}:
+    get:
+      tags:
+        - Super Admin > Company
+      summary: show single company details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/company/{id}:
     post:
       tags:
-        - Admin > Academic Sessions
-      summary: update academic session status
+        - Super Admin > Company
+      summary: update company
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                company_name:
+                  type: string
+                  example: R.B. Abroad Shikshya Pvt. Ltd.
+                email:
+                  type: string
+                phone_no:
+                  type: string
+                mobile_no:
+                  type: string
+                country:
+                  type: string
+                  example: Nepal
+                province:
+                  type: string
+                district:
+                  type: string
+                municipality:
+                  type: string
+                street_address:
+                  type: string
+                  example: Bhadrapur Road, Birtamode
+                vat_no:
+                  type: integer
+                  example: '654647567'
+                registration_number:
+                  type: integer
+                  example: '54657657567'
+                website:
+                  type: string
+                  example: rbabroads.com
+                company_logo:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/application-periods:
+    get:
+      tags:
+        - Super Admin > University Application Period
+      summary: get the list of university application period
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/university:
+    post:
+      tags:
+        - Super Admin > Universities
+      summary: Create Universities
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                university_name:
+                  type: string
+                  example: Yorkville University - Toronto
+                country_id:
+                  type: integer
+                  example: '1'
+                province:
+                  type: string
+                  example: Ontario
+                city:
+                  type: string
+                  example: Toronto
+                university_logo:
+                  type: string
+                  format: binary
+                designated_learning_institution_no:
+                  type: string
+                  example: 54rtrtt
+                commission_percent:
+                  type: integer
+                  example: '50'
+                founded_in:
+                  type: string
+                  example: '2014-01-23'
+                institution_no_type:
+                  type: string
+                  example: dsfg
+                institution_type:
+                  type: string
+                  example: Public
+                video_link:
+                  type: string
+                  example: dfgfdg
+                feature_name[]:
+                  type: string
+                  example: hh
+                feature_description[]:
+                  type: string
+                  example: hh
+                university_image[]:
+                  type: string
+                  format: binary
+                application_fee:
+                  type: integer
+                  example: '800'
+                description:
+                  type: string
+                  example: cbvvbnbn
+                avg_graduation_program_duration:
+                  type: string
+                  example: 2 years
+                avg_undergraduation_program_duration:
+                  type: string
+                  example: 4 years
+                cost_of_living:
+                  type: string
+                  example: $20,635.00 CAD / Year
+                gross_tuition:
+                  type: string
+                  example: $32,832.59 CAD / Year
+                currency:
+                  type: string
+                  example: CAD
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > Universities
+      summary: Show all university list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/university/{slug}:
+    get:
+      tags:
+        - Super Admin > Universities
+      summary: show single university detail
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Super Admin > Universities
+      summary: update university detail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                university_name:
+                  type: string
+                  example: Yorkville University - Toront0
+                country:
+                  type: string
+                  example: Canada
+                country_code:
+                  type: string
+                  example: CA
+                province:
+                  type: string
+                  example: Ontario
+                city:
+                  type: string
+                  example: Toronto
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Super Admin > Universities
+      summary: delete university
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/contact-us:
+    get:
+      tags:
+        - Super Admin > CMS > Contact Us
+      summary: show all contact us list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/contact-us/{contact_id}:
+    delete:
+      tags:
+        - Super Admin > CMS > Contact Us
+      summary: delete contact us data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: contact_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/blogs:
+    post:
+      tags:
+        - Super Admin > CMS > Blog
+      summary: create blog
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: hy
+                description:
+                  type: string
+                  example: dsfgsgd
+                blog_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > CMS > Blog
+      summary: show all blog list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: hy
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/blogs/{slug}:
+    get:
+      tags:
+        - Super Admin > CMS > Blog
+      summary: show single blog
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Super Admin > CMS > Blog
+      summary: delete blog
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Super Admin > CMS > Blog
+      summary: update blog
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: dfsgd
+                description:
+                  type: string
+                  example: gdgdg
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/blogs/update-status/{slug}:
+    post:
+      tags:
+        - Super Admin > CMS > Blog
+      summary: update status
       requestBody:
         content:
           multipart/form-data:
@@ -403,8 +1013,8 @@ paths:
               type: object
               properties:
                 status:
-                  type: boolean
-                  example: 'true'
+                  type: string
+                  example: inactive
                 _method:
                   type: string
                   example: PUT
@@ -416,21 +1026,21 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
+        - name: slug
+          in: path
           schema:
-            type: integer
-          example: '3'
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/academic-sessions/{id}:
+  /api/super-admin/cms/our-team:
     post:
       tags:
-        - Admin > Academic Sessions
-      summary: update academic sessions
+        - Super Admin > CMS > Our Team
+      summary: store our team data
       requestBody:
         content:
           multipart/form-data:
@@ -438,8 +1048,83 @@ paths:
               type: object
               properties:
                 name:
-                  type: integer
-                  example: '2081'
+                  type: string
+                  example: Drishya Poudel
+                designation:
+                  type: string
+                  example: Frontend Developer
+                our_team_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > CMS > Our Team
+      summary: get all team
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/our-team/{id}:
+    delete:
+      tags:
+        - Super Admin > CMS > Our Team
+      summary: delete our team data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Super Admin > CMS > Our Team
+      summary: update our team
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                designation:
+                  type: string
+                our_team_image:
+                  type: string
                 _method:
                   type: string
                   example: PUT
@@ -451,11 +1136,87 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/faq:
+    post:
+      tags:
+        - Super Admin > CMS > FAQ
+      summary: store faq
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                answer:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
           in: header
           schema:
-            type: integer
-          example: '3'
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > CMS > FAQ
+      summary: get faq list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/cms/faq/{id}:
+    post:
+      tags:
+        - Super Admin > CMS > FAQ
+      summary: update faq
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                answer:
+                  type: string
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
         - name: id
           in: path
           schema:
@@ -468,8 +1229,8 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Admin > Academic Sessions
-      summary: delete academic sessions
+        - Super Admin > CMS > FAQ
+      summary: delete faq
       security:
         - bearerAuth: []
       parameters:
@@ -488,11 +1249,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/schools/{id}:
+  /api/super-admin/testimonial:
     post:
       tags:
-        - Admin > School
-      summary: update school details
+        - Super Admin > CMS > Testimonial
+      summary: store testimonial
       requestBody:
         content:
           multipart/form-data:
@@ -501,35 +1262,99 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Siddhartha Shishu Sadan
-                display_name:
+                  example: Hancie Phago
+                country:
                   type: string
-                  example: Siddhartha
-                email:
+                  example: America
+                visa_intake:
                   type: string
-                  example: siddhratha@gmail.com
-                phone:
-                  type: integer
-                  example: '12342435'
-                address:
+                  example: September
+                university:
                   type: string
-                  example: Bhadrapur
-                vat_number:
-                  type: integer
-                  example: '2324325'
-                registration_number:
+                  example: Oxford University
+                subject:
                   type: string
-                  example: rwrertret
-                established_date:
+                  example: Programming
+                message:
                   type: string
-                  example: 2002-01-2
-                website:
+                  example: dfdf
+                university_logo:
                   type: string
-                  example: siddhartha.com
-                school_type:
+                  format: binary
+                profile_image:
                   type: string
-                  example: public
-                school_logo:
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > CMS > Testimonial
+      summary: show all testimonial
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/testimonial/{id}:
+    post:
+      tags:
+        - Super Admin > CMS > Testimonial
+      summary: update testimonial
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago2
+                country:
+                  type: string
+                  example: America
+                visa_intake:
+                  type: string
+                  example: September
+                university:
+                  type: string
+                  example: Oxford University
+                subject:
+                  type: string
+                  example: Programming
+                message:
+                  type: string
+                  example: dfdf
+                university_logo:
+                  type: string
+                  format: binary
+                profile_image:
                   type: string
                   format: binary
                 _method:
@@ -543,11 +1368,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
         - name: id
           in: path
           schema:
@@ -560,8 +1380,8 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > School
-      summary: show single school data
+        - Super Admin > CMS > Testimonial
+      summary: show single testimonial
       security:
         - bearerAuth: []
       parameters:
@@ -570,11 +1390,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
         - name: id
           in: path
           schema:
@@ -585,11 +1400,10 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/student-batches:
-    get:
+    delete:
       tags:
-        - Admin > Student Batches
-      summary: show all student batchs
+        - Super Admin > CMS > Testimonial
+      summary: delete testimonial
       security:
         - bearerAuth: []
       parameters:
@@ -598,38 +1412,117 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/agent:
+    post:
+      tags:
+        - Super Admin > Agent
+      summary: create agent
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: thirstytorvalds@freethecookies.com
+                nationality:
+                  type: string
+                  example: Nepalese
+                mobile_no:
+                  type: integer
+                  example: '9825915122'
+                phone_no:
+                  type: string
+                dob:
+                  type: string
+                  example: '2003-01-20'
+                country:
+                  type: string
+                  example: Nepal
+                postal:
+                  type: integer
+                  example: '44566'
+                province:
+                  type: string
+                  example: Bagmati Province
+                district:
+                  type: string
+                  example: Kathmandu
+                address:
+                  type: string
+                  example: New Baneshwor
+                company_name:
+                  type: string
+                  example: Mero Vision
+                vat_no:
+                  type: string
+                  example: 3453535-45646-567
+                company_registration_no:
+                  type: string
+                  example: 34545-456546
+                website:
+                  type: string
+                  example: https://merovision.com/
+                company_registration_image:
+                  type: string
+                  format: binary
+                company_vat_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
           in: header
           schema:
-            type: integer
-          example: '1'
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > Agent
+      summary: show all agents
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
         - name: pagination_limit
           in: query
           schema:
             type: integer
           example: '5'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-    post:
+  /api/super-admin/agent/{slug}:
+    get:
       tags:
-        - Admin > Student Batches
-      summary: store student batches
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                batch_year:
-                  type: integer
-                  example: '2082'
+        - Super Admin > Agent
+      summary: show single agent detail
       security:
         - bearerAuth: []
       parameters:
@@ -638,30 +1531,73 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
+        - name: slug
+          in: path
           schema:
-            type: integer
-          example: '1'
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/student-batches/{id}:
     post:
       tags:
-        - Admin > Student Batches
-      summary: update scholl batches
+        - Super Admin > Agent
+      summary: update agent details
       requestBody:
         content:
           multipart/form-data:
             schema:
               type: object
               properties:
-                batch_year:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hanciephago56@gmail.com
+                nationality:
+                  type: string
+                  example: Nepalese
+                mobile_no:
                   type: integer
-                  example: '2020'
+                  example: '9825915122'
+                phone_no:
+                  type: string
+                dob:
+                  type: string
+                  example: '2003-01-20'
+                country:
+                  type: string
+                  example: Nepal
+                postal:
+                  type: integer
+                  example: '44566'
+                province:
+                  type: string
+                  example: Bagmati Province
+                district:
+                  type: string
+                  example: Kathmandu
+                address:
+                  type: string
+                  example: New Baneshwor
+                company_name:
+                  type: string
+                  example: Mero Vision
+                vat_no:
+                  type: string
+                  example: 3453535-45646-567
+                company_registration_no:
+                  type: string
+                  example: 34545-456546
+                website:
+                  type: string
+                  example: https://merovision.com/
+                agent_profile_image:
+                  type: string
+                  format: binary
                 _method:
                   type: string
                   example: PUT
@@ -673,12 +1609,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
+        - name: slug
           in: path
           schema:
             type: string
@@ -688,11 +1619,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/faculty:
+  /api/super-admin/university-courses:
     post:
       tags:
-        - Admin > Student Faculty
-      summary: store student faculty
+        - Super Admin > University Courses
+      summary: store university courses
       requestBody:
         content:
           multipart/form-data:
@@ -701,7 +1632,30 @@ paths:
               properties:
                 name:
                   type: string
-                  example: School
+                  example: dfsgfdg
+                university_id:
+                  type: integer
+                  example: '1'
+                program_level_id:
+                  type: integer
+                  example: '1'
+                description:
+                  type: string
+                  example: vcxbcbc
+                tuition_fee:
+                  type: integer
+                  example: '600'
+                application_fee:
+                  type: integer
+                  example: '700'
+                course_duration:
+                  type: string
+                course_image[]:
+                  type: string
+                  format: binary
+                tag_name[]:
+                  type: string
+                  example: Fast Acceptance
       security:
         - bearerAuth: []
       parameters:
@@ -710,11 +1664,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
@@ -722,8 +1671,8 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > Student Faculty
-      summary: show all faculty
+        - Super Admin > University Courses
+      summary: show all university courses
       security:
         - bearerAuth: []
       parameters:
@@ -732,29 +1681,16 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/user/{id}:
+  /api/super-admin/university-courses/{id}:
     get:
       tags:
-        - Admin > Admin
-      summary: show admin detail
+        - Super Admin > University Courses
+      summary: show single course
       security:
         - bearerAuth: []
       parameters:
@@ -768,6 +1704,381 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/university-courses/4:
+    delete:
+      tags:
+        - Super Admin > University Courses
+      summary: delete university course
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/course-criteria:
+    post:
+      tags:
+        - Super Admin > University Courses
+      summary: store course criteria
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                course_id:
+                  type: integer
+                  example: '1'
+                test_type:
+                  type: string
+                  example: IELTS
+                min_reading_score:
+                  type: integer
+                  example: '7'
+                min_listening_score:
+                  type: integer
+                  example: '6'
+                min_speaking_score:
+                  type: integer
+                  example: '8'
+                min_writing_score:
+                  type: integer
+                  example: '6'
+                min_overall_score:
+                  type: integer
+                  example: '9'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/university-features:
+    post:
+      tags:
+        - Super Admin > University Features
+      summary: store features
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                university_id:
+                  type: integer
+                  example: '6'
+                feature_name:
+                  type: string
+                  example: fgfg
+                feature_description:
+                  type: string
+                  example: hghgh
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > University Features
+      summary: show all university features
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/university-features/{id}:
+    post:
+      tags:
+        - Super Admin > University Features
+      summary: update university features
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                feature_name:
+                  type: string
+                  example: hy
+                feature_description:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Super Admin > University Features
+      summary: delete university features
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/course-tags:
+    post:
+      tags:
+        - Super Admin > Course Tags
+      summary: store course tags
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                course_id:
+                  type: integer
+                  example: '4'
+                tag_name[]:
+                  type: string
+                  example: Fast Acceptance
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > Course Tags
+      summary: show all course tags
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/program-level:
+    post:
+      tags:
+        - Super Admin > Program Level
+      summary: store program level
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                level_name: Undergraduate1
+                level_description: optional
+                requirement_categories:
+                  - name: Pre-submission
+                    description: Documents required before application submission.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > Program Level
+      summary: show all program level list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/program-level/{id}:
+    delete:
+      tags:
+        - Super Admin > Program Level
+      summary: delete program level
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/requirement-category-document:
+    post:
+      tags:
+        - Super Admin > Requirement Category Documents
+      summary: store requirement category document
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                requirement_category_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: College Transcript
+                description:
+                  type: string
+                  example: Official transcript from college plus 2.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/financial-requirements:
+    post:
+      tags:
+        - Super Admin > Financial Requirements
+      summary: store financial requirements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                country_id: 1
+                country: USA
+                financial_requirements:
+                  - name: Monthly Fees
+                    description: Tuition Fees
+                  - name: Exam Fees
+                    description: Exam Fees
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > Financial Requirements
+      summary: show all financial requirements
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: OK
@@ -791,7 +2102,7 @@ paths:
             Date:
               schema:
                 type: string
-                example: Mon, 05 May 2025 07:28:21 GMT
+                example: Sat, 25 Jan 2025 08:11:09 GMT
             Content-Type:
               schema:
                 type: string
@@ -806,60 +2117,571 @@ paths:
                 type: object
               example:
                 data:
-                  id: 1
-                  name: Admin
-                  email: superadmin@gmail.com
-                  email_verified_at: '2025-05-04T17:15:08.000000Z'
-                  roles:
-                    - id: 1
-                      name: superadmin
-                      permissions: []
-                  last_login_at: 2025-05-04 11:03 PM
-                  created_at: 2025-05-04 11:00 pm
-                  updated_at: 2025-05-04 11:03 pm
-  /api/admin/change-password:
+                  - id: 7
+                    name: Monthly Fees
+                    description: Tuition Fees
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:06:50.000000Z'
+                  - id: 8
+                    name: Exam Fees
+                    description: Exam Fees
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:06:50.000000Z'
+                  - id: 6
+                    name: Tuition Fees
+                    description: Tuition Fees
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:04:27.000000Z'
+                  - id: 5
+                    name: null
+                    description: '0'
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:03:38.000000Z'
+                  - id: 4
+                    name: null
+                    description: '0'
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:03:22.000000Z'
+                  - id: 3
+                    name: null
+                    description: '0'
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:03:15.000000Z'
+                  - id: 2
+                    name: null
+                    description: '0'
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:02:27.000000Z'
+                  - id: 1
+                    name: null
+                    description: '0'
+                    country_id: 1
+                    country:
+                      id: 1
+                      name: Afghanistan
+                      currency: AFN
+                      phone: '93'
+                      capital: Kabul
+                      code: AF
+                      code3: AFG
+                      number: '4'
+                      created_at: '2025-01-25T06:56:38.000000Z'
+                      updated_at: '2025-01-25T06:56:38.000000Z'
+                    created_at: '2025-01-25T08:02:19.000000Z'
+  /api/super-admin/application-financial-documents/status-update/{application_financial_requirement_id}:
     post:
       tags:
-        - Admin > Admin
-      summary: change admin password
+        - Super Admin > Application Financial Requirement
+      summary: update application financial requirement status
       requestBody:
         content:
           multipart/form-data:
             schema:
               type: object
               properties:
-                current_password:
+                status:
+                  type: string
+                  example: rejected
+                review:
+                  type: string
+                  example: dfgfg
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: application_financial_requirement_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/visa-requirements:
+    post:
+      tags:
+        - Super Admin > Visa Requirements
+      summary: Store visa requirements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                country_id: 1
+                visa_requirements:
+                  - name: Monthly Fees
+                    description: Tuition Fees
+                  - name: Exam Fees
+                    description: Exam Fees
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > Visa Requirements
+      summary: show all visa requirements
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/application-visa-requirements/status-update/{application_visa_requirement_id}:
+    post:
+      tags:
+        - Super Admin > Application Visa Requirements
+      summary: update application visa requirements
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: rejected
+                review:
+                  type: string
+                  example: dfgfg
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: application_visa_requirement_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/application-enrollment-status/status-update/{student_application_id}:
+    post:
+      tags:
+        - Super Admin > Application Enrollment Status
+      summary: update application enrollment status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: accepted or cancelled
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: student_application_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/commissions:
+    get:
+      tags:
+        - Super Admin > Commissions
+      summary: show all commissions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: paid, pending
+        - name: agent_company_id
+          in: query
+          schema:
+            type: string
+        - name: university_id
+          in: query
+          schema:
+            type: string
+        - name: course_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/commission-withdrawals:
+    get:
+      tags:
+        - Super Admin > Commissions
+      summary: show all commission withdraw request list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: agent_company_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: currency
+          in: query
+          schema:
+            type: string
+          example: CAD
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/commission-withdrawals/1/status:
+    post:
+      tags:
+        - Super Admin > Commissions
+      summary: update commission withdraw status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: approved
+                remarks:
+                  type: string
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/application-notes:
+    post:
+      tags:
+        - Recruit Partners > Student Application
+      summary: store application notes
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                application_id:
                   type: integer
-                  example: '12345'
+                  example: '1'
+                title:
+                  type: string
+                  example: title
+                note:
+                  type: string
+                  example: note
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/student-applications:
+    get:
+      tags:
+        - Super Admin > Student Applications
+      summary: show all student applications
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/student-applications/{id}:
+    get:
+      tags:
+        - Super Admin > Student Applications
+      summary: show single student application data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/application-status/application-requirements/update-status/{id}:
+    post:
+      tags:
+        - Super Admin > Track Applications
+      summary: update application requirement status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/my-students:
+    get:
+      tags:
+        - Super Admin > My Students
+      summary: show all my students
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/roles:
+    get:
+      tags:
+        - Super Admin > Roles and Permission
+      summary: show all roles
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent-login:
+    post:
+      tags:
+        - Recruit Partners > Authentication
+      summary: agent login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
                 password:
                   type: string
-                  example: Password@720
-                confirm_password:
-                  type: string
-                  example: Password@720
-      security:
-        - bearerAuth: []
+                  example: nitesh*12345678
       parameters:
         - name: Accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/levels:
+  /api/agent-signup:
     post:
       tags:
-        - Admin > Student Level
-      summary: store student levels
+        - Recruit Partners > Authentication
+      summary: agent signup
       requestBody:
         content:
           multipart/form-data:
@@ -868,10 +2690,113 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Lower Secondary
-                faculty_id:
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                mobile_no:
                   type: integer
-                  example: '1'
+                  example: '454656'
+                company_name:
+                  type: string
+                  example: Mero Vision
+                password:
+                  type: string
+                  example: nitesh*12345678
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/forgot-password:
+    post:
+      tags:
+        - Recruit Partners > Authentication
+      summary: forgot password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hello@gmail.com
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/reset-password:
+    post:
+      tags:
+        - Recruit Partners > Authentication
+      summary: reset password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: fgdfghfhgfhj
+                password:
+                  type: integer
+                  example: '123'
+                password_confirmation:
+                  type: integer
+                  example: '123'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/events:
+    post:
+      tags:
+        - Recruit Partners > Events
+      summary: store events
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: hhh {required}
+                description:
+                  type: string
+                  example: hhh {required}
+                date:
+                  type: string
+                  example: 2023-08-20 {required}
+                time:
+                  type: string
+                  example: 02:12 pm {required}
       security:
         - bearerAuth: []
       parameters:
@@ -880,11 +2805,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
@@ -892,8 +2812,8 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > Student Level
-      summary: show all levels
+        - Recruit Partners > Events
+      summary: show all events
       security:
         - bearerAuth: []
       parameters:
@@ -902,67 +2822,16 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/programs:
-    post:
-      tags:
-        - Admin > Student Program
-      summary: store program
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                faculty_id:
-                  type: integer
-                  example: '1'
-                level_id:
-                  type: integer
-                  example: '1'
-                name:
-                  type: string
-                  example: School
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/agent/upcoming-events:
     get:
       tags:
-        - Admin > Student Program
-      summary: list programs
+        - Recruit Partners > Events
+      summary: show all upcoming events
       security:
         - bearerAuth: []
       parameters:
@@ -971,69 +2840,16 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/classes:
-    post:
-      tags:
-        - Admin > Student Classes
-      summary: store class data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                faculty_id:
-                  type: integer
-                  example: '1'
-                level_id:
-                  type: integer
-                  example: '1'
-                program_id:
-                  type: integer
-                  example: '1'
-                name:
-                  type: string
-                  example: Four
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/agent/past-events:
     get:
       tags:
-        - Admin > Student Classes
-      summary: show all classes list
+        - Recruit Partners > Events
+      summary: show all past events
       security:
         - bearerAuth: []
       parameters:
@@ -1042,336 +2858,16 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/classes/{class_id}/sections:
-    get:
-      tags:
-        - Admin > Student Classes
-      summary: search sections from class
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: class_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/sections:
-    post:
-      tags:
-        - Admin > Class Sections
-      summary: store section data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                faculty_id:
-                  type: integer
-                  example: '1'
-                level_id:
-                  type: integer
-                  example: '1'
-                program_id:
-                  type: integer
-                  example: '1'
-                class_id:
-                  type: integer
-                  example: '1'
-                name:
-                  type: string
-                  example: A
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Class Sections
-      summary: show all sections
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/student-types:
-    post:
-      tags:
-        - Admin > Student Types
-      summary: store student types
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Day Scholar
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Student Types
-      summary: show all student types
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/student-types/{id}:
-    post:
-      tags:
-        - Admin > Student Types
-      summary: update student type
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Day Scholar
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/exam-types:
-    post:
-      tags:
-        - Admin > Exam Types
-      summary: store exam types
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Third Term Examination
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Exam Types
-      summary: show all exam types
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/exam-types/{id}:
-    post:
-      tags:
-        - Admin > Exam Types
-      summary: update exam types
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Third Term Examination
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/agent/events/{id}:
     delete:
       tags:
-        - Admin > Exam Types
-      summary: delete exam type
+        - Recruit Partners > Events
+      summary: delete event
       security:
         - bearerAuth: []
       parameters:
@@ -1380,11 +2876,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
         - name: id
           in: path
           schema:
@@ -1395,10 +2886,63 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/students:
+    get:
+      tags:
+        - Recruit Partners > Events
+      summary: show single event
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/university:
+    get:
+      tags:
+        - Recruit Partners > University
+      summary: show all university
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/university-courses:
+    get:
+      tags:
+        - Recruit Partners > Courses
+      summary: show all courses
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/students:
     post:
       tags:
-        - Admin > Student
+        - Recruit Partners > Students
       summary: store student data
       requestBody:
         content:
@@ -1408,331 +2952,70 @@ paths:
               properties:
                 first_name:
                   type: string
-                  example: ' Sita'
+                  example: Hancie
                 middle_name:
                   type: string
-                  example: ' Kumari'
+                  example: Wanem
                 last_name:
                   type: string
-                  example: ' Thapa'
+                  example: Phago
                 email:
                   type: string
-                  example: ' hanciephago@example.com'
+                  example: hanciewanemphago@gmail.com
+                nationality:
+                  type: string
+                  example: Nepalese
+                mobile_no:
+                  type: integer
+                  example: '243434545'
+                merital_status:
+                  type: string
+                  example: Single
                 dob:
                   type: string
-                  example: ' 2005-03-25'
-                gender:
+                  example: '2003-01-20'
+                country:
                   type: string
-                  example: ' female'
+                  example: Nepal {Use Country API}
+                province:
+                  type: string
+                  example: Koshi Province {Use Province API}
+                district:
+                  type: string
+                  example: Jhapa
                 address:
                   type: string
-                  example: ' Kathmandu, Nepal'
-                blood_group:
-                  type: string
-                  example: ' O+'
-                food_preference:
-                  type: string
-                  example: ' Vegetarian'
-                batch_id:
-                  type: string
-                  example: ' 1'
-                class_id:
-                  type: string
-                  example: ' 1'
-                section_id:
-                  type: string
-                  example: ' 1'
-                student_type:
-                  type: string
-                  example: ' 1'
-                roll_no:
-                  type: string
-                  example: ' 22A'
-                addmission_date:
-                  type: string
-                  example: ' 2023-04-10'
-                emis_no:
-                  type: string
-                  example: ' 1234567890'
-                permanent_province:
-                  type: string
-                  example: ' Bagmati'
-                permanent_district:
-                  type: string
-                  example: ' Lalitpur'
-                permanent_municipality:
-                  type: string
-                  example: ' Godawari'
-                permanent_ward_no:
-                  type: string
-                  example: ' 3'
-                permanent_tole:
-                  type: string
-                  example: ' Chapagaun'
-                temporary_province:
-                  type: string
-                  example: ' Bagmati'
-                temporary_district:
-                  type: string
-                  example: ' Kathmandu'
-                temporary_municipality:
-                  type: string
-                  example: ' KMC'
-                temporary_ward_no:
-                  type: string
-                  example: ' 11'
-                temporary_tole:
-                  type: string
-                  example: ' Baneshwor'
-                father_name:
-                  type: string
-                  example: ' Ram Thapa'
-                father_phone:
-                  type: string
-                  example: ' 9800000001'
-                father_email:
-                  type: string
-                  example: ' ram.thapa@example.com'
-                father_education:
-                  type: string
-                  example: ' Bachelor'
-                father_occupation:
-                  type: string
-                  example: ' Engineer'
-                mother_name:
-                  type: string
-                  example: ' Maya Thapa'
-                mother_phone:
-                  type: string
-                  example: ' 9800000002'
-                mother_email:
-                  type: string
-                  example: ' maya.thapa@example.com'
-                mother_education:
-                  type: string
-                  example: ' Master'
-                mother_occupation:
-                  type: string
-                  example: ' Teacher'
-                guardian_name:
-                  type: string
-                  example: ' Dinesh Thapa'
-                guardian_phone:
-                  type: string
-                  example: ' 9800000003'
-                guardian_email:
-                  type: string
-                  example: ' dinesh.thapa@example.com'
-                guardian_education:
-                  type: string
-                  example: ' Bachelor'
-                guardian_occupation:
-                  type: string
-                  example: ' Business'
-                guardian_relation:
-                  type: string
-                  example: ' Uncle'
-                is_disabled:
-                  type: string
-                  example: ' 1'
-                student_image:
+                  example: Bhadrapur
+                agent_company_id:
+                  type: integer
+                  example: '1'
+                profile_image:
                   type: string
                   format: binary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Student
-      summary: show all student list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/students/{id}:
-    post:
-      tags:
-        - Admin > Student
-      summary: update student data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                first_name:
-                  type: string
-                  example: ' Sita'
-                middle_name:
-                  type: string
-                  example: ' Kumari'
-                last_name:
-                  type: string
-                  example: ' Thapa'
-                email:
-                  type: string
-                  example: ' sita.thapa@example.com'
-                dob:
-                  type: string
-                  example: ' 2005-03-25'
-                gender:
-                  type: string
-                  example: ' female'
-                address:
-                  type: string
-                  example: ' Kathmandu, Nepal'
-                blood_group:
-                  type: string
-                  example: ' O+'
-                food_preference:
-                  type: string
-                  example: ' Vegetarian'
-                batch_id:
-                  type: string
-                  example: ' 1'
-                class_id:
-                  type: string
-                  example: ' 1'
-                section_id:
-                  type: string
-                  example: ' 1'
-                student_type:
-                  type: string
-                  example: ' 1'
-                roll_no:
-                  type: string
-                  example: ' 22A'
-                addmission_date:
-                  type: string
-                  example: ' 2023-04-10'
-                emis_no:
-                  type: string
-                  example: ' 1234567890'
-                permanent_province:
-                  type: string
-                  example: ' Bagmati'
-                permanent_district:
-                  type: string
-                  example: ' Lalitpur'
-                permanent_municipality:
-                  type: string
-                  example: ' Godawari'
-                permanent_ward_no:
-                  type: string
-                  example: ' 3'
-                permanent_tole:
-                  type: string
-                  example: ' Chapagaun'
-                temporary_province:
-                  type: string
-                  example: ' Bagmati'
-                temporary_district:
-                  type: string
-                  example: ' Kathmandu'
-                temporary_municipality:
-                  type: string
-                  example: ' KMC'
-                temporary_ward_no:
-                  type: string
-                  example: ' 11'
-                temporary_tole:
-                  type: string
-                  example: ' Baneshwor'
-                father_name:
-                  type: string
-                  example: ' Ram Thapa'
-                father_phone:
-                  type: string
-                  example: ' 9800000001'
-                father_email:
-                  type: string
-                  example: ' ram.thapa@example.com'
-                father_education:
-                  type: string
-                  example: ' Bachelor'
-                father_occupation:
-                  type: string
-                  example: ' Engineer'
-                mother_name:
-                  type: string
-                  example: ' Maya Thapa'
-                mother_phone:
-                  type: string
-                  example: ' 9800000002'
-                mother_email:
-                  type: string
-                  example: ' maya.thapa@example.com'
-                mother_education:
-                  type: string
-                  example: ' Master'
-                mother_occupation:
-                  type: string
-                  example: ' Teacher'
-                guardian_name:
-                  type: string
-                  example: ' Dinesh Thapa'
-                guardian_phone:
-                  type: string
-                  example: ' 9800000003'
-                guardian_email:
-                  type: string
-                  example: ' dinesh.thapa@example.com'
-                guardian_education:
-                  type: string
-                  example: ' Bachelor'
-                guardian_occupation:
-                  type: string
-                  example: ' Business'
-                guardian_relation:
-                  type: string
-                  example: ' Uncle'
-                is_disabled:
-                  type: string
-                  example: ' 1'
-                student_image:
+                passport_image:
                   type: string
                   format: binary
-                _method:
+                passport_number:
+                  type: integer
+                  example: '4545656'
+                passport_expiry_date:
                   type: string
-                  example: PUT
+                  example: '2020-01-20'
+                referral_source:
+                  type: string
+                  example: Facebook
+                country_of_education:
+                  type: string
+                  example: Nepal
+                highest_level_of_education:
+                  type: string
+                  example: Bachlor
+                grading_scheme:
+                  type: string
+                  example: GPA
+                average_grade:
+                  type: number
+                  example: '3.5'
       security:
         - bearerAuth: []
       parameters:
@@ -1741,747 +3024,106 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > Student
-      summary: delete student data
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Student
-      summary: show single student data
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/visitor-logs:
-    post:
-      tags:
-        - Admin > Visitor Logs
-      summary: store visitor logs
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: John Doe
-                phone:
-                  type: integer
-                  example: '23543546'
-                email:
-                  type: string
-                  example: johndoe@example.com
-                address:
-                  type: string
-                  example: Kathmandu
-                purpose:
-                  type: string
-                  example: Admission Inquiry
-                person_to_meet:
-                  type: string
-                  example: Admin Officer
-                check_in_date:
-                  type: string
-                  example: '2025-06-01'
-                check_in_time:
-                  type: string
-                  example: 07:20 PM
-                remarks:
-                  type: string
-                  example: Wants to discuss admission
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
+        - name: agent-company-id
           in: header
           schema:
             type: integer
           example: '1'
       responses:
         '200':
-          description: Successful response
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sat, 28 Sep 2024 17:02:41 GMT
+            Server:
+              schema:
+                type: string
+                example: Apache
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Vary:
+              schema:
+                type: string
+                example: Authorization
+            Upgrade:
+              schema:
+                type: string
+                example: h2,h2c
+            Connection:
+              schema:
+                type: string
+                example: Upgrade, Keep-Alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5, max=100
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
           content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Visitor Logs
-      summary: show all visitor logs
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '7'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-          example: John Doe
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-01-20'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-02-01'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/visitor-logs/{id}:
-    delete:
-      tags:
-        - Admin > Visitor Logs
-      summary: delete visitor logs
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/subjects:
-    post:
-      tags:
-        - Admin > Subjects
-      summary: store subjects
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                subject_code:
-                  type: string
-                  example: NPL 002
-                subject_name:
-                  type: string
-                  example: Compulsory Nepali
-                theory_full_marks:
-                  type: integer
-                  example: '50'
-                theory_pass_marks:
-                  type: integer
-                  example: '20'
-                practical_full_marks:
-                  type: integer
-                  example: '50'
-                practical_pass_marks:
-                  type: integer
-                  example: '20'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Subjects
-      summary: show all subject list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/subjects/{id}:
-    post:
-      tags:
-        - Admin > Subjects
-      summary: update subject data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                subject_code:
-                  type: string
-                  example: NPL 002
-                subject_name:
-                  type: string
-                  example: Compulsory Nepali
-                theory_full_marks:
-                  type: integer
-                  example: '50'
-                theory_pass_marks:
-                  type: integer
-                  example: '20'
-                practical_full_marks:
-                  type: integer
-                  example: '50'
-                practical_pass_marks:
-                  type: integer
-                  example: '20'
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/employee-types:
-    post:
-      tags:
-        - Admin > Employee Types
-      summary: store employee type
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Teacher
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Employee Types
-      summary: show all employee type list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/employee-types/{id}:
-    post:
-      tags:
-        - Admin > Employee Types
-      summary: update employee type
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Teacher
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > Employee Types
-      summary: delete employee type
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/staffs:
-    post:
-      tags:
-        - Admin > Staff
-      summary: store staff data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Arun Shrestha
-                email:
-                  type: string
-                  example: arun@gmail.com
-                dob:
-                  type: string
-                  example: '2023-03-20'
-                gender:
-                  type: string
-                  example: Male
-                address:
-                  type: string
-                  example: KTM
-                faculty_id:
-                  type: integer
-                  example: '1'
-                level_id:
-                  type: integer
-                  example: '1'
-                program_id:
-                  type: integer
-                  example: '1'
-                class_id:
-                  type: integer
-                  example: '1'
-                section_id:
-                  type: integer
-                  example: '1'
-                employee_type_id:
-                  type: integer
-                  example: '1'
-                employee_pan_no:
-                  type: integer
-                  example: '345436'
-                citizenship_number:
-                  type: integer
-                  example: '234543543'
-                blood_group:
-                  type: string
-                  example: A+
-                qualification:
-                  type: string
-                  example: Master Degree
-                designation:
-                  type: string
-                  example: Principal
-                joining_date:
-                  type: string
-                  example: '2025-01-20'
-                is_principal:
-                  type: boolean
-                  example: 'true'
-                staff_image:
-                  type: string
-                  format: binary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Staff
-      summary: show all staffs
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-rooms:
-    post:
-      tags:
-        - Admin > Class Rooms
-      summary: store class room
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: integer
-                  example: '106'
-                room_capacity:
-                  type: integer
-                  example: '30'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Class Rooms
-      summary: show all class rooms list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-rooms/{id}:
-    post:
-      tags:
-        - Admin > Class Rooms
-      summary: update  class room
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: integer
-                  example: '106'
-                room_capacity:
-                  type: integer
-                  example: '30'
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > Class Rooms
-      summary: delete class room
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-routines:
-    post:
-      tags:
-        - Admin > Class Routine
-      summary: store class routine
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
+            application/json:
+              schema:
+                type: object
               example:
-                routines:
-                  - class_id: 1
-                    section_id: 1
-                    subject_id: 1
-                    teacher_id: 1
-                    day: Tuesday
-                    from_time: '08:00'
-                    to_time: '08:40'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+                data:
+                  id: 7
+                  name: Hancie Wanem Phago
+                  email: hanciephago111@gmail.com
+                  nationality: Nepalese
+                  mobile_no: '243434545'
+                  merital_status: Single
+                  dob: '2003-01-20'
+                  country: Nepal {Use Country API}
+                  province: Koshi Province {Use Province API}
+                  district: Jhapa
+                  address: Bhadrapur
+                  agent_company_id: '1'
+                  profile_image: https://api.rbabroads.com/storage/16/IMG_2816.jpg
+                  passport_image: https://api.rbabroads.com/storage/17/IMG_0658.JPG
+                  student_more_details:
+                    id: 5
+                    first_name: Hancie
+                    middle_name: Wanem
+                    last_name: Phago
+                    passport_number: '4545656'
+                    passport_expiry_date: '2020-01-20'
+                    referral_source: Facebook
+                    country_of_education: Nepal
+                    highest_level_of_education: Bachlor
+                    grading_scheme: GPA
+                    average_grade: '3.5'
+                    kyc_verification: pending
+                  student_test-scores:
+                    id: 5
+                    created_user_id: 2
+                    student_id: 7
+                    test_type: IELTS
+                    date_of_exam: '2023-01-20'
+                    overall_score: '7.9'
+                    learning_score: '6.7'
+                    reading_score: '6.6'
+                    speaking_score: '7.3'
+                    writing_score: '7.4'
+                    created_at: '2024-09-28T17:02:41.000000Z'
+                    updated_at: '2024-09-28T17:02:41.000000Z'
+                message: Student Verification Has Been Sent Successfully!
     get:
       tags:
-        - Admin > Class Routine
-      summary: show class routines
+        - Recruit Partners > Students
+      summary: show all students
       security:
         - bearerAuth: []
       parameters:
@@ -2490,99 +3132,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: class_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: section_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-routines/{id}:
-    delete:
-      tags:
-        - Admin > Class Routine
-      summary: delete class routine
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/outing-purpose:
-    post:
-      tags:
-        - Admin > Outing Purpose
-      summary: store outing porse
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Excursion
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Outing Purpose
-      summary: show all outing purposes
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
+        - name: agent-company-id
           in: header
           schema:
             type: integer
@@ -2591,7 +3141,7 @@ paths:
           in: query
           schema:
             type: integer
-          example: '8'
+          example: '3'
         - name: search_keyword
           in: query
           schema:
@@ -2601,78 +3151,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/outing-purpose/{id}:
+  /api/agent/student-applications:
     post:
       tags:
-        - Admin > Outing Purpose
-      summary: update outing purpose
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Excursion
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > Outing Purpose
-      summary: delete outing purpose
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/outings:
-    post:
-      tags:
-        - Admin > Outing
-      summary: store outing data
+        - Recruit Partners > Student Application
+      summary: store student application
       requestBody:
         content:
           multipart/form-data:
@@ -2681,25 +3164,22 @@ paths:
               properties:
                 student_id:
                   type: integer
-                  example: '1'
-                outing_purpose_id:
+                  example: '3'
+                agent_company_id:
                   type: integer
                   example: '1'
-                outing_date:
+                university_id:
+                  type: integer
+                  example: '1'
+                course_id:
+                  type: integer
+                  example: '1'
+                apply_date:
                   type: string
                   example: '2024-02-20'
-                approved_by:
+                start_date:
                   type: string
-                  example: Alex
-                received_by:
-                  type: string
-                  example: Father
-                contact_no:
-                  type: integer
-                  example: '345465'
-                remarks:
-                  type: string
-                  example: Emergency
+                  example: '2024-02-20'
       security:
         - bearerAuth: []
       parameters:
@@ -2708,11 +3188,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
@@ -2720,8 +3195,8 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > Outing
-      summary: show all outing list
+        - Recruit Partners > Student Application
+      summary: show all student applications
       security:
         - bearerAuth: []
       parameters:
@@ -2730,7 +3205,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
+        - name: agent-company-id
           in: header
           schema:
             type: integer
@@ -2739,40 +3214,17 @@ paths:
           in: query
           schema:
             type: integer
-          example: '8'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-        - name: end_date
-          in: query
-          schema:
-            type: string
+          example: '5'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/scholarships:
-    post:
+  /api/agent/student-applications/1:
+    get:
       tags:
-        - Admin > Scholarship
-      summary: store scholarship
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                  example: 30% Scholarships
-                description:
-                  type: string
-                  example: >-
-                    This Scholarship are Provided to Children of Teachers. This
-                    Scholarship provided Students are Discounted 30% of Monthly
-                    fee, Exam fee and Bus Fee.
+        - Recruit Partners > Student Application
+      summary: show single student application data
       security:
         - bearerAuth: []
       parameters:
@@ -2781,7 +3233,57 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/dashboard:
+    get:
+      tags:
+        - Recruit Partners > Dashboard
+      summary: recruit partner dashboard
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/company-payment-options:
+    post:
+      tags:
+        - Recruit Partners > Company Payment Option
+      summary: store payment options
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                payment_option_name:
+                  type: string
+                  example: Khalti1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
           in: header
           schema:
             type: integer
@@ -2793,8 +3295,8 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > Scholarship
-      summary: show all scholarship list
+        - Recruit Partners > Company Payment Option
+      summary: show company payment options
       security:
         - bearerAuth: []
       parameters:
@@ -2803,7 +3305,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
+        - name: agent-company-id
           in: header
           schema:
             type: integer
@@ -2812,8 +3314,416 @@ paths:
           in: query
           schema:
             type: integer
-          example: '8'
-        - name: search_keyword
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/company-payment-options/{id}:
+    delete:
+      tags:
+        - Recruit Partners > Company Payment Option
+      summary: delete company payment option
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/student-payment:
+    post:
+      tags:
+        - Recruit Partners > Student Payment
+      summary: store student payment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                application_id:
+                  type: integer
+                  example: '2'
+                student_id:
+                  type: integer
+                  example: '1'
+                university_id:
+                  type: integer
+                  example: '4'
+                course_id:
+                  type: integer
+                  example: '3'
+                payment_option_id:
+                  type: integer
+                  example: '2'
+                payment_amount:
+                  type: integer
+                  example: '500'
+                currency:
+                  type: string
+                  example: USD
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/application-documents:
+    post:
+      tags:
+        - Recruit Partners > Application Documents
+      summary: store application documents
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                application_id:
+                  type: integer
+                  example: '1'
+                requirement_category_documents_id:
+                  type: integer
+                  example: '1'
+                document_type:
+                  type: string
+                  example: password
+                application_document_image[]:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/super-admin/application-documents/status-update/{id}:
+    post:
+      tags:
+        - Recruit Partners > Application Documents
+      summary: update application document status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: approved
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/student-scores:
+    post:
+      tags:
+        - Recruit Partners > Student Scores
+      summary: store student scores
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                student_id:
+                  type: integer
+                  example: '3'
+                test_type:
+                  type: string
+                  example: PTE
+                reading_score:
+                  type: integer
+                  example: '8'
+                listening_score:
+                  type: integer
+                  example: '7'
+                speaking_score:
+                  type: integer
+                  example: '9'
+                writing_score:
+                  type: integer
+                  example: '9'
+                overall_score:
+                  type: integer
+                  example: '9'
+                exam_date:
+                  type: string
+                  example: '2024-01-20'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Recruit Partners > Student Scores
+      summary: show all student scores
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/application-financial-documents:
+    post:
+      tags:
+        - Recruit Partners > Application Financial Requirements
+      summary: store application financial requirement document
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                application_id:
+                  type: integer
+                  example: '1'
+                financial_requirement_id:
+                  type: integer
+                  example: '1'
+                application_financial_document_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/application-visa-documents:
+    post:
+      tags:
+        - Recruit Partners > Application Visa Requirements
+      summary: store application visa requirements document
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                application_id:
+                  type: integer
+                  example: '1'
+                visa_requirement_id:
+                  type: integer
+                  example: '1'
+                application_visa_document_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/commissions:
+    get:
+      tags:
+        - Recruit Partners > Commissions
+      summary: show all commissions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agent/commission-withdrawals/request:
+    post:
+      tags:
+        - Recruit Partners > Commissions
+      summary: withdraw commission
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  example: '200'
+                currency:
+                  type: string
+                  example: CAD
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: agent-company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/contact-us:
+    post:
+      tags:
+        - Website > Contact Us
+      summary: store contact us
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                mobile_no:
+                  type: integer
+                  example: '9825915122'
+                subject:
+                  type: string
+                  example: hy
+                message:
+                  type: string
+                  example: hy
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/blogs:
+    get:
+      tags:
+        - Website > Blog
+      summary: show all blog list
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: search_limit
           in: query
           schema:
             type: string
@@ -2822,592 +3732,68 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/scholarships/{id}:
-    post:
-      tags:
-        - Admin > Scholarship
-      summary: update scholarship
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                  example: 30% Scholarships
-                description:
-                  type: string
-                  example: >-
-                    This Scholarship are Provided to Children of Teachers. This
-                    Scholarship provided Students are Discounted 30% of Monthly
-                    fee, Exam fee and Bus Fee.
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > Scholarship
-      summary: delete scholarship
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/account-heads:
+  /api/blogs/{blog}:
     get:
       tags:
-        - Admin > Account Heads
-      summary: show all account heads
-      security:
-        - bearerAuth: []
+        - Website > Blog
+      summary: show single blog details
       parameters:
         - name: Accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/account-sub-heads:
-    post:
-      tags:
-        - Admin > Account Heads
-      summary: store account sub heads
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Academy Incomes
-                account_head_id:
-                  type: integer
-                  example: '7'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
+        - name: blog
+          in: path
           schema:
             type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
+          required: true
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/account-sub-sub-heads:
-    post:
-      tags:
-        - Admin > Account Heads
-      summary: store account sub sub head
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Academy Incomes
-                account_head_id:
-                  type: integer
-                  example: '7'
-                account_sub_head_id:
-                  type: integer
-                  example: '20'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/bus-stops:
-    post:
-      tags:
-        - Admin > Bus Stops
-      summary: store bus stops
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Lagankhel
-                landmark:
-                  type: string
-                  example: Near Bus Park
-                vehicle_no:
-                  type: string
-                  example: AR496
-                monthly_fee:
-                  type: integer
-                  example: '550'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/faq:
     get:
       tags:
-        - Admin > Bus Stops
-      summary: show all bus stops
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
+        - Website > FAQ
+      summary: show faq
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/bus-stops/{id}:
-    post:
-      tags:
-        - Admin > Bus Stops
-      summary: update bus stop
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Lagankhel
-                landmark:
-                  type: string
-                  example: Near Bus Park
-                vehicle_no:
-                  type: string
-                  example: AR496
-                monthly_fee:
-                  type: integer
-                  example: '550'
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > Bus Stops
-      summary: delete bus stop
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/school-account-heads:
-    post:
-      tags:
-        - Admin > School Account Head
-      summary: store account head
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                account_head_id:
-                  type: integer
-                  example: '1'
-                account_sub_head_id:
-                  type: integer
-                  example: '1'
-                name:
-                  type: string
-                  example: Admission Fee
-                nepali_heading:
-                  type: string
-                  example: Admission Fee
-                period_name:
-                  type: string
-                  example: OneTime
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/our-team:
     get:
       tags:
-        - Admin > School Account Head
-      summary: show all school account heads
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
+        - Website > Our Team
+      summary: get our team list
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/school-account-heads/{id}:
-    post:
-      tags:
-        - Admin > School Account Head
-      summary: update school account head
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                account_head_id:
-                  type: integer
-                  example: '1'
-                account_sub_head_id:
-                  type: integer
-                  example: '1'
-                name:
-                  type: string
-                  example: Admission Fee
-                nepali_heading:
-                  type: string
-                  example: Admission Fee
-                period_name:
-                  type: string
-                  example: OneTime
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > School Account Head
-      summary: delete school account head
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-fee-particulars:
-    post:
-      tags:
-        - Admin > Class Fee Particulars
-      summary: store class fee particulars
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                school_account_head_id:
-                  type: integer
-                  example: '1'
-                class_id:
-                  type: integer
-                  example: '1'
-                amount:
-                  type: integer
-                  example: '1500'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/site-settings:
     get:
       tags:
-        - Admin > Class Fee Particulars
-      summary: show all class fee particulars
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
+        - Website > Site Settings
+      summary: get all site settings data
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/class-fee-particulars/{id}:
-    post:
-      tags:
-        - Admin > Class Fee Particulars
-      summary: update class fee particular
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                school_account_head_id:
-                  type: integer
-                  example: '1'
-                class_id:
-                  type: integer
-                  example: '1'
-                amount:
-                  type: integer
-                  example: '1500'
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/student-login-logs/{student-id}:
+  /api/testimonial:
     get:
       tags:
-        - Admin > Student Login Logs
-      summary: show single student login logs
-      security:
-        - bearerAuth: []
+        - Website > Testimonial
+      summary: show all testimonial
       parameters:
         - name: Accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: student-id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
@@ -3416,7 +3802,7 @@ paths:
   /api/student/login:
     post:
       tags:
-        - Student > Auth
+        - Student > Login
       summary: login
       requestBody:
         content:
@@ -3426,18 +3812,292 @@ paths:
               properties:
                 email:
                   type: string
-                  example: hanciephago@example.com
+                  example: hanciephago@gmail.com
                 password:
-                  type: integer
-                  example: '12345'
-                device_name:
                   type: string
-                  example: Samsung Galaxy S25
-                model_name:
+                  example: Password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/forgot-password:
+    post:
+      tags:
+        - Student > Login
+      summary: forgot password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
                   type: string
-                  example: SM-G998B
+                  example: hello@gmail.com
       security:
         - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/reset-password:
+    post:
+      tags:
+        - Student > Login
+      summary: reset password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: fgdfghfhgfhj
+                password:
+                  type: integer
+                  example: '123'
+                password_confirmation:
+                  type: integer
+                  example: '123'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/university:
+    get:
+      tags:
+        - Student > University
+      summary: show all university
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/university/{slug}:
+    get:
+      tags:
+        - Student > University
+      summary: show single university data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/university-courses:
+    get:
+      tags:
+        - Student > Courses
+      summary: show all courses
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/university-courses/{slug}:
+    get:
+      tags:
+        - Student > Courses
+      summary: show single course data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/recommended-courses:
+    get:
+      tags:
+        - Student > Courses
+      summary: recommended courses
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/student-data/3:
+    get:
+      tags:
+        - Student > Student
+      summary: show single student data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/student-signup:
+    post:
+      tags:
+        - Student > Student
+      summary: student signup
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: Hancie
+                middle_name:
+                  type: string
+                last_name:
+                  type: string
+                  example: Phago
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                mobile_no:
+                  type: integer
+                  example: '98258214545'
+                dob:
+                  type: string
+                  example: '2002-04-35'
+                password:
+                  type: string
+                  example: Password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/student-scores:
+    post:
+      tags:
+        - Student > Student
+      summary: store student scores
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                test_type:
+                  type: string
+                  example: IELTS
+                reading_score:
+                  type: integer
+                  example: '8'
+                listening_score:
+                  type: integer
+                  example: '7'
+                speaking_score:
+                  type: integer
+                  example: '9'
+                writing_score:
+                  type: integer
+                  example: '9'
+                overall_score:
+                  type: integer
+                  example: '9'
+                exam_date:
+                  type: string
+                  example: '2025-01-20'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Student > Student
+      summary: show all student scores Copy
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
@@ -3452,8 +4112,8 @@ paths:
   /api/student/change-password:
     post:
       tags:
-        - Student > Auth
-      summary: change admin password
+        - Student > Student
+      summary: change password
       requestBody:
         content:
           multipart/form-data:
@@ -3461,14 +4121,14 @@ paths:
               type: object
               properties:
                 current_password:
-                  type: integer
-                  example: '12345'
+                  type: string
+                  example: fgdfghfhgfhj
                 password:
-                  type: string
-                  example: Password@720
-                confirm_password:
-                  type: string
-                  example: Password@720
+                  type: integer
+                  example: '123'
+                password_confirmation:
+                  type: integer
+                  example: '123'
       security:
         - bearerAuth: []
       parameters:
@@ -3477,21 +4137,16 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/student/student/{id}:
+  /api/student/student-applications:
     get:
       tags:
-        - Student > Student
-      summary: show student details
+        - Student > Student Application
+      summary: show application list
       security:
         - bearerAuth: []
       parameters:
@@ -3500,21 +4155,16 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/student/class-routines:
+  /api/student/site-settings:
     get:
       tags:
-        - Student > Student Class Routine
-      summary: show student class routine
+        - Student > Site Settings
+      summary: show all site settings
       security:
         - bearerAuth: []
       parameters:
@@ -3523,21 +4173,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: class_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: section_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
