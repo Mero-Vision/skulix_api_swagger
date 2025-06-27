@@ -58,6 +58,8 @@ tags:
   - name: Admin > School Account Head
   - name: Admin > Class Fee Particulars
   - name: Admin > Student Login Logs
+  - name: Admin > Notifications
+  - name: Admin > Student Attendance
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -328,6 +330,69 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/forgot-password:
+    post:
+      tags:
+        - Admin > Auth
+      summary: forgot password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                school_id:
+                  type: integer
+                  example: '1'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reset-password:
+    post:
+      tags:
+        - Admin > Auth
+      summary: reset password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: integer
+                  example: '123'
+                password_confirmation:
+                  type: integer
+                  example: '123'
+                token:
+                  type: string
+                  example: SDGDG
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/academic-sessions:
     get:
       tags:
@@ -580,6 +645,24 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/schools:
+    get:
+      tags:
+        - Admin > School
+      summary: show all schools
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -3385,6 +3468,34 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/get-class-fee-particular-by-class/{class_id}:
+    get:
+      tags:
+        - Admin > Class Fee Particulars
+      summary: fetch class fee particular by class id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/student-login-logs/{student-id}:
     get:
       tags:
@@ -3408,6 +3519,212 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/notifications:
+    post:
+      tags:
+        - Admin > Notifications
+      summary: store notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: "{\r\n  \"title\": \"Exam Reminder\",\r\n  \"message\": \"Your math exam is scheduled for tomorrow.\",\r\n  \"type\": \"individual\",\r\n  \"student_ids\": [1, 2, 3]\r\n},\r\n{\r\n  \"title\": \"Class Cancelled\",\r\n  \"message\": \"Class is cancelled due to maintenance.\",\r\n  \"type\": \"class\",\r\n  \"class_ids\": [1, 4]\r\n},\r\n{\r\n  \"title\": \"Holiday Notice\",\r\n  \"message\": \"All schools will be closed tomorrow.\",\r\n  \"type\": \"general\"\r\n}\r\n\r\n\r\n"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Notifications
+      summary: show all notifications
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '7'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/notifications/{id}:
+    post:
+      tags:
+        - Admin > Notifications
+      summary: update notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: "{\r\n  \"title\": \"Exam Reminder\",\r\n  \"message\": \"Your math exam is scheduled for tomorrow.\",\r\n  \"type\": \"individual\",\r\n  \"student_ids\": [1, 2, 3]\r\n},\r\n{\r\n  \"title\": \"Class Cancelled\",\r\n  \"message\": \"Class is cancelled due to maintenance.\",\r\n  \"type\": \"class\",\r\n  \"class_ids\": [1, 4]\r\n},\r\n{\r\n  \"title\": \"Holiday Notice\",\r\n  \"message\": \"All schools will be closed tomorrow.\",\r\n  \"type\": \"general\"\r\n},\r\n'_method':'put'\r\n\r\n\r\n"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Notifications
+      summary: delete notifications
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/student-attendance:
+    post:
+      tags:
+        - Admin > Student Attendance
+      summary: store student attendance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                date: '2025-06-26'
+                nep_date: '2082-01-20'
+                class_id: 1
+                section_id: 1
+                entries:
+                  - student_id: 1
+                    status: present
+                    remarks: On time
+                    time: 08:20 PM
+                  - student_id: 2
+                    status: late
+                    remarks: Traffic delay
+                    time: 08:20 PM
+                  - student_id: 3
+                    status: leave
+                    remarks: Sick leave
+                    time: 08:20 PM
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/get-student-attendance-by-class-section:
+    get:
+      tags:
+        - Admin > Student Attendance
+      summary: get student by class and section
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: nep_date
+          in: query
+          schema:
+            type: string
+          example: '2082-01-20'
       responses:
         '200':
           description: Successful response
