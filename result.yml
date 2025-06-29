@@ -60,6 +60,7 @@ tags:
   - name: Admin > Student Login Logs
   - name: Admin > Notifications
   - name: Admin > Student Attendance
+  - name: Admin > Student Attendance > Attendance Report
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -3641,6 +3642,164 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/attendance-reports/class-wise/daily-summary:
+    get:
+      tags:
+        - Admin > Student Attendance > Attendance Report
+      summary: daily class wise report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/attendance-reports/section-wise/daily-summary:
+    get:
+      tags:
+        - Admin > Student Attendance > Attendance Report
+      summary: section wise attendance daily summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/attendance-reports/absent-students:
+    get:
+      tags:
+        - Admin > Student Attendance > Attendance Report
+      summary: show all daily absent student list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/attendance-reports/leave-students:
+    get:
+      tags:
+        - Admin > Student Attendance > Attendance Report
+      summary: show all daily leave student
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/attendance-reports/late-students:
+    get:
+      tags:
+        - Admin > Student Attendance > Attendance Report
+      summary: show all daily late students
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/attendance-report/monthly-details:
+    get:
+      tags:
+        - Admin > Student Attendance > Attendance Report
+      summary: show all monthly details attendance report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: from_date
+          in: query
+          schema:
+            type: string
+          example: '2082-01-01'
+        - name: to_date
+          in: query
+          schema:
+            type: string
+          example: '2082-01-20'
       responses:
         '200':
           description: Successful response
