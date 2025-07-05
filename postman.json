@@ -1842,6 +1842,46 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "show all classes with student counts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/classes-with-students",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"classes-with-students"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -6520,6 +6560,136 @@
 											"key": "section_id",
 											"value": "1"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notifications",
+					"item": [
+						{
+							"name": "show individual notifications",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/notifications/individual/{student_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"notifications",
+										"individual",
+										"{student_id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get general notifications",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/notifications/general",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"notifications",
+										"general"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get class notifications",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/notifications/class/{class_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"notifications",
+										"class",
+										"{class_id}"
 									]
 								}
 							},
