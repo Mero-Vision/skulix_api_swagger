@@ -61,6 +61,8 @@ tags:
   - name: Admin > Notifications
   - name: Admin > Student Attendance
   - name: Admin > Student Attendance > Attendance Report
+  - name: Admin > Event
+  - name: Admin > Gallery
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -599,6 +601,21 @@ paths:
                 school_logo:
                   type: string
                   format: binary
+                school_banner_1:
+                  type: string
+                  format: binary
+                school_banner_2:
+                  type: string
+                  format: binary
+                school_banner_3:
+                  type: string
+                  format: binary
+                nepali_name:
+                  type: string
+                about_us:
+                  type: string
+                school_quote:
+                  type: string
                 _method:
                   type: string
                   example: PUT
@@ -3908,6 +3925,241 @@ paths:
           schema:
             type: string
           example: '2082-01-20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events:
+    post:
+      tags:
+        - Admin > Event
+      summary: store event data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: dfgfdg
+                description:
+                  type: string
+                  example: dfgdg
+                date:
+                  type: string
+                  example: '2023-01-20'
+                time:
+                  type: string
+                  example: 09:20 PM
+                event_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Event
+      summary: show all event
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/{slug}:
+    get:
+      tags:
+        - Admin > Event
+      summary: show single event
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/upcoming-events:
+    get:
+      tags:
+        - Admin > Event
+      summary: show upcoming events
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/past-events:
+    get:
+      tags:
+        - Admin > Event
+      summary: past events
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/{id}:
+    delete:
+      tags:
+        - Admin > Event
+      summary: delete event
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/gallery:
+    post:
+      tags:
+        - Admin > Gallery
+      summary: store gallery images
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: hy
+                images[]:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Gallery
+      summary: show all gallery images
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/gallery/{id}:
+    get:
+      tags:
+        - Admin > Gallery
+      summary: show single gallery album
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Gallery
+      summary: delete gallery images
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
