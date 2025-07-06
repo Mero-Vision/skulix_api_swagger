@@ -64,6 +64,7 @@ tags:
   - name: Admin > Event
   - name: Admin > Gallery
   - name: Admin > School Message
+  - name: Admin > Food Menu
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -4301,6 +4302,60 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/food-menu:
+    post:
+      tags:
+        - Admin > Food Menu
+      summary: store food menu data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                food_menu_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Food Menu
+      summary: show food menu
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
