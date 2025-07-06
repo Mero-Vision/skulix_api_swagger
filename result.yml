@@ -68,6 +68,7 @@ tags:
   - name: Student > Student
   - name: Student > Student Class Routine
   - name: Student > Notifications
+  - name: Student > Student Attendance
 paths:
   /api/superadmin/login:
     post:
@@ -4369,6 +4370,39 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/student-attendance:
+    get:
+      tags:
+        - Student > Student Attendance
+      summary: show student sttendance
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: month
+          in: query
+          schema:
+            type: integer
+          example: '6'
+        - name: year
+          in: query
+          schema:
+            type: integer
+          example: '2025'
       responses:
         '200':
           description: Successful response
