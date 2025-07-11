@@ -976,6 +976,72 @@
 							"response": []
 						},
 						{
+							"name": "update school banner",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "school_banner_1",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "school_banner_2",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "school_banner_3",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/update-school-banner/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"update-school-banner",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "show single school data",
 							"request": {
 								"auth": {
@@ -4644,7 +4710,7 @@
 									"formdata": [
 										{
 											"key": "title",
-											"value": "30% Scholarships",
+											"value": "50% Scholarships",
 											"type": "text"
 										},
 										{
@@ -5638,7 +5704,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/get-class-fee-particular-by-class/{class_id}",
+									"raw": "{{url}}/api/admin/get-class-fee-particular-by-class/1?student_id=4",
 									"host": [
 										"{{url}}"
 									],
@@ -5646,7 +5712,13 @@
 										"api",
 										"admin",
 										"get-class-fee-particular-by-class",
-										"{class_id}"
+										"1"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "4"
+										}
 									]
 								}
 							},
@@ -7092,6 +7164,100 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Student Particular",
+					"item": [
+						{
+							"name": "store student particular",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"particulars\": [\r\n        {\r\n            \"particular_id\": 1,\r\n            \"student_id\": 3,\r\n            \"scholarship_id\": 1,\r\n            \"discount_amount\": 50.00,\r\n            \"discount_percent\": 10.50,\r\n            \"rate\": 500.00\r\n        },\r\n        {\r\n            \"particular_id\": 1,\r\n            \"student_id\": 4,\r\n            \"scholarship_id\": 2,\r\n            \"discount_amount\": 0,\r\n            \"discount_percent\": 5.25,\r\n            \"rate\": 750.50\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/student-particulars",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-particulars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all student particulars",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/student-particulars",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-particulars"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -7511,6 +7677,82 @@
 											"key": "year",
 											"value": "2025"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Gallery",
+					"item": [
+						{
+							"name": "show all gallery images",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/gallery",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"gallery"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single gallery album",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/gallery/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"gallery",
+										"{id}"
 									]
 								}
 							},
