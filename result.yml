@@ -66,6 +66,7 @@ tags:
   - name: Admin > School Message
   - name: Admin > Food Menu
   - name: Admin > Student Particular
+  - name: Admin > Student Invoice
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -4464,6 +4465,96 @@ paths:
             type: string
           example: application/json
         - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: query
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/unpaid-months:
+    get:
+      tags:
+        - Admin > Student Invoice
+      summary: show all unpaid months list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+        - name: student_id
+          in: query
+          schema:
+            type: integer
+          example: '4'
+        - name: year_bs
+          in: query
+          schema:
+            type: integer
+          example: '2082'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/invoices:
+    post:
+      tags:
+        - Admin > Student Invoice
+      summary: store invoice data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                invoices:
+                  - academic_session_id: 3
+                    student_id: 4
+                    class_id: 1
+                    section_id: 1
+                    months: Baisakh, Jestha
+                    year_bs: '2080'
+                    total_amount: 5000
+                    due_amount: 5000
+                    generated_date_ad: '2023-04-15'
+                    generated_date_bs: '2080-01-02'
+                    items:
+                      - student_particular_id: 1
+                        particular_id: 1
+                        school_account_head_id: 1
+                        amount: 3000
+                        months: Baisakh, Jestha
+                        year_bs: '2080'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
           in: header
           schema:
             type: integer
