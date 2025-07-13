@@ -7358,7 +7358,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"academic_session_id\": 3,\r\n            \"student_id\": 4,\r\n            \"class_id\": 1,\r\n            \"section_id\": 1,\r\n            \"months\": \"Baisakh, Jestha\",\r\n            \"year_bs\": \"2080\",\r\n            \"total_amount\": 5000.00,\r\n            \"due_amount\": 5000.00,\r\n            \"generated_date_ad\": \"2023-04-15\",\r\n            \"generated_date_bs\": \"2080-01-02\",\r\n            \"items\": [\r\n                {\r\n                    \"student_particular_id\": 1,\r\n                    \"particular_id\":1,\r\n                    \"school_account_head_id\":1,\r\n                    \"amount\": 3000.00,\r\n                    \"months\": \"Baisakh, Jestha\",\r\n                    \"year_bs\": \"2080\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"student_id\": 4,\r\n            \"class_id\": 1,\r\n            \"section_id\": 1,\r\n            \"months\": \"Baisakh, Jestha\",\r\n            \"year_bs\": \"2080\",\r\n            \"total_amount\": 5000.00,\r\n            \"due_amount\": 5000.00,\r\n            \"generated_date_ad\": \"2023-04-15\",\r\n            \"generated_date_bs\": \"2080-01-02\",\r\n            \"items\": [\r\n                {\r\n                    \"student_particular_id\": 1,\r\n                    \"particular_id\":1,\r\n                    \"school_account_head_id\":1,\r\n                    \"amount\": 3000.00,\r\n                    \"months\": \"Baisakh, Jestha\",\r\n                    \"year_bs\": \"2080\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7374,6 +7374,223 @@
 										"api",
 										"admin",
 										"invoices"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Class Subject",
+					"item": [
+						{
+							"name": "store class subject data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "class_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "credit_hours",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "theory_full_marks",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "theory_pass_marks",
+											"value": "40",
+											"type": "text"
+										},
+										{
+											"key": "practical_full_marks",
+											"value": "25",
+											"type": "text"
+										},
+										{
+											"key": "practical_pass_marks",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/class-subjects",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"class-subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all class subject",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/class-subjects?class_id=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"class-subjects"
+									],
+									"query": [
+										{
+											"key": "class_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update class subject",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "class_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "credit_hours",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "theory_full_marks",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "theory_pass_marks",
+											"value": "40",
+											"type": "text"
+										},
+										{
+											"key": "practical_full_marks",
+											"value": "25",
+											"type": "text"
+										},
+										{
+											"key": "practical_pass_marks",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/class-subjects/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"class-subjects",
+										"{id}"
 									]
 								}
 							},
