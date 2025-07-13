@@ -67,6 +67,7 @@ tags:
   - name: Admin > Food Menu
   - name: Admin > Student Particular
   - name: Admin > Student Invoice
+  - name: Admin > Class Subject
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -4524,8 +4525,7 @@ paths:
               type: object
               example:
                 invoices:
-                  - academic_session_id: 3
-                    student_id: 4
+                  - student_id: 4
                     class_id: 1
                     section_id: 1
                     months: Baisakh, Jestha
@@ -4559,6 +4559,141 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-subjects:
+    post:
+      tags:
+        - Admin > Class Subject
+      summary: store class subject data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                subject_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                credit_hours:
+                  type: integer
+                  example: '4'
+                theory_full_marks:
+                  type: integer
+                  example: '100'
+                theory_pass_marks:
+                  type: integer
+                  example: '40'
+                practical_full_marks:
+                  type: integer
+                  example: '25'
+                practical_pass_marks:
+                  type: integer
+                  example: '10'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Class Subject
+      summary: show all class subject
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-subjects/{id}:
+    post:
+      tags:
+        - Admin > Class Subject
+      summary: update class subject
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                subject_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                credit_hours:
+                  type: integer
+                  example: '4'
+                theory_full_marks:
+                  type: integer
+                  example: '100'
+                theory_pass_marks:
+                  type: integer
+                  example: '40'
+                practical_full_marks:
+                  type: integer
+                  example: '25'
+                practical_pass_marks:
+                  type: integer
+                  example: '10'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
