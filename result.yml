@@ -68,6 +68,7 @@ tags:
   - name: Admin > Student Particular
   - name: Admin > Student Invoice
   - name: Admin > Class Subject
+  - name: Admin > Reports
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -4564,6 +4565,33 @@ paths:
           description: Successful response
           content:
             application/json: {}
+    get:
+      tags:
+        - Admin > Student Invoice
+      summary: show student invoices
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: query
+          schema:
+            type: integer
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/class-subjects:
     post:
       tags:
@@ -4694,6 +4722,118 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-admission-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: student admission report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: from_date
+          in: query
+          schema:
+            type: string
+          example: '2025-01-20'
+        - name: to_date
+          in: query
+          schema:
+            type: string
+          example: '2025-09-20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-summary-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: show student summary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-list-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: student list report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-list-by-gender-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: student report by gender report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
