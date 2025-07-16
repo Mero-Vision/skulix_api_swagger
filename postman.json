@@ -98,7 +98,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "Siddhartha Shishu Sadan",
+											"value": "PCPS Collegeb 2",
 											"type": "text"
 										},
 										{
@@ -7406,14 +7406,14 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/invoices?student_id=4",
+									"raw": "{{url}}/api/admin/unpaid-invoices?student_id=4",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"admin",
-										"invoices"
+										"unpaid-invoices"
 									],
 									"query": [
 										{
@@ -7637,6 +7637,246 @@
 										"admin",
 										"class-subjects",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment Options",
+					"item": [
+						{
+							"name": "store payment options",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "eSewa",
+											"type": "text"
+										},
+										{
+											"key": "secret_key",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "public_key",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all payment options list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options?pagination_limit=8&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update payment option",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "eSewa",
+											"type": "text"
+										},
+										{
+											"key": "secret_key",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "public_key",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Student Payment",
+					"item": [
+						{
+							"name": "store student payment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"invoice_id\": 1,\r\n    \"student_id\": 4,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"payment_method_id\": 1,\r\n    \"invoice_no\": \"INV-2023-001\",\r\n    \"months\": \"Baisakh, Jestha\",\r\n    \"year_bs\": \"2080\",\r\n    \"total_amount\": 5000,\r\n    \"total_discount\": 500,\r\n    \"paid_amount\": 4500,\r\n    \"due_amount\": 0,\r\n    \"remarks\": \"Paid in full\",\r\n    \"payment_date_ad\": \"2023-05-15\",\r\n    \"payment_date_bs\": \"2080-02-01\",\r\n    \"student_payment_items\": [\r\n        {\r\n            \"student_particular_id\": 1,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 1,\r\n            \"total_amount\": 3000,\r\n            \"discount_amount\": 300,\r\n            \"paid_amount\": 2700,\r\n            \"due_amount\": 0\r\n        },\r\n        {\r\n            \"student_particular_id\": 2,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 2,\r\n            \"total_amount\": 2000,\r\n            \"discount_amount\": 200,\r\n            \"paid_amount\": 1800,\r\n            \"due_amount\": 0\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/student-payment",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-payment"
 									]
 								}
 							},
@@ -8493,6 +8733,51 @@
 										"api",
 										"student",
 										"past-events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Food Menu",
+					"item": [
+						{
+							"name": "show food menu",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "6",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/food-menu",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"food-menu"
 									]
 								}
 							},
