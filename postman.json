@@ -8333,6 +8333,172 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Event",
+					"item": [
+						{
+							"name": "show all event",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/events",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single event",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/events/{slug}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"events",
+										"{slug}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show upcoming events",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/upcoming-events",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"upcoming-events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "past events",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/past-events",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"past-events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
