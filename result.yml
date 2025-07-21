@@ -70,6 +70,7 @@ tags:
   - name: Admin > Class Subject
   - name: Admin > Payment Options
   - name: Admin > Student Payment
+  - name: Admin > Home Work
   - name: Admin > Reports
   - name: Student
   - name: Student > Auth
@@ -80,6 +81,9 @@ tags:
   - name: Student > Gallery
   - name: Student > Event
   - name: Student > Food Menu
+  - name: Student > Class Mate
+  - name: Student > Class Subjects
+  - name: Student > Home Work
 paths:
   /api/superadmin/login:
     post:
@@ -2386,9 +2390,12 @@ paths:
                 name:
                   type: string
                   example: Arun Shrestha
+                staff_image:
+                  type: string
+                  format: binary
                 email:
                   type: string
-                  example: arun@gmail.com
+                  example: arun3359@gmail.com
                 dob:
                   type: string
                   example: '2023-03-20'
@@ -2437,9 +2444,9 @@ paths:
                 is_principal:
                   type: boolean
                   example: 'true'
-                staff_image:
-                  type: string
-                  format: binary
+                mobile_no:
+                  type: integer
+                  example: '454366'
       security:
         - bearerAuth: []
       parameters:
@@ -2483,6 +2490,34 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/staffs/{id}:
+    get:
+      tags:
+        - Admin > Staff
+      summary: show single staff data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -4909,6 +4944,122 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/homeworks:
+    post:
+      tags:
+        - Admin > Home Work
+      summary: store homework
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                class_id:
+                  type: integer
+                  example: '1'
+                section_id:
+                  type: integer
+                  example: '1'
+                class_subject_id:
+                  type: integer
+                  example: '1'
+                subject_id:
+                  type: integer
+                  example: '1'
+                np_date:
+                  type: string
+                  example: '2082-01-20'
+                ad_date:
+                  type: string
+                  example: '2024-07-21'
+                homework_title:
+                  type: string
+                  example: Health and physical education
+                homework_description:
+                  type: string
+                  example: Q/A
+                homework_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Home Work
+      summary: show homework
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: np_date
+          in: query
+          schema:
+            type: string
+          example: '2082-01-20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/homeworks/{id}:
+    get:
+      tags:
+        - Admin > Home Work
+      summary: show single homework data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/reports/student-admission-report:
     get:
       tags:
@@ -5419,6 +5570,128 @@ paths:
           schema:
             type: integer
           example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/class-mates:
+    get:
+      tags:
+        - Student > Class Mate
+      summary: show my class mates
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/class-subjects:
+    get:
+      tags:
+        - Student > Class Subjects
+      summary: show class subjects
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/homeworks:
+    get:
+      tags:
+        - Student > Home Work
+      summary: show student homeworks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: past or today
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/homeworks/{id}:
+    get:
+      tags:
+        - Student > Home Work
+      summary: show single homework data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
