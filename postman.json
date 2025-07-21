@@ -3821,8 +3821,13 @@
 											"type": "text"
 										},
 										{
+											"key": "staff_image",
+											"type": "file",
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 10.jpg"
+										},
+										{
 											"key": "email",
-											"value": "arun@gmail.com",
+											"value": "arun3359@gmail.com",
 											"type": "text"
 										},
 										{
@@ -3906,9 +3911,9 @@
 											"type": "text"
 										},
 										{
-											"key": "staff_image",
-											"type": "file",
-											"src": "/C:/Users/Hanci/Pictures/530-5300778_minion-banana-hd-hd-png-download.png"
+											"key": "mobile_no",
+											"value": "454366",
+											"type": "text"
 										}
 									]
 								},
@@ -3970,6 +3975,59 @@
 										{
 											"key": "search_keyword",
 											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single staff data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/staffs/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"staffs",
+										"{id}"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "search_keyword",
+											"value": null,
+											"disabled": true
 										}
 									]
 								}
@@ -6716,12 +6774,12 @@
 										{
 											"key": "images[]",
 											"type": "file",
-											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 2.jpg"
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 3.jpg"
 										},
 										{
 											"key": "images[]",
 											"type": "file",
-											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 5.jpg"
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 4.jpg"
 										}
 									]
 								},
@@ -7885,6 +7943,193 @@
 					]
 				},
 				{
+					"name": "Home Work",
+					"item": [
+						{
+							"name": "store homework",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "class_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "section_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "class_subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "np_date",
+											"value": "2082-01-20",
+											"type": "text"
+										},
+										{
+											"key": "ad_date",
+											"value": "2024-07-21",
+											"type": "text"
+										},
+										{
+											"key": "homework_title",
+											"value": "Health and physical education",
+											"type": "text"
+										},
+										{
+											"key": "homework_description",
+											"value": "Q/A",
+											"type": "text"
+										},
+										{
+											"key": "homework_image",
+											"type": "file",
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 1.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/homeworks",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"homeworks"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show homework",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/homeworks?np_date=2082-01-20",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"homeworks"
+									],
+									"query": [
+										{
+											"key": "np_date",
+											"value": "2082-01-20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single homework data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/homeworks/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"homeworks",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Reports",
 					"item": [
 						{
@@ -8778,6 +9023,225 @@
 										"api",
 										"student",
 										"food-menu"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Class Mate",
+					"item": [
+						{
+							"name": "show my class mates",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Academy Incomes",
+											"type": "text"
+										},
+										{
+											"key": "account_head_id",
+											"value": "7",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/student/class-mates?class_id=1&section_id=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"class-mates"
+									],
+									"query": [
+										{
+											"key": "class_id",
+											"value": "1"
+										},
+										{
+											"key": "section_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Class Subjects",
+					"item": [
+						{
+							"name": "show class subjects",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/class-subjects?class_id=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"class-subjects"
+									],
+									"query": [
+										{
+											"key": "class_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Home Work",
+					"item": [
+						{
+							"name": "show student homeworks",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/homeworks?class_id=1&section_id=1&type=past or today",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"homeworks"
+									],
+									"query": [
+										{
+											"key": "class_id",
+											"value": "1"
+										},
+										{
+											"key": "section_id",
+											"value": "1"
+										},
+										{
+											"key": "type",
+											"value": "past or today"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single homework data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/homeworks/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"homeworks",
+										"{id}"
 									]
 								}
 							},
