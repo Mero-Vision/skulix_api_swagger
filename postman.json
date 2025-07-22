@@ -4629,7 +4629,7 @@
 									"formdata": [
 										{
 											"key": "student_id",
-											"value": "1",
+											"value": "4",
 											"type": "text"
 										},
 										{
@@ -4726,6 +4726,53 @@
 										{
 											"key": "end_date",
 											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get student outing",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/get-student-outings/{student_id}?pagination_limit=8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"get-student-outings",
+										"{student_id}"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
 										}
 									]
 								}
@@ -6018,6 +6065,47 @@
 											"key": "class_id",
 											"value": "1"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get student notifications",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/get-student-notifications/{student_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"get-student-notifications",
+										"{student_id}"
 									]
 								}
 							},
@@ -9242,6 +9330,91 @@
 										"student",
 										"homeworks",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Guardian Feedback",
+					"item": [
+						{
+							"name": "store guardian feedback",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Event Program",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "class_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "section_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "student_id",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "general",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/student/guardian-feedback",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"guardian-feedback"
 									]
 								}
 							},
