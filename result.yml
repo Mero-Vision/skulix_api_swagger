@@ -66,12 +66,13 @@ tags:
   - name: Admin > School Message
   - name: Admin > Food Menu
   - name: Admin > Student Particular
-  - name: Admin > Student Invoice
   - name: Admin > Class Subject
   - name: Admin > Payment Options
+  - name: Admin > Student Invoice
   - name: Admin > Student Payment
   - name: Admin > Home Work
   - name: Admin > Reports
+  - name: Admin > Guardian Feedbacks
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -4582,118 +4583,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/unpaid-months:
-    get:
-      tags:
-        - Admin > Student Invoice
-      summary: show all unpaid months list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '6'
-        - name: student_id
-          in: query
-          schema:
-            type: integer
-          example: '4'
-        - name: year_bs
-          in: query
-          schema:
-            type: integer
-          example: '2082'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/invoices:
-    post:
-      tags:
-        - Admin > Student Invoice
-      summary: store invoice data
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                invoices:
-                  - student_id: 4
-                    class_id: 1
-                    section_id: 1
-                    months: Baisakh, Jestha
-                    year_bs: '2080'
-                    total_amount: 5000
-                    due_amount: 5000
-                    generated_date_ad: '2023-04-15'
-                    generated_date_bs: '2080-01-02'
-                    items:
-                      - student_particular_id: 1
-                        particular_id: 1
-                        school_account_head_id: 1
-                        amount: 3000
-                        months: Baisakh, Jestha
-                        year_bs: '2080'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: academic-session-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/unpaid-invoices:
-    get:
-      tags:
-        - Admin > Student Invoice
-      summary: show student invoices
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: student_id
-          in: query
-          schema:
-            type: integer
-          example: '4'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/admin/class-subjects:
     post:
       tags:
@@ -4940,6 +4829,118 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/unpaid-months:
+    get:
+      tags:
+        - Admin > Student Invoice
+      summary: show all unpaid months list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: query
+          schema:
+            type: integer
+          example: '4'
+        - name: year_bs
+          in: query
+          schema:
+            type: integer
+          example: '2080'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/invoices:
+    post:
+      tags:
+        - Admin > Student Invoice
+      summary: store invoice data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                invoices:
+                  - student_id: 4
+                    class_id: 1
+                    section_id: 1
+                    months: Ashar, Shrawan,Bhadra
+                    year_bs: '2080'
+                    total_amount: 5000
+                    due_amount: 5000
+                    generated_date_ad: '2023-04-15'
+                    generated_date_bs: '2080-01-02'
+                    items:
+                      - student_particular_id: 1
+                        particular_id: 1
+                        school_account_head_id: 1
+                        amount: 3000
+                        months: Baisakh, Jestha,Bhadra
+                        year_bs: '2080'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/unpaid-invoices:
+    get:
+      tags:
+        - Admin > Student Invoice
+      summary: show student invoices
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: query
+          schema:
+            type: integer
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/student-payment:
     post:
       tags:
@@ -4951,7 +4952,7 @@ paths:
             schema:
               type: object
               example:
-                invoice_id: 1
+                invoice_id: 9
                 student_id: 4
                 class_id: 1
                 section_id: 1
@@ -5229,6 +5230,72 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/guardian-feedbacks:
+    get:
+      tags:
+        - Admin > Guardian Feedbacks
+      summary: show all guardian feedbacks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/get-student-guardian-feedbacks/{student_id}:
+    get:
+      tags:
+        - Admin > Guardian Feedbacks
+      summary: get student guardian feedbacks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: student_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
