@@ -7412,168 +7412,6 @@
 					]
 				},
 				{
-					"name": "Student Invoice",
-					"item": [
-						{
-							"name": "show all unpaid months list",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "6",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/unpaid-months?student_id=4&year_bs=2082",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"unpaid-months"
-									],
-									"query": [
-										{
-											"key": "student_id",
-											"value": "4"
-										},
-										{
-											"key": "year_bs",
-											"value": "2082"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "store invoice data",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									},
-									{
-										"key": "academic-session-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"student_id\": 4,\r\n            \"class_id\": 1,\r\n            \"section_id\": 1,\r\n            \"months\": \"Baisakh, Jestha\",\r\n            \"year_bs\": \"2080\",\r\n            \"total_amount\": 5000.00,\r\n            \"due_amount\": 5000.00,\r\n            \"generated_date_ad\": \"2023-04-15\",\r\n            \"generated_date_bs\": \"2080-01-02\",\r\n            \"items\": [\r\n                {\r\n                    \"student_particular_id\": 1,\r\n                    \"particular_id\":1,\r\n                    \"school_account_head_id\":1,\r\n                    \"amount\": 3000.00,\r\n                    \"months\": \"Baisakh, Jestha\",\r\n                    \"year_bs\": \"2080\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/invoices",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"invoices"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show student invoices",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/unpaid-invoices?student_id=4",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"unpaid-invoices"
-									],
-									"query": [
-										{
-											"key": "student_id",
-											"value": "4"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Class Subject",
 					"item": [
 						{
@@ -7972,6 +7810,168 @@
 					]
 				},
 				{
+					"name": "Student Invoice",
+					"item": [
+						{
+							"name": "show all unpaid months list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/unpaid-months?student_id=4&year_bs=2080",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"unpaid-months"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "4"
+										},
+										{
+											"key": "year_bs",
+											"value": "2080"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store invoice data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"student_id\": 4,\r\n            \"class_id\": 1,\r\n            \"section_id\": 1,\r\n            \"months\": \"Ashar, Shrawan,Bhadra\",\r\n            \"year_bs\": \"2080\",\r\n            \"total_amount\": 5000.00,\r\n            \"due_amount\": 5000.00,\r\n            \"generated_date_ad\": \"2023-04-15\",\r\n            \"generated_date_bs\": \"2080-01-02\",\r\n            \"items\": [\r\n                {\r\n                    \"student_particular_id\": 1,\r\n                    \"particular_id\":1,\r\n                    \"school_account_head_id\":1,\r\n                    \"amount\": 3000.00,\r\n                    \"months\": \"Baisakh, Jestha,Bhadra\",\r\n                    \"year_bs\": \"2080\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/invoices",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"invoices"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show student invoices",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/unpaid-invoices?student_id=4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"unpaid-invoices"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Student Payment",
 					"item": [
 						{
@@ -8007,7 +8007,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"invoice_id\": 1,\r\n    \"student_id\": 4,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"payment_method_id\": 1,\r\n    \"invoice_no\": \"INV-2023-001\",\r\n    \"months\": \"Baisakh, Jestha\",\r\n    \"year_bs\": \"2080\",\r\n    \"total_amount\": 5000,\r\n    \"total_discount\": 500,\r\n    \"paid_amount\": 4500,\r\n    \"due_amount\": 0,\r\n    \"remarks\": \"Paid in full\",\r\n    \"payment_date_ad\": \"2023-05-15\",\r\n    \"payment_date_bs\": \"2080-02-01\",\r\n    \"student_payment_items\": [\r\n        {\r\n            \"student_particular_id\": 1,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 1,\r\n            \"total_amount\": 3000,\r\n            \"discount_amount\": 300,\r\n            \"paid_amount\": 2700,\r\n            \"due_amount\": 0\r\n        },\r\n        {\r\n            \"student_particular_id\": 2,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 2,\r\n            \"total_amount\": 2000,\r\n            \"discount_amount\": 200,\r\n            \"paid_amount\": 1800,\r\n            \"due_amount\": 0\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"invoice_id\": 9,\r\n    \"student_id\": 4,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"payment_method_id\": 1,\r\n    \"invoice_no\": \"INV-2023-001\",\r\n    \"months\": \"Baisakh, Jestha\",\r\n    \"year_bs\": \"2080\",\r\n    \"total_amount\": 5000,\r\n    \"total_discount\": 500,\r\n    \"paid_amount\": 4500,\r\n    \"due_amount\": 0,\r\n    \"remarks\": \"Paid in full\",\r\n    \"payment_date_ad\": \"2023-05-15\",\r\n    \"payment_date_bs\": \"2080-02-01\",\r\n    \"student_payment_items\": [\r\n        {\r\n            \"student_particular_id\": 1,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 1,\r\n            \"total_amount\": 3000,\r\n            \"discount_amount\": 300,\r\n            \"paid_amount\": 2700,\r\n            \"due_amount\": 0\r\n        },\r\n        {\r\n            \"student_particular_id\": 2,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 2,\r\n            \"total_amount\": 2000,\r\n            \"discount_amount\": 200,\r\n            \"paid_amount\": 1800,\r\n            \"due_amount\": 0\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -8399,6 +8399,109 @@
 										"admin",
 										"reports",
 										"student-list-by-gender-report"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Guardian Feedbacks",
+					"item": [
+						{
+							"name": "show all guardian feedbacks",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/guardian-feedbacks?pagination_limit=8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"guardian-feedbacks"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get student guardian feedbacks",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/get-student-guardian-feedbacks/{student_id}?pagination_limit=8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"get-student-guardian-feedbacks",
+										"{student_id}"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										}
 									]
 								}
 							},
