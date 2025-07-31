@@ -1978,6 +1978,55 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "bulk student class promotions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"students\": [\r\n        {\r\n            \"id\": 3,\r\n            \"to_class_id\": 2,\r\n            \"to_section_id\": 1\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"is_left\": \"true\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/bulk-student-class-promotion",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"bulk-student-class-promotion"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3173,6 +3222,55 @@
 										"admin",
 										"students",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "student leave",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"students\": [\r\n    {\r\n      \"id\": 23,\r\n      \"reason\": \"suspended\"\r\n    },\r\n    {\r\n      \"id\": 22,\r\n      \"reason\": \"left\"\r\n    },\r\n    {\r\n      \"id\": 25,\r\n      \"reason\": \"transferred\"\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/student-leave",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-leave"
 									]
 								}
 							},
