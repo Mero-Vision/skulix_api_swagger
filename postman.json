@@ -6670,6 +6670,60 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "get individual student attendance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/get-student-attendance?student_id=4&month=6&year=2025",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"get-student-attendance"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "4"
+										},
+										{
+											"key": "month",
+											"value": "6"
+										},
+										{
+											"key": "year",
+											"value": "2025"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
