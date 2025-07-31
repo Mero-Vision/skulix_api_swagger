@@ -4157,6 +4157,44 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/get-student-attendance:
+    get:
+      tags:
+        - Admin > Student Attendance
+      summary: get individual student attendance
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: query
+          schema:
+            type: integer
+          example: '4'
+        - name: month
+          in: query
+          schema:
+            type: integer
+          example: '6'
+        - name: year
+          in: query
+          schema:
+            type: integer
+          example: '2025'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/events:
     post:
       tags:
