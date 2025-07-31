@@ -1277,6 +1277,41 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/bulk-student-class-promotion:
+    post:
+      tags:
+        - Admin > Student Classes
+      summary: bulk student class promotions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                students:
+                  - id: 3
+                    to_class_id: 2
+                    to_section_id: 1
+                  - id: 4
+                    is_left: 'true'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/sections:
     post:
       tags:
@@ -1994,6 +2029,42 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/student-leave:
+    post:
+      tags:
+        - Admin > Student
+      summary: student leave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                students:
+                  - id: 23
+                    reason: suspended
+                  - id: 22
+                    reason: left
+                  - id: 25
+                    reason: transferred
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
