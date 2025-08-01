@@ -8660,6 +8660,637 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Payroll",
+					"item": [
+						{
+							"name": "Employee",
+							"item": [
+								{
+									"name": "store employee data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"staff_id\": \"1\",\r\n    \"account_holder_name\": \"John Doe\",\r\n    \"bank_name\": \"Global Bank\",\r\n    \"account_number\": \"1234567890\",\r\n    \"branch_name\": \"Main Branch\",\r\n    \"ssf_no\": \"SSF12345\",\r\n    \"cit_no\": \"CIT67890\",\r\n    \"epf_no\": \"EPF54321\",\r\n    \"basic_salary\": 50000.00,\r\n    \"tds\": 5000.00,\r\n    \"employee_allowances\": [\r\n        {\r\n            \"allowance_title\": \"House Rent Allowance\",\r\n            \"amount\": 15000.00\r\n        },\r\n        {\r\n            \"allowance_title\": \"Transport Allowance\",\r\n            \"amount\": 5000.00\r\n        },\r\n        {\r\n            \"allowance_title\": \"Medical Allowance\",\r\n            \"amount\": 3000.00\r\n        }\r\n    ],\r\n    \"employee_deductions\": [\r\n        {\r\n            \"deduction_title\": \"Provident Fund\",\r\n            \"amount\": 5000.00\r\n        },\r\n        {\r\n            \"deduction_title\": \"Professional Tax\",\r\n            \"amount\": 2000.00\r\n        },\r\n        {\r\n            \"deduction_title\": \"Loan Recovery\",\r\n            \"amount\": 3000.00\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employees",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employees"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all employee list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employees",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employees"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show single employee data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employees/{employee_id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employees",
+												"{employee_id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete employee",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employees/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employees",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Employee Advance Payment",
+							"item": [
+								{
+									"name": "store employee advance payment data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "employee_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "advance_date_bs",
+													"value": "2083-01-29",
+													"type": "text"
+												},
+												{
+													"key": "advance_date",
+													"value": "2025-08-01",
+													"type": "text"
+												},
+												{
+													"key": "advance_amount",
+													"value": "5000",
+													"type": "text"
+												},
+												{
+													"key": "remarks",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employee-advance-payment",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-advance-payment"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all unsettled employement advance payment",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/unsettled-employee-advance-payment?pagination_limit",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"unsettled-employee-advance-payment"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "New Request",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/unsettled-employee-advance-payment?pagination_limit",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"unsettled-employee-advance-payment"
+													],
+													"query": [
+														{
+															"key": "pagination_limit",
+															"value": null
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 01 Aug 2025 16:05:21 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"school_id\": 1,\n            \"employee_id\": 1,\n            \"payroll_id\": null,\n            \"advance_date_bs\": \"2083-01-29\",\n            \"advance_date\": \"2025-08-01\",\n            \"advance_amount\": \"5000.00\",\n            \"remarks\": \"hy\",\n            \"is_settled\": \"false\",\n            \"settled_date\": null,\n            \"created_at\": \"2025-08-01T16:00:03.000000Z\",\n            \"updated_at\": \"2025-08-01T16:00:03.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"school_id\": 1,\n            \"employee_id\": 1,\n            \"payroll_id\": null,\n            \"advance_date_bs\": \"2083-01-29\",\n            \"advance_date\": \"2025-08-01\",\n            \"advance_amount\": \"5000.00\",\n            \"remarks\": \"hy\",\n            \"is_settled\": \"false\",\n            \"settled_date\": null,\n            \"created_at\": \"2025-08-01T16:00:01.000000Z\",\n            \"updated_at\": \"2025-08-01T16:00:01.000000Z\"\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "show all settled employment advance payment",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/settled-employee-advance-payment?pagination_limit=8",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"settled-employee-advance-payment"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "New Request",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/settled-employee-advance-payment?pagination_limit=8",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"settled-employee-advance-payment"
+													],
+													"query": [
+														{
+															"key": "pagination_limit",
+															"value": "8"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 01 Aug 2025 16:04:55 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"school_id\": 1,\n            \"employee_id\": 1,\n            \"payroll_id\": null,\n            \"advance_date_bs\": \"2083-01-29\",\n            \"advance_date\": \"2025-08-01\",\n            \"advance_amount\": \"5000.00\",\n            \"remarks\": \"hy\",\n            \"is_settled\": \"true\",\n            \"settled_date\": \"2025-08-12\",\n            \"created_at\": \"2025-08-01T15:59:31.000000Z\",\n            \"updated_at\": \"2025-08-01T15:59:31.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/api/admin/settled-employee-advance-payment?page=1\",\n        \"last\": \"http://127.0.0.1:8000/api/admin/settled-employee-advance-payment?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/admin/settled-employee-advance-payment?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/api/admin/settled-employee-advance-payment\",\n        \"per_page\": 8,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Employee Payroll",
+							"item": [
+								{
+									"name": "store employee payroll data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"employee_id\": 1,\r\n    \"salary_month\": \"2025-08-01\",\r\n    \"salary_month_bs\": \"2082-04-17\",\r\n    \"year_bs\": \"2082\",\r\n    \"month\": \"Baisakh\",\r\n    \"basic_salary\": 40000,\r\n    \"advance_deduction\": 2000,\r\n    \"tds\": 1500,\r\n    \"total_allowance\": 5000,\r\n    \"total_deduction\": 3000,\r\n    \"net_salary\": 41500,\r\n    \"employee_payroll_allowances\": [\r\n        {\r\n            \"employee_allowance_id\": 1,\r\n            \"amount\": 3000\r\n        },\r\n        {\r\n            \"employee_allowance_id\": 2,\r\n            \"amount\": 2000\r\n        }\r\n    ],\r\n    \"employee_payroll_deductions\": [\r\n        {\r\n            \"employee_deduction_id\": 1,\r\n            \"amount\": 2000\r\n        },\r\n        {\r\n            \"employee_deduction_id\": 2,\r\n            \"amount\": 1000\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employee-payroll",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-payroll"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all pending payrolls",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/pending-employee-payrolls?pagination_limit=8",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"pending-employee-payrolls"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all paid payrolls",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/paid-employee-payrolls?pagination_limit=8",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"paid-employee-payrolls"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				}
 			]
 		},
