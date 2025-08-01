@@ -73,6 +73,10 @@ tags:
   - name: Admin > Home Work
   - name: Admin > Reports
   - name: Admin > Guardian Feedbacks
+  - name: Admin > Payroll
+  - name: Admin > Payroll > Employee
+  - name: Admin > Payroll > Employee Advance Payment
+  - name: Admin > Payroll > Employee Payroll
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -5405,6 +5409,483 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employees:
+    post:
+      tags:
+        - Admin > Payroll > Employee
+      summary: store employee data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                staff_id: '1'
+                account_holder_name: John Doe
+                bank_name: Global Bank
+                account_number: '1234567890'
+                branch_name: Main Branch
+                ssf_no: SSF12345
+                cit_no: CIT67890
+                epf_no: EPF54321
+                basic_salary: 50000
+                tds: 5000
+                employee_allowances:
+                  - allowance_title: House Rent Allowance
+                    amount: 15000
+                  - allowance_title: Transport Allowance
+                    amount: 5000
+                  - allowance_title: Medical Allowance
+                    amount: 3000
+                employee_deductions:
+                  - deduction_title: Provident Fund
+                    amount: 5000
+                  - deduction_title: Professional Tax
+                    amount: 2000
+                  - deduction_title: Loan Recovery
+                    amount: 3000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Payroll > Employee
+      summary: show all employee list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employees/{employee_id}:
+    get:
+      tags:
+        - Admin > Payroll > Employee
+      summary: show single employee data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: employee_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employees/{id}:
+    delete:
+      tags:
+        - Admin > Payroll > Employee
+      summary: delete employee
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employee-advance-payment:
+    post:
+      tags:
+        - Admin > Payroll > Employee Advance Payment
+      summary: store employee advance payment data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                employee_id:
+                  type: integer
+                  example: '1'
+                advance_date_bs:
+                  type: string
+                  example: '2083-01-29'
+                advance_date:
+                  type: string
+                  example: '2025-08-01'
+                advance_amount:
+                  type: integer
+                  example: '5000'
+                remarks:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/unsettled-employee-advance-payment:
+    get:
+      tags:
+        - Admin > Payroll > Employee Advance Payment
+      summary: show all unsettled employement advance payment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Fri, 01 Aug 2025 16:05:21 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 3,
+                            "school_id": 1,
+                            "employee_id": 1,
+                            "payroll_id": null,
+                            "advance_date_bs": "2083-01-29",
+                            "advance_date": "2025-08-01",
+                            "advance_amount": "5000.00",
+                            "remarks": "hy",
+                            "is_settled": "false",
+                            "settled_date": null,
+                            "created_at": "2025-08-01T16:00:03.000000Z",
+                            "updated_at": "2025-08-01T16:00:03.000000Z"
+                        },
+                        {
+                            "id": 2,
+                            "school_id": 1,
+                            "employee_id": 1,
+                            "payroll_id": null,
+                            "advance_date_bs": "2083-01-29",
+                            "advance_date": "2025-08-01",
+                            "advance_amount": "5000.00",
+                            "remarks": "hy",
+                            "is_settled": "false",
+                            "settled_date": null,
+                            "created_at": "2025-08-01T16:00:01.000000Z",
+                            "updated_at": "2025-08-01T16:00:01.000000Z"
+                        }
+                    ]
+                }
+  /api/admin/settled-employee-advance-payment:
+    get:
+      tags:
+        - Admin > Payroll > Employee Advance Payment
+      summary: show all settled employment advance payment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Fri, 01 Aug 2025 16:04:55 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 1,
+                            "school_id": 1,
+                            "employee_id": 1,
+                            "payroll_id": null,
+                            "advance_date_bs": "2083-01-29",
+                            "advance_date": "2025-08-01",
+                            "advance_amount": "5000.00",
+                            "remarks": "hy",
+                            "is_settled": "true",
+                            "settled_date": "2025-08-12",
+                            "created_at": "2025-08-01T15:59:31.000000Z",
+                            "updated_at": "2025-08-01T15:59:31.000000Z"
+                        }
+                    ],
+                    "links": {
+                        "first": "http://127.0.0.1:8000/api/admin/settled-employee-advance-payment?page=1",
+                        "last": "http://127.0.0.1:8000/api/admin/settled-employee-advance-payment?page=1",
+                        "prev": null,
+                        "next": null
+                    },
+                    "meta": {
+                        "current_page": 1,
+                        "from": 1,
+                        "last_page": 1,
+                        "links": [
+                            {
+                                "url": null,
+                                "label": "&laquo; Previous",
+                                "active": false
+                            },
+                            {
+                                "url": "http://127.0.0.1:8000/api/admin/settled-employee-advance-payment?page=1",
+                                "label": "1",
+                                "active": true
+                            },
+                            {
+                                "url": null,
+                                "label": "Next &raquo;",
+                                "active": false
+                            }
+                        ],
+                        "path": "http://127.0.0.1:8000/api/admin/settled-employee-advance-payment",
+                        "per_page": 8,
+                        "to": 1,
+                        "total": 1
+                    }
+                }
+  /api/admin/employee-payroll:
+    post:
+      tags:
+        - Admin > Payroll > Employee Payroll
+      summary: store employee payroll data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                employee_id: 1
+                salary_month: '2025-08-01'
+                salary_month_bs: '2082-04-17'
+                year_bs: '2082'
+                month: Baisakh
+                basic_salary: 40000
+                advance_deduction: 2000
+                tds: 1500
+                total_allowance: 5000
+                total_deduction: 3000
+                net_salary: 41500
+                employee_payroll_allowances:
+                  - employee_allowance_id: 1
+                    amount: 3000
+                  - employee_allowance_id: 2
+                    amount: 2000
+                employee_payroll_deductions:
+                  - employee_deduction_id: 1
+                    amount: 2000
+                  - employee_deduction_id: 2
+                    amount: 1000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/pending-employee-payrolls:
+    get:
+      tags:
+        - Admin > Payroll > Employee Payroll
+      summary: show all pending payrolls
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/paid-employee-payrolls:
+    get:
+      tags:
+        - Admin > Payroll > Employee Payroll
+      summary: show all paid payrolls
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
       responses:
         '200':
           description: Successful response
