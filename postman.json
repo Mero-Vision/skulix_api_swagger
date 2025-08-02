@@ -9289,6 +9289,147 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Employee Payment",
+							"item": [
+								{
+									"name": "store employement payment data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "employee_payroll_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "employee_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "payment_option_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "paid_amount",
+													"value": "5000",
+													"type": "text"
+												},
+												{
+													"key": "payment_date_ad",
+													"value": "2025-02-08",
+													"type": "text"
+												},
+												{
+													"key": "payment_date_bs",
+													"value": "2082-01-20",
+													"type": "text"
+												},
+												{
+													"key": "year_bs",
+													"value": "2082",
+													"type": "text"
+												},
+												{
+													"key": "month",
+													"value": "Baisakh",
+													"type": "text"
+												},
+												{
+													"key": "remarks",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employee-payment",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-payment"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all employment payment data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employee-payment?pagination_limit=8",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-payment"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}
@@ -10305,6 +10446,118 @@
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "Student Payment",
+					"item": [
+						{
+							"name": "show student payment history",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/student-payments/{student_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"student-payments",
+										"{student_id}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "student payment history",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/student/student-payments/{student_id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"student",
+												"student-payments",
+												"{student_id}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Aug 2025 16:04:59 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 18,\n            \"invoice_id\": 9,\n            \"student_id\": 4,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"payment_method_id\": 1,\n            \"payment_date_ad\": \"2023-05-15\",\n            \"payment_date_bs\": \"2080-02-01\",\n            \"invoice_no\": \"INV-2023-001\",\n            \"months\": \"Baisakh, Jestha\",\n            \"year_bs\": \"2080\",\n            \"total_amount\": \"5000.00\",\n            \"total_discount\": \"500.00\",\n            \"paid_amount\": \"4500.00\",\n            \"due_amount\": \"0.00\",\n            \"remarks\": \"Paid in full\",\n            \"status\": \"paid\",\n            \"student_payment_items\": [\n                {\n                    \"id\": 35,\n                    \"student_payment_id\": 18,\n                    \"invoice_item_id\": 1,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"3000.00\",\n                    \"discount_amount\": \"300.00\",\n                    \"paid_amount\": \"2700.00\",\n                    \"due_amount\": \"0.00\"\n                },\n                {\n                    \"id\": 36,\n                    \"student_payment_id\": 18,\n                    \"invoice_item_id\": 2,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"2000.00\",\n                    \"discount_amount\": \"200.00\",\n                    \"paid_amount\": \"1800.00\",\n                    \"due_amount\": \"0.00\"\n                }\n            ]\n        },\n        {\n            \"id\": 17,\n            \"invoice_id\": 1,\n            \"student_id\": 4,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"payment_method_id\": 1,\n            \"payment_date_ad\": \"2023-05-15\",\n            \"payment_date_bs\": \"2080-02-01\",\n            \"invoice_no\": \"INV-2023-001\",\n            \"months\": \"Baisakh, Jestha\",\n            \"year_bs\": \"2080\",\n            \"total_amount\": \"5000.00\",\n            \"total_discount\": \"500.00\",\n            \"paid_amount\": \"4500.00\",\n            \"due_amount\": \"0.00\",\n            \"remarks\": \"Paid in full\",\n            \"status\": \"paid\",\n            \"student_payment_items\": [\n                {\n                    \"id\": 33,\n                    \"student_payment_id\": 17,\n                    \"invoice_item_id\": 1,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"3000.00\",\n                    \"discount_amount\": \"300.00\",\n                    \"paid_amount\": \"2700.00\",\n                    \"due_amount\": \"0.00\"\n                },\n                {\n                    \"id\": 34,\n                    \"student_payment_id\": 17,\n                    \"invoice_item_id\": 2,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"2000.00\",\n                    \"discount_amount\": \"200.00\",\n                    \"paid_amount\": \"1800.00\",\n                    \"due_amount\": \"0.00\"\n                }\n            ]\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				}
