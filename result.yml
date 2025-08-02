@@ -77,6 +77,7 @@ tags:
   - name: Admin > Payroll > Employee
   - name: Admin > Payroll > Employee Advance Payment
   - name: Admin > Payroll > Employee Payroll
+  - name: Admin > Payroll > Employee Payment
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -90,6 +91,7 @@ tags:
   - name: Student > Class Subjects
   - name: Student > Home Work
   - name: Student > Guardian Feedback
+  - name: Student > Student Payment
 paths:
   /api/superadmin/login:
     post:
@@ -5891,6 +5893,89 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/employee-payment:
+    post:
+      tags:
+        - Admin > Payroll > Employee Payment
+      summary: store employement payment data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                employee_payroll_id:
+                  type: integer
+                  example: '1'
+                employee_id:
+                  type: integer
+                  example: '1'
+                payment_option_id:
+                  type: integer
+                  example: '1'
+                paid_amount:
+                  type: integer
+                  example: '5000'
+                payment_date_ad:
+                  type: string
+                  example: '2025-02-08'
+                payment_date_bs:
+                  type: string
+                  example: '2082-01-20'
+                year_bs:
+                  type: integer
+                  example: '2082'
+                month:
+                  type: string
+                  example: Baisakh
+                remarks:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Payroll > Employee Payment
+      summary: show all employment payment data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/student/login:
     post:
       tags:
@@ -6468,3 +6553,149 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/student/student-payments/{student_id}:
+    get:
+      tags:
+        - Student > Student Payment
+      summary: show student payment history
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 02 Aug 2025 16:04:59 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 18,
+                            "invoice_id": 9,
+                            "student_id": 4,
+                            "class_id": 1,
+                            "section_id": 1,
+                            "payment_method_id": 1,
+                            "payment_date_ad": "2023-05-15",
+                            "payment_date_bs": "2080-02-01",
+                            "invoice_no": "INV-2023-001",
+                            "months": "Baisakh, Jestha",
+                            "year_bs": "2080",
+                            "total_amount": "5000.00",
+                            "total_discount": "500.00",
+                            "paid_amount": "4500.00",
+                            "due_amount": "0.00",
+                            "remarks": "Paid in full",
+                            "status": "paid",
+                            "student_payment_items": [
+                                {
+                                    "id": 35,
+                                    "student_payment_id": 18,
+                                    "invoice_item_id": 1,
+                                    "particular": "Admission Fee",
+                                    "total_amount": "3000.00",
+                                    "discount_amount": "300.00",
+                                    "paid_amount": "2700.00",
+                                    "due_amount": "0.00"
+                                },
+                                {
+                                    "id": 36,
+                                    "student_payment_id": 18,
+                                    "invoice_item_id": 2,
+                                    "particular": "Admission Fee",
+                                    "total_amount": "2000.00",
+                                    "discount_amount": "200.00",
+                                    "paid_amount": "1800.00",
+                                    "due_amount": "0.00"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 17,
+                            "invoice_id": 1,
+                            "student_id": 4,
+                            "class_id": 1,
+                            "section_id": 1,
+                            "payment_method_id": 1,
+                            "payment_date_ad": "2023-05-15",
+                            "payment_date_bs": "2080-02-01",
+                            "invoice_no": "INV-2023-001",
+                            "months": "Baisakh, Jestha",
+                            "year_bs": "2080",
+                            "total_amount": "5000.00",
+                            "total_discount": "500.00",
+                            "paid_amount": "4500.00",
+                            "due_amount": "0.00",
+                            "remarks": "Paid in full",
+                            "status": "paid",
+                            "student_payment_items": [
+                                {
+                                    "id": 33,
+                                    "student_payment_id": 17,
+                                    "invoice_item_id": 1,
+                                    "particular": "Admission Fee",
+                                    "total_amount": "3000.00",
+                                    "discount_amount": "300.00",
+                                    "paid_amount": "2700.00",
+                                    "due_amount": "0.00"
+                                },
+                                {
+                                    "id": 34,
+                                    "student_payment_id": 17,
+                                    "invoice_item_id": 2,
+                                    "particular": "Admission Fee",
+                                    "total_amount": "2000.00",
+                                    "discount_amount": "200.00",
+                                    "paid_amount": "1800.00",
+                                    "due_amount": "0.00"
+                                }
+                            ]
+                        }
+                    ]
+                }
