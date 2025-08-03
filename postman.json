@@ -8695,7 +8695,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"staff_id\": \"1\",\r\n    \"account_holder_name\": \"John Doe\",\r\n    \"bank_name\": \"Global Bank\",\r\n    \"account_number\": \"1234567890\",\r\n    \"branch_name\": \"Main Branch\",\r\n    \"ssf_no\": \"SSF12345\",\r\n    \"cit_no\": \"CIT67890\",\r\n    \"epf_no\": \"EPF54321\",\r\n    \"basic_salary\": 50000.00,\r\n    \"tds\": 5000.00,\r\n    \"employee_allowances\": [\r\n        {\r\n            \"allowance_title\": \"House Rent Allowance\",\r\n            \"amount\": 15000.00\r\n        },\r\n        {\r\n            \"allowance_title\": \"Transport Allowance\",\r\n            \"amount\": 5000.00\r\n        },\r\n        {\r\n            \"allowance_title\": \"Medical Allowance\",\r\n            \"amount\": 3000.00\r\n        }\r\n    ],\r\n    \"employee_deductions\": [\r\n        {\r\n            \"deduction_title\": \"Provident Fund\",\r\n            \"amount\": 5000.00\r\n        },\r\n        {\r\n            \"deduction_title\": \"Professional Tax\",\r\n            \"amount\": 2000.00\r\n        },\r\n        {\r\n            \"deduction_title\": \"Loan Recovery\",\r\n            \"amount\": 3000.00\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"staff_id\": \"1\",\r\n    \"account_holder_name\": \"John Doe\",\r\n    \"bank_name\": \"Global Bank\",\r\n    \"account_number\": \"1234567890\",\r\n    \"branch_name\": \"Main Branch\",\r\n    \"ssf_no\": \"SSF12345\",\r\n    \"cit_no\": \"CIT67890\",\r\n    \"epf_no\": \"EPF54321\",\r\n    \"basic_salary\": 50000.00,\r\n    \"tds\": 5000.00,\r\n    \"employee_allowances\": [\r\n        {\r\n            \"employee_allowance_type_id\": 1,\r\n            \"amount\": 15000.00\r\n        },\r\n        {\r\n            \"employee_allowance_type_id\": 2,\r\n            \"amount\": 5000.00\r\n        }\r\n    ],\r\n    \"employee_deductions\": [\r\n        {\r\n            \"employee_deduction_type_id\": 1,\r\n            \"amount\": 5000.00\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -8827,6 +8827,410 @@
 												"api",
 												"admin",
 												"employees",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Employee Allowance Type",
+							"item": [
+								{
+									"name": "store employee type data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Entertainment allowance",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employee-allowance-types",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-allowance-types"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all allowance list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employee-allowance-types?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-allowance-types"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update employee allowance type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Entertainment allowance",
+													"type": "text"
+												},
+												{
+													"key": "_method\n",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employee-allowance-types/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-allowance-types",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete employee allowance type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employee-allowance-types/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-allowance-types",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Employee Deduction Type",
+							"item": [
+								{
+									"name": "store employee deduction type data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Entertainment allowance",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employee-deduction-types",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-deduction-types"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all deduction typelist",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employee-deduction-types?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-deduction-types"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update employee deduction type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Entertainment allowance",
+													"type": "text"
+												},
+												{
+													"key": "_method\n",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/employee-deduction-types/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-deduction-types",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete employee deduction type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employee-deduction-types/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employee-deduction-types",
 												"{id}"
 											]
 										}
@@ -9175,7 +9579,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"employee_id\": 1,\r\n    \"salary_month\": \"2025-08-01\",\r\n    \"salary_month_bs\": \"2082-04-17\",\r\n    \"year_bs\": \"2082\",\r\n    \"month\": \"Baisakh\",\r\n    \"basic_salary\": 40000,\r\n    \"advance_deduction\": 2000,\r\n    \"tds\": 1500,\r\n    \"total_allowance\": 5000,\r\n    \"total_deduction\": 3000,\r\n    \"net_salary\": 41500,\r\n    \"employee_payroll_allowances\": [\r\n        {\r\n            \"employee_allowance_id\": 1,\r\n            \"amount\": 3000\r\n        },\r\n        {\r\n            \"employee_allowance_id\": 2,\r\n            \"amount\": 2000\r\n        }\r\n    ],\r\n    \"employee_payroll_deductions\": [\r\n        {\r\n            \"employee_deduction_id\": 1,\r\n            \"amount\": 2000\r\n        },\r\n        {\r\n            \"employee_deduction_id\": 2,\r\n            \"amount\": 1000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"employee_id\": 1,\r\n    \"salary_month\": \"2025-08-01\",\r\n    \"salary_month_bs\": \"2082-04-17\",\r\n    \"year_bs\": \"2082\",\r\n    \"month\": \"Baisakh\",\r\n    \"basic_salary\": 40000,\r\n    \"advance_deduction\": 2000,\r\n    \"tds\": 1500,\r\n    \"total_allowance\": 5000,\r\n    \"total_deduction\": 3000,\r\n    \"net_salary\": 41500,\r\n    \"employee_payroll_allowances\": [\r\n        {\r\n            \"employee_allowance_type_id\": 1,\r\n            \"amount\": 3000\r\n        },\r\n        {\r\n            \"employee_allowance_type_id\": 2,\r\n            \"amount\": 2000\r\n        }\r\n    ],\r\n    \"employee_payroll_deductions\": [\r\n        {\r\n            \"employee_deduction_type_id\": 1,\r\n            \"amount\": 2000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -9430,6 +9834,229 @@
 									"response": []
 								}
 							]
+						}
+					]
+				},
+				{
+					"name": "Inventory",
+					"item": [
+						{
+							"name": "Category",
+							"item": [
+								{
+									"name": "store category data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Dress",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-product-category",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-product-category"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all category list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-product-category?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-product-category"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "6",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Academy Incomes",
+											"type": "text"
+										},
+										{
+											"key": "account_head_id",
+											"value": "7",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/sms",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"sms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check credit",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "6",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Academy Incomes",
+											"type": "text"
+										},
+										{
+											"key": "account_head_id",
+											"value": "7",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/check-credit",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"check-credit"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
