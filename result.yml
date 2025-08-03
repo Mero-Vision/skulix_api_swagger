@@ -75,9 +75,13 @@ tags:
   - name: Admin > Guardian Feedbacks
   - name: Admin > Payroll
   - name: Admin > Payroll > Employee
+  - name: Admin > Payroll > Employee Allowance Type
+  - name: Admin > Payroll > Employee Deduction Type
   - name: Admin > Payroll > Employee Advance Payment
   - name: Admin > Payroll > Employee Payroll
   - name: Admin > Payroll > Employee Payment
+  - name: Admin > Inventory
+  - name: Admin > Inventory > Category
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -5438,19 +5442,13 @@ paths:
                 basic_salary: 50000
                 tds: 5000
                 employee_allowances:
-                  - allowance_title: House Rent Allowance
+                  - employee_allowance_type_id: 1
                     amount: 15000
-                  - allowance_title: Transport Allowance
+                  - employee_allowance_type_id: 2
                     amount: 5000
-                  - allowance_title: Medical Allowance
-                    amount: 3000
                 employee_deductions:
-                  - deduction_title: Provident Fund
+                  - employee_deduction_type_id: 1
                     amount: 5000
-                  - deduction_title: Professional Tax
-                    amount: 2000
-                  - deduction_title: Loan Recovery
-                    amount: 3000
       security:
         - bearerAuth: []
       parameters:
@@ -5532,6 +5530,266 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employee-allowance-types:
+    post:
+      tags:
+        - Admin > Payroll > Employee Allowance Type
+      summary: store employee type data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Entertainment allowance
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Payroll > Employee Allowance Type
+      summary: show all allowance list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employee-allowance-types/{id}:
+    post:
+      tags:
+        - Admin > Payroll > Employee Allowance Type
+      summary: update employee allowance type
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Entertainment allowance
+                "_method\n":
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Payroll > Employee Allowance Type
+      summary: delete employee allowance type
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employee-deduction-types:
+    post:
+      tags:
+        - Admin > Payroll > Employee Deduction Type
+      summary: store employee deduction type data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Entertainment allowance
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Payroll > Employee Deduction Type
+      summary: show all deduction typelist
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/employee-deduction-types/{id}:
+    post:
+      tags:
+        - Admin > Payroll > Employee Deduction Type
+      summary: update employee deduction type
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Entertainment allowance
+                "_method\n":
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Payroll > Employee Deduction Type
+      summary: delete employee deduction type
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
         - name: id
           in: path
           schema:
@@ -5810,15 +6068,13 @@ paths:
                 total_deduction: 3000
                 net_salary: 41500
                 employee_payroll_allowances:
-                  - employee_allowance_id: 1
+                  - employee_allowance_type_id: 1
                     amount: 3000
-                  - employee_allowance_id: 2
+                  - employee_allowance_type_id: 2
                     amount: 2000
                 employee_payroll_deductions:
-                  - employee_deduction_id: 1
+                  - employee_deduction_type_id: 1
                     amount: 2000
-                  - employee_deduction_id: 2
-                    amount: 1000
       security:
         - bearerAuth: []
       parameters:
@@ -5971,6 +6227,127 @@ paths:
           schema:
             type: integer
           example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-category:
+    post:
+      tags:
+        - Admin > Inventory > Category
+      summary: store category data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Dress
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Category
+      summary: show all category list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/sms:
+    post:
+      tags:
+        - Admin > Inventory
+      summary: New Request
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Academy Incomes
+                account_head_id:
+                  type: integer
+                  example: '7'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/check-credit:
+    get:
+      tags:
+        - Admin > Inventory
+      summary: check credit
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
       responses:
         '200':
           description: Successful response
