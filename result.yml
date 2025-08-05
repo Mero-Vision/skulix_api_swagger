@@ -30,6 +30,7 @@ tags:
   - name: Super Admin
   - name: Super Admin > Auth
   - name: Super Admin > School
+  - name: Super Admin > Set or update school sms credentials
   - name: Admin
   - name: Admin > Auth
   - name: Admin > Academic Sessions
@@ -82,6 +83,8 @@ tags:
   - name: Admin > Payroll > Employee Payment
   - name: Admin > Inventory
   - name: Admin > Inventory > Category
+  - name: Admin > Dashboard
+  - name: Admin > Roles and Permissions
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -96,6 +99,7 @@ tags:
   - name: Student > Home Work
   - name: Student > Guardian Feedback
   - name: Student > Student Payment
+  - name: Student > Student Leave Request
 paths:
   /api/superadmin/login:
     post:
@@ -138,7 +142,7 @@ paths:
               properties:
                 name:
                   type: string
-                  example: PCPS Collegeb 2
+                  example: Siddhartha Shishu Sadan
                 display_name:
                   type: string
                   example: Siddhartha
@@ -254,8 +258,10 @@ paths:
               properties:
                 token:
                   type: string
+                  example: zykHygvEXR1VL31CviAEs6xLSMJNZBTmerygUGzmXj7OiMm7abfHA1DNLRu5
                 password:
                   type: string
+                  example: Password
       security:
         - bearerAuth: []
       parameters:
@@ -334,6 +340,44 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/superadmin/school-sms/{school_id}:
+    post:
+      tags:
+        - Super Admin > Set or update school sms credentials
+      summary: store school sms
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                sms_provider:
+                  type: string
+                  example: Akash SMS
+                sms_token:
+                  type: string
+                  example: a26d5b1352086abf21bdd7
+                sms_sender_id:
+                  type: string
+                  example: Skulix
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/login:
     post:
       tags:
@@ -349,8 +393,8 @@ paths:
                   type: string
                   example: hanciephago@gmail.com
                 password:
-                  type: integer
-                  example: '12345'
+                  type: string
+                  example: Password
       parameters:
         - name: Accept
           in: header
@@ -1642,19 +1686,19 @@ paths:
               properties:
                 first_name:
                   type: string
-                  example: ' Sita'
+                  example: ' Hancie'
                 middle_name:
                   type: string
-                  example: ' Kumari'
+                  example: ' '
                 last_name:
                   type: string
-                  example: ' Thapa'
+                  example: ' Phago'
                 email:
                   type: string
-                  example: ' hanciephago@example.com'
+                  example: ' hanciephago1@example.com'
                 dob:
                   type: string
-                  example: ' 2005-03-25'
+                  example: ' 2005-03-20'
                 gender:
                   type: string
                   example: ' female'
@@ -2478,7 +2522,7 @@ paths:
                   format: binary
                 email:
                   type: string
-                  example: arun3359@gmail.com
+                  example: arun33599@gmail.com
                 dob:
                   type: string
                   example: '2023-03-20'
@@ -2530,6 +2574,9 @@ paths:
                 mobile_no:
                   type: integer
                   example: '454366'
+                management_type:
+                  type: string
+                  example: Teacher, Management, Staff
       security:
         - bearerAuth: []
       parameters:
@@ -2579,6 +2626,105 @@ paths:
           content:
             application/json: {}
   /api/admin/staffs/{id}:
+    post:
+      tags:
+        - Admin > Staff
+      summary: update staff data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Arun Shrestha
+                staff_image:
+                  type: string
+                  format: binary
+                email:
+                  type: string
+                  example: arun33599@gmail.com
+                dob:
+                  type: string
+                  example: '2023-03-20'
+                gender:
+                  type: string
+                  example: Male
+                address:
+                  type: string
+                  example: KTM
+                faculty_id:
+                  type: integer
+                  example: '1'
+                level_id:
+                  type: integer
+                  example: '1'
+                program_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                section_id:
+                  type: integer
+                  example: '1'
+                employee_type_id:
+                  type: integer
+                  example: '1'
+                employee_pan_no:
+                  type: integer
+                  example: '345436'
+                citizenship_number:
+                  type: integer
+                  example: '234543543'
+                blood_group:
+                  type: string
+                  example: A+
+                qualification:
+                  type: string
+                  example: Master Degree
+                designation:
+                  type: string
+                  example: Principal
+                joining_date:
+                  type: string
+                  example: '2025-01-20'
+                is_principal:
+                  type: boolean
+                  example: 'true'
+                mobile_no:
+                  type: integer
+                  example: '454366'
+                management_type:
+                  type: string
+                  example: Teacher, Management, Staff
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
     get:
       tags:
         - Admin > Staff
@@ -3485,6 +3631,9 @@ paths:
                 account_sub_head_id:
                   type: integer
                   example: '1'
+                account_sub_sub_head_id:
+                  type: integer
+                  example: '1'
                 name:
                   type: string
                   example: Admission Fee
@@ -3494,6 +3643,9 @@ paths:
                 period_name:
                   type: string
                   example: OneTime
+                head_type:
+                  type: string
+                  example: Regular, Bus, Misc
       security:
         - bearerAuth: []
       parameters:
@@ -3560,6 +3712,9 @@ paths:
                 period_name:
                   type: string
                   example: OneTime
+                head_type:
+                  type: string
+                  example: Regular, Bus, Misc
                 _method:
                   type: string
                   example: PUT
@@ -4373,6 +4528,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -6305,13 +6465,6 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              properties:
-                name:
-                  type: string
-                  example: Academy Incomes
-                account_head_id:
-                  type: integer
-                  example: '7'
       security:
         - bearerAuth: []
       parameters:
@@ -6347,7 +6500,53 @@ paths:
           in: header
           schema:
             type: integer
-          example: '6'
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard:
+    get:
+      tags:
+        - Admin > Dashboard
+      summary: show dashboard count data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/roles:
+    get:
+      tags:
+        - Admin > Roles and Permissions
+      summary: show all roles
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -7076,3 +7275,83 @@ paths:
                         }
                     ]
                 }
+  /api/student/student-leave-request:
+    post:
+      tags:
+        - Student > Student Leave Request
+      summary: store student leave request
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                class_id:
+                  type: integer
+                  example: '1'
+                section_id:
+                  type: integer
+                  example: '1'
+                student_id:
+                  type: integer
+                  example: '4'
+                leave_from:
+                  type: string
+                  example: '2082-01-20'
+                leave_to:
+                  type: string
+                  example: '2082-01-25'
+                reason:
+                  type: string
+                  example: fever
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/student-leave-request/4:
+    get:
+      tags:
+        - Student > Student Leave Request
+      summary: show student leave request data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
