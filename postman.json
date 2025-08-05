@@ -98,7 +98,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "PCPS Collegeb 2",
+											"value": "Siddhartha Shishu Sadan",
 											"type": "text"
 										},
 										{
@@ -149,7 +149,7 @@
 										{
 											"key": "school_logo",
 											"type": "file",
-											"src": "/C:/Users/Hanci/Downloads/rd5TUX2wz4wS4QsBnpS6vQl6Hey1e4R5GC59NioT.png"
+											"src": "/C:/Users/user/Pictures/rd5TUX2wz4wS4QsBnpS6vQl6Hey1e4R5GC59NioT.png"
 										}
 									]
 								},
@@ -293,12 +293,12 @@
 									"formdata": [
 										{
 											"key": "token",
-											"value": "",
+											"value": "zykHygvEXR1VL31CviAEs6xLSMJNZBTmerygUGzmXj7OiMm7abfHA1DNLRu5",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "",
+											"value": "Password",
 											"type": "text"
 										}
 									]
@@ -419,6 +419,67 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Set or update school sms credentials",
+					"item": [
+						{
+							"name": "store school sms",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "sms_provider",
+											"value": "Akash SMS",
+											"type": "text"
+										},
+										{
+											"key": "sms_token",
+											"value": "a26d5b1352086abf21bdd7",
+											"type": "text"
+										},
+										{
+											"key": "sms_sender_id",
+											"value": "Skulix",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/school-sms/{school_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"school-sms",
+										"{school_id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -463,7 +524,7 @@
 										},
 										{
 											"key": "password",
-											"value": "12345",
+											"value": "Password",
 											"type": "text"
 										}
 									]
@@ -2577,27 +2638,27 @@
 									"formdata": [
 										{
 											"key": "first_name",
-											"value": " Sita",
+											"value": " Hancie",
 											"type": "text"
 										},
 										{
 											"key": "middle_name",
-											"value": " Kumari",
+											"value": " ",
 											"type": "text"
 										},
 										{
 											"key": "last_name",
-											"value": " Thapa",
+											"value": " Phago",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": " hanciephago@example.com",
+											"value": " hanciephago1@example.com",
 											"type": "text"
 										},
 										{
 											"key": "dob",
-											"value": " 2005-03-25",
+											"value": " 2005-03-20",
 											"type": "text"
 										},
 										{
@@ -3921,11 +3982,11 @@
 										{
 											"key": "staff_image",
 											"type": "file",
-											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 10.jpg"
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 9.jpg"
 										},
 										{
 											"key": "email",
-											"value": "arun3359@gmail.com",
+											"value": "arun33599@gmail.com",
 											"type": "text"
 										},
 										{
@@ -4012,6 +4073,11 @@
 											"key": "mobile_no",
 											"value": "454366",
 											"type": "text"
+										},
+										{
+											"key": "management_type",
+											"value": "Teacher, Management, Staff",
+											"type": "text"
 										}
 									]
 								},
@@ -4024,6 +4090,162 @@
 										"api",
 										"admin",
 										"staffs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update staff data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Arun Shrestha",
+											"type": "text"
+										},
+										{
+											"key": "staff_image",
+											"type": "file",
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 9.jpg"
+										},
+										{
+											"key": "email",
+											"value": "arun33599@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": "2023-03-20",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "Male",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "KTM",
+											"type": "text"
+										},
+										{
+											"key": "faculty_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "level_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "program_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "class_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "section_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "employee_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "employee_pan_no",
+											"value": "345436",
+											"type": "text"
+										},
+										{
+											"key": "citizenship_number",
+											"value": "234543543",
+											"type": "text"
+										},
+										{
+											"key": "blood_group",
+											"value": "A+",
+											"type": "text"
+										},
+										{
+											"key": "qualification",
+											"value": "Master Degree",
+											"type": "text"
+										},
+										{
+											"key": "designation",
+											"value": "Principal",
+											"type": "text"
+										},
+										{
+											"key": "joining_date",
+											"value": "2025-01-20",
+											"type": "text"
+										},
+										{
+											"key": "is_principal",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "454366",
+											"type": "text"
+										},
+										{
+											"key": "management_type",
+											"value": "Teacher, Management, Staff",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/staffs/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"staffs",
+										"{id}"
 									]
 								}
 							},
@@ -5522,6 +5744,11 @@
 											"type": "text"
 										},
 										{
+											"key": "account_sub_sub_head_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
 											"key": "name",
 											"value": "Admission Fee",
 											"type": "text"
@@ -5534,6 +5761,11 @@
 										{
 											"key": "period_name",
 											"value": "OneTime",
+											"type": "text"
+										},
+										{
+											"key": "head_type",
+											"value": "Regular, Bus, Misc",
 											"type": "text"
 										}
 									]
@@ -5604,6 +5836,11 @@
 										{
 											"key": "period_name",
 											"value": "OneTime",
+											"type": "text"
+										},
+										{
+											"key": "head_type",
+											"value": "Regular, Bus, Misc",
 											"type": "text"
 										},
 										{
@@ -7001,6 +7238,11 @@
 										"key": "Accept",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -7014,12 +7256,12 @@
 										{
 											"key": "images[]",
 											"type": "file",
-											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 3.jpg"
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 1.jpg"
 										},
 										{
 											"key": "images[]",
 											"type": "file",
-											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 4.jpg"
+											"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 2.jpg"
 										}
 									]
 								},
@@ -9973,18 +10215,7 @@
 								],
 								"body": {
 									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "name",
-											"value": "Academy Incomes",
-											"type": "text"
-										},
-										{
-											"key": "account_head_id",
-											"value": "7",
-											"type": "text"
-										}
-									]
+									"formdata": []
 								},
 								"url": {
 									"raw": "{{url}}/api/admin/sms",
@@ -10025,7 +10256,7 @@
 									},
 									{
 										"key": "school-id",
-										"value": "6",
+										"value": "1",
 										"type": "text"
 									}
 								],
@@ -10053,6 +10284,96 @@
 										"api",
 										"admin",
 										"check-credit"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Dashboard",
+					"item": [
+						{
+							"name": "show dashboard count data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/dashboard",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"dashboard"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Roles and Permissions",
+					"item": [
+						{
+							"name": "show all roles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/roles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"roles"
 									]
 								}
 							},
@@ -11185,6 +11506,137 @@
 									"body": "{\n    \"data\": [\n        {\n            \"id\": 18,\n            \"invoice_id\": 9,\n            \"student_id\": 4,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"payment_method_id\": 1,\n            \"payment_date_ad\": \"2023-05-15\",\n            \"payment_date_bs\": \"2080-02-01\",\n            \"invoice_no\": \"INV-2023-001\",\n            \"months\": \"Baisakh, Jestha\",\n            \"year_bs\": \"2080\",\n            \"total_amount\": \"5000.00\",\n            \"total_discount\": \"500.00\",\n            \"paid_amount\": \"4500.00\",\n            \"due_amount\": \"0.00\",\n            \"remarks\": \"Paid in full\",\n            \"status\": \"paid\",\n            \"student_payment_items\": [\n                {\n                    \"id\": 35,\n                    \"student_payment_id\": 18,\n                    \"invoice_item_id\": 1,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"3000.00\",\n                    \"discount_amount\": \"300.00\",\n                    \"paid_amount\": \"2700.00\",\n                    \"due_amount\": \"0.00\"\n                },\n                {\n                    \"id\": 36,\n                    \"student_payment_id\": 18,\n                    \"invoice_item_id\": 2,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"2000.00\",\n                    \"discount_amount\": \"200.00\",\n                    \"paid_amount\": \"1800.00\",\n                    \"due_amount\": \"0.00\"\n                }\n            ]\n        },\n        {\n            \"id\": 17,\n            \"invoice_id\": 1,\n            \"student_id\": 4,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"payment_method_id\": 1,\n            \"payment_date_ad\": \"2023-05-15\",\n            \"payment_date_bs\": \"2080-02-01\",\n            \"invoice_no\": \"INV-2023-001\",\n            \"months\": \"Baisakh, Jestha\",\n            \"year_bs\": \"2080\",\n            \"total_amount\": \"5000.00\",\n            \"total_discount\": \"500.00\",\n            \"paid_amount\": \"4500.00\",\n            \"due_amount\": \"0.00\",\n            \"remarks\": \"Paid in full\",\n            \"status\": \"paid\",\n            \"student_payment_items\": [\n                {\n                    \"id\": 33,\n                    \"student_payment_id\": 17,\n                    \"invoice_item_id\": 1,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"3000.00\",\n                    \"discount_amount\": \"300.00\",\n                    \"paid_amount\": \"2700.00\",\n                    \"due_amount\": \"0.00\"\n                },\n                {\n                    \"id\": 34,\n                    \"student_payment_id\": 17,\n                    \"invoice_item_id\": 2,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"2000.00\",\n                    \"discount_amount\": \"200.00\",\n                    \"paid_amount\": \"1800.00\",\n                    \"due_amount\": \"0.00\"\n                }\n            ]\n        }\n    ]\n}"
 								}
 							]
+						}
+					]
+				},
+				{
+					"name": "Student Leave Request",
+					"item": [
+						{
+							"name": "store student leave request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "class_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "section_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "student_id",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "leave_from",
+											"value": "2082-01-20",
+											"type": "text"
+										},
+										{
+											"key": "leave_to",
+											"value": "2082-01-25",
+											"type": "text"
+										},
+										{
+											"key": "reason",
+											"value": "fever",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/student/student-leave-request",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"student-leave-request"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show student leave request data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/student-leave-request/4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"student-leave-request",
+										"4"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
