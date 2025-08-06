@@ -100,6 +100,9 @@ tags:
   - name: Student > Guardian Feedback
   - name: Student > Student Payment
   - name: Student > Student Leave Request
+  - name: Teacher
+  - name: Teacher > Auth
+  - name: Teacher > Teacher
 paths:
   /api/superadmin/login:
     post:
@@ -7350,6 +7353,59 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/teacher/login:
+    post:
+      tags:
+        - Teacher > Auth
+      summary: teacher login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: arun33599@gmail.com
+                password:
+                  type: integer
+                  example: '12345'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/teacher/teacher-details/{teacher_id}:
+    get:
+      tags:
+        - Teacher > Teacher
+      summary: show teacher details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: teacher_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
