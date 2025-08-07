@@ -72,7 +72,6 @@ tags:
   - name: Admin > Student Invoice
   - name: Admin > Student Payment
   - name: Admin > Home Work
-  - name: Admin > Reports
   - name: Admin > Guardian Feedbacks
   - name: Admin > Payroll
   - name: Admin > Payroll > Employee
@@ -83,7 +82,10 @@ tags:
   - name: Admin > Payroll > Employee Payment
   - name: Admin > Inventory
   - name: Admin > Inventory > Category
+  - name: Admin > Inventory > Inventory Product Unit
+  - name: Admin > Inventory > Inventory Product Suppliers
   - name: Admin > Dashboard
+  - name: Admin > Reports
   - name: Admin > Roles and Permissions
   - name: Student
   - name: Student > Auth
@@ -5405,118 +5407,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/reports/student-admission-report:
-    get:
-      tags:
-        - Admin > Reports
-      summary: student admission report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: from_date
-          in: query
-          schema:
-            type: string
-          example: '2025-01-20'
-        - name: to_date
-          in: query
-          schema:
-            type: string
-          example: '2025-09-20'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/student-summary-report:
-    get:
-      tags:
-        - Admin > Reports
-      summary: show student summary report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/student-list-report:
-    get:
-      tags:
-        - Admin > Reports
-      summary: student list report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: class_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: section_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/student-list-by-gender-report:
-    get:
-      tags:
-        - Admin > Reports
-      summary: student report by gender report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/admin/guardian-feedbacks:
     get:
       tags:
@@ -6458,6 +6348,387 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/inventory-product-category/{id}:
+    post:
+      tags:
+        - Admin > Inventory > Category
+      summary: update product category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Dress
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Inventory > Category
+      summary: delete product category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-unit:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Product Unit
+      summary: store unit data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Pieces
+                symbol:
+                  type: string
+                  example: Pcs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product Unit
+      summary: show all inventory product units
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-unit/{id}:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Product Unit
+      summary: update inventory product unit data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Pieces
+                symbol:
+                  type: string
+                  example: Pcs
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Inventory > Inventory Product Unit
+      summary: delete inventory product unit data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-supplier:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Product Suppliers
+      summary: store inventory product suppliers
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Nishav Store
+                email:
+                  type: string
+                  example: store@gmail.com
+                phone_no:
+                  type: integer
+                  example: '23534534'
+                address:
+                  type: string
+                  example: Kupondole
+                pan_vat_number:
+                  type: integer
+                  example: '234235345'
+                website_url:
+                  type: string
+                  example: store.com
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product Suppliers
+      summary: show all suppliers list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-supplier/{id}:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Product Suppliers
+      summary: update supplier data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Nishav Store
+                email:
+                  type: string
+                  example: store@gmail.com
+                phone_no:
+                  type: integer
+                  example: '23534534'
+                address:
+                  type: string
+                  example: Kupondole
+                pan_vat_number:
+                  type: integer
+                  example: '234235345'
+                website_url:
+                  type: string
+                  example: store.com
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Inventory > Inventory Product Suppliers
+      summary: delete supplier data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product Suppliers
+      summary: show single supplier data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/sms:
     post:
       tags:
@@ -6514,6 +6785,118 @@ paths:
       tags:
         - Admin > Dashboard
       summary: show dashboard count data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-admission-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: student admission report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: from_date
+          in: query
+          schema:
+            type: string
+          example: '2025-01-20'
+        - name: to_date
+          in: query
+          schema:
+            type: string
+          example: '2025-09-20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-summary-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: show student summary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-list-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: student list report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/student-list-by-gender-report:
+    get:
+      tags:
+        - Admin > Reports
+      summary: student report by gender report
       security:
         - bearerAuth: []
       parameters:
