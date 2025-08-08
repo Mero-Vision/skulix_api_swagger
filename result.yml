@@ -84,6 +84,8 @@ tags:
   - name: Admin > Inventory > Category
   - name: Admin > Inventory > Inventory Product Unit
   - name: Admin > Inventory > Inventory Product Suppliers
+  - name: Admin > Inventory > Inventory Products
+  - name: Admin > Inventory > Inventory Product Purchase Bill
   - name: Admin > Dashboard
   - name: Admin > Reports
   - name: Admin > Roles and Permissions
@@ -6715,6 +6717,434 @@ paths:
             type: string
           example: application/json
         - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-products:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: store inventory product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Tie
+                inventory_product_category_id:
+                  type: integer
+                  example: '1'
+                inventory_product_unit_id:
+                  type: integer
+                  example: '1'
+                sku:
+                  type: integer
+                  example: '34543'
+                stock_quantity:
+                  type: integer
+                  example: '400'
+                low_stock_threshold:
+                  type: integer
+                  example: '10'
+                description:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: show all inventory product list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-products/{inventory_product_id}:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: update inventory product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Tie
+                inventory_product_category_id:
+                  type: integer
+                  example: '1'
+                inventory_product_unit_id:
+                  type: integer
+                  example: '1'
+                sku:
+                  type: integer
+                  example: '3454366'
+                stock_quantity:
+                  type: integer
+                  example: '400'
+                low_stock_threshold:
+                  type: integer
+                  example: '10'
+                description:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '6'
+        - name: inventory_product_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: show inventory product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: inventory_product_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-products/{id}:
+    delete:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: delete inventory product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-products/{id}/restore:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: restore inventory product
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-products/{id}/force-delete:
+    delete:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: inventory product permanent delete
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-purchase:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Product Purchase Bill
+      summary: store purchase bill data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                supplier_id:
+                  type: string
+                  example: ' 1'
+                bill_date:
+                  type: string
+                  example: ' 2025-08-08'
+                reference:
+                  type: string
+                  example: ' INV-2025-001'
+                note:
+                  type: string
+                  example: ' hy'
+                sub_total:
+                  type: string
+                  example: ' 950'
+                total_discount:
+                  type: string
+                  example: ' 50'
+                non_taxable_total:
+                  type: string
+                  example: ' 400'
+                taxable_total:
+                  type: string
+                  example: ' 550'
+                vat_amount:
+                  type: string
+                  example: ' 71.5'
+                grand_total:
+                  type: string
+                  example: ' 1021.5'
+                status:
+                  type: string
+                  example: ' approved'
+                purchase_bill_image:
+                  type: string
+                  format: binary
+                purchaseProducts[0][inventory_product_id]:
+                  type: string
+                  example: ' 1'
+                purchaseProducts[0][quantity]:
+                  type: string
+                  example: ' 5'
+                purchaseProducts[0][rate]:
+                  type: string
+                  example: ' 50'
+                purchaseProducts[0][vat]:
+                  type: string
+                  example: ' 5'
+                purchaseProducts[0][total_amount]:
+                  type: string
+                  example: ' 250'
+                purchaseProducts[1][inventory_product_id]:
+                  type: string
+                  example: ' 2'
+                purchaseProducts[1][quantity]:
+                  type: string
+                  example: ' 7'
+                purchaseProducts[1][rate]:
+                  type: string
+                  example: ' 100'
+                purchaseProducts[1][vat]:
+                  type: string
+                  example: ' 13'
+                purchaseProducts[1][total_amount]:
+                  type: string
+                  example: ' 700'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product Purchase Bill
+      summary: show inventory product purchase list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: approved or void
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-purchase/{id}:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product Purchase Bill
+      summary: show inventory product single purchase data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-purchase/{id}/status:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Product Purchase Bill
+      summary: update inventory product purchase bill status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: void
+                _method:
+                  type: string
+                  example: PATCH
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
           in: header
           schema:
             type: integer
