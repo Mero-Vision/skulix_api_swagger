@@ -10591,6 +10591,662 @@
 							]
 						},
 						{
+							"name": "Inventory Products",
+							"item": [
+								{
+									"name": "store inventory product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "6",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Tie",
+													"type": "text"
+												},
+												{
+													"key": "inventory_product_category_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "inventory_product_unit_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "sku",
+													"value": "34543",
+													"type": "text"
+												},
+												{
+													"key": "stock_quantity",
+													"value": "400",
+													"type": "text"
+												},
+												{
+													"key": "low_stock_threshold",
+													"value": "10",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update inventory product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "6",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Tie",
+													"type": "text"
+												},
+												{
+													"key": "inventory_product_category_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "inventory_product_unit_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "sku",
+													"value": "3454366",
+													"type": "text"
+												},
+												{
+													"key": "stock_quantity",
+													"value": "400",
+													"type": "text"
+												},
+												{
+													"key": "low_stock_threshold",
+													"value": "10",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products/{inventory_product_id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products",
+												"{inventory_product_id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all inventory product list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show inventory product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products/{inventory_product_id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products",
+												"{inventory_product_id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete inventory product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "restore inventory product",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products/{id}/restore",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products",
+												"{id}",
+												"restore"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "inventory product permanent delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products/{id}/force-delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products",
+												"{id}",
+												"force-delete"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Inventory Product Purchase Bill",
+							"item": [
+								{
+									"name": "store purchase bill data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "supplier_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "bill_date",
+													"value": " 2025-08-08",
+													"type": "text"
+												},
+												{
+													"key": "reference",
+													"value": " INV-2025-001",
+													"type": "text"
+												},
+												{
+													"key": "note",
+													"value": " hy",
+													"type": "text"
+												},
+												{
+													"key": "sub_total",
+													"value": " 950",
+													"type": "text"
+												},
+												{
+													"key": "total_discount",
+													"value": " 50",
+													"type": "text"
+												},
+												{
+													"key": "non_taxable_total",
+													"value": " 400",
+													"type": "text"
+												},
+												{
+													"key": "taxable_total",
+													"value": " 550",
+													"type": "text"
+												},
+												{
+													"key": "vat_amount",
+													"value": " 71.5",
+													"type": "text"
+												},
+												{
+													"key": "grand_total",
+													"value": " 1021.5",
+													"type": "text"
+												},
+												{
+													"key": "status",
+													"value": " approved",
+													"type": "text"
+												},
+												{
+													"key": "purchase_bill_image",
+													"type": "file",
+													"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 2.jpg"
+												},
+												{
+													"key": "purchaseProducts[0][inventory_product_id]",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[0][quantity]",
+													"value": " 5",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[0][rate]",
+													"value": " 50",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[0][vat]",
+													"value": " 5",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[0][total_amount]",
+													"value": " 250",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[1][inventory_product_id]",
+													"value": " 2",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[1][quantity]",
+													"value": " 7",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[1][rate]",
+													"value": " 100",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[1][vat]",
+													"value": " 13",
+													"type": "text"
+												},
+												{
+													"key": "purchaseProducts[1][total_amount]",
+													"value": " 700",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-product-purchase",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-product-purchase"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show inventory product purchase list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-product-purchase?pagination_limit=8&search_keyword=&status=approved or void",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-product-purchase"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": ""
+												},
+												{
+													"key": "status",
+													"value": "approved or void"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show inventory product single purchase data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-product-purchase/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-product-purchase",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update inventory product purchase bill status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "status",
+													"value": "void",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PATCH",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-product-purchase/{id}/status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-product-purchase",
+												"{id}",
+												"status"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "New Request",
 							"request": {
 								"auth": {
