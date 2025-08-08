@@ -86,6 +86,7 @@ tags:
   - name: Admin > Inventory > Inventory Product Suppliers
   - name: Admin > Inventory > Inventory Products
   - name: Admin > Inventory > Inventory Product Purchase Bill
+  - name: Admin > Inventory > Inventory Supplier Payment
   - name: Admin > Dashboard
   - name: Admin > Reports
   - name: Admin > Roles and Permissions
@@ -6557,7 +6558,7 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Nishav Store
+                  example: Huba Store
                 email:
                   type: string
                   example: store@gmail.com
@@ -6722,6 +6723,34 @@ paths:
             type: integer
           example: '1'
         - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-supplier-transactions/{supplier_id}:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product Suppliers
+      summary: show supplier transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: supplier_id
           in: path
           schema:
             type: string
@@ -7154,6 +7183,52 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-supplier-payment:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Supplier Payment
+      summary: store supplier payment data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                supplier_id:
+                  type: integer
+                  example: '1'
+                payment_option_id:
+                  type: integer
+                  example: '1'
+                paid_amount:
+                  type: integer
+                  example: '100'
+                remarks:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
