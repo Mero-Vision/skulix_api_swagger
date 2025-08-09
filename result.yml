@@ -7370,6 +7370,52 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/dashboard/today-student-birthday:
+    get:
+      tags:
+        - Admin > Dashboard
+      summary: today student birthday list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/event-summary:
+    get:
+      tags:
+        - Admin > Dashboard
+      summary: show event summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/reports/student-admission-report:
     get:
       tags:
