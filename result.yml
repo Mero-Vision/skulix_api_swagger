@@ -4279,20 +4279,20 @@ paths:
             schema:
               type: object
               example:
-                date: '2025-06-26'
-                nep_date: '2082-01-20'
+                date: '2025-08-09'
+                nep_date: '2082-04-24'
                 class_id: 1
                 section_id: 1
                 entries:
-                  - student_id: 1
+                  - student_id: 9
                     status: present
                     remarks: On time
                     time: 08:20 PM
-                  - student_id: 2
+                  - student_id: 10
                     status: late
                     remarks: Traffic delay
                     time: 08:20 PM
-                  - student_id: 3
+                  - student_id: 11
                     status: leave
                     remarks: Sick leave
                     time: 08:20 PM
@@ -7301,11 +7301,57 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/dashboard:
+  /api/admin/dashboard/analytics-count:
     get:
       tags:
         - Admin > Dashboard
       summary: show dashboard count data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/student-last-12-bs-months-payments:
+    get:
+      tags:
+        - Admin > Dashboard
+      summary: last 12 month student payment data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/today-student-attendance:
+    get:
+      tags:
+        - Admin > Dashboard
+      summary: show today student attendance data
       security:
         - bearerAuth: []
       parameters:
@@ -8182,7 +8228,7 @@ paths:
                         }
                     ]
                 }
-  /api/student/student-dues/9:
+  /api/student/student-dues/{student_id}:
     get:
       tags:
         - Student > Student Payment
@@ -8200,12 +8246,17 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: student_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/student/student-invoice/9:
+  /api/student/student-invoice/{student_id}:
     get:
       tags:
         - Student > Student Payment
@@ -8223,6 +8274,11 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: student_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
