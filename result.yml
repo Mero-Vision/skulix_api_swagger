@@ -348,6 +348,28 @@ paths:
           description: Successful response
           content:
             application/json: {}
+    get:
+      tags:
+        - Super Admin > School
+      summary: show single school data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/superadmin/school-sms/{school_id}:
     post:
       tags:
@@ -801,7 +823,7 @@ paths:
         - Admin > School
       summary: show all schools
       security:
-        - noauthAuth: []
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
@@ -3454,13 +3476,13 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Academy Incomes
+                  example: Previous Dues
                 account_head_id:
                   type: integer
-                  example: '7'
+                  example: '1'
                 account_sub_head_id:
                   type: integer
-                  example: '20'
+                  example: '1'
       security:
         - bearerAuth: []
       parameters:
@@ -3473,7 +3495,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '6'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -3644,10 +3666,10 @@ paths:
                   example: '1'
                 name:
                   type: string
-                  example: Admission Fee
+                  example: Previous Dues
                 nepali_heading:
                   type: string
-                  example: Admission Fee
+                  example: Previous Dues
                 period_name:
                   type: string
                   example: OneTime
@@ -3789,7 +3811,7 @@ paths:
               properties:
                 school_account_head_id:
                   type: integer
-                  example: '1'
+                  example: '2'
                 class_id:
                   type: integer
                   example: '1'
@@ -4814,15 +4836,17 @@ paths:
               example:
                 particulars:
                   - particular_id: 1
-                    student_id: 3
+                    school_account_head_id: 1
+                    student_id: 9
                     scholarship_id: 1
                     discount_amount: 50
-                    discount_percent: 10.5
+                    discount_percent: 0
                     rate: 500
-                  - particular_id: 1
-                    student_id: 4
-                    scholarship_id: 2
-                    discount_amount: 0
+                  - particular_id: 2
+                    school_account_head_id: 3
+                    student_id: 10
+                    scholarship_id: 1
+                    discount_amount: 2
                     discount_percent: 5.25
                     rate: 750.5
       security:
@@ -4864,7 +4888,7 @@ paths:
           in: query
           schema:
             type: integer
-          example: '3'
+          example: '9'
       responses:
         '200':
           description: Successful response
@@ -5161,7 +5185,7 @@ paths:
               type: object
               example:
                 invoices:
-                  - student_id: 4
+                  - student_id: 9
                     class_id: 1
                     section_id: 1
                     months: Ashar, Shrawan,Bhadra
@@ -5239,8 +5263,8 @@ paths:
             schema:
               type: object
               example:
-                invoice_id: 9
-                student_id: 4
+                invoice_id: 3
+                student_id: 9
                 class_id: 1
                 section_id: 1
                 payment_method_id: 1
@@ -5248,9 +5272,9 @@ paths:
                 months: Baisakh, Jestha
                 year_bs: '2080'
                 total_amount: 5000
-                total_discount: 500
+                total_discount: 0
                 paid_amount: 4500
-                due_amount: 0
+                due_amount: 500
                 remarks: Paid in full
                 payment_date_ad: '2023-05-15'
                 payment_date_bs: '2080-02-01'
@@ -5262,14 +5286,6 @@ paths:
                     total_amount: 3000
                     discount_amount: 300
                     paid_amount: 2700
-                    due_amount: 0
-                  - student_particular_id: 2
-                    particular_id: 1
-                    school_account_head_id: 1
-                    invoice_item_id: 2
-                    total_amount: 2000
-                    discount_amount: 200
-                    paid_amount: 1800
                     due_amount: 0
       security:
         - bearerAuth: []
@@ -7456,7 +7472,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: hanciephago@example.com
+                  example: hanciephago4@example.com
                 password:
                   type: integer
                   example: '12345'
@@ -8166,6 +8182,52 @@ paths:
                         }
                     ]
                 }
+  /api/student/student-dues/9:
+    get:
+      tags:
+        - Student > Student Payment
+      summary: show student due amount
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/student/student-invoice/9:
+    get:
+      tags:
+        - Student > Student Payment
+      summary: show student invoice
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/student/student-leave-request:
     post:
       tags:
