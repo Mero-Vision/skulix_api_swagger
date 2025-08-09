@@ -417,6 +417,42 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "show single school data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/superadmin/schools/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"schools",
+										"{id}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1147,7 +1183,14 @@
 							"name": "show all schools",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
 								},
 								"method": "GET",
 								"header": [
@@ -5433,7 +5476,7 @@
 									},
 									{
 										"key": "school-id",
-										"value": "6",
+										"value": "1",
 										"type": "text"
 									}
 								],
@@ -5442,17 +5485,17 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "Academy Incomes",
+											"value": "Previous Dues",
 											"type": "text"
 										},
 										{
 											"key": "account_head_id",
-											"value": "7",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "account_sub_head_id",
-											"value": "20",
+											"value": "1",
 											"type": "text"
 										}
 									]
@@ -5750,12 +5793,12 @@
 										},
 										{
 											"key": "name",
-											"value": "Admission Fee",
+											"value": "Previous Dues",
 											"type": "text"
 										},
 										{
 											"key": "nepali_heading",
-											"value": "Admission Fee",
+											"value": "Previous Dues",
 											"type": "text"
 										},
 										{
@@ -5982,7 +6025,7 @@
 									"formdata": [
 										{
 											"key": "school_account_head_id",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										},
 										{
@@ -7736,7 +7779,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"particulars\": [\r\n        {\r\n            \"particular_id\": 1,\r\n            \"student_id\": 3,\r\n            \"scholarship_id\": 1,\r\n            \"discount_amount\": 50.00,\r\n            \"discount_percent\": 10.50,\r\n            \"rate\": 500.00\r\n        },\r\n        {\r\n            \"particular_id\": 1,\r\n            \"student_id\": 4,\r\n            \"scholarship_id\": 2,\r\n            \"discount_amount\": 0,\r\n            \"discount_percent\": 5.25,\r\n            \"rate\": 750.50\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"particulars\": [\r\n        {\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\":1,\r\n            \"student_id\": 9,\r\n            \"scholarship_id\": 1,\r\n            \"discount_amount\": 50.00,\r\n            \"discount_percent\": 0,\r\n            \"rate\": 500.00\r\n        },\r\n        {\r\n            \"particular_id\": 2,\r\n            \"school_account_head_id\":3,\r\n            \"student_id\": 10,\r\n            \"scholarship_id\": 1,\r\n            \"discount_amount\": 2,\r\n            \"discount_percent\": 5.25,\r\n            \"rate\": 750.50\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7784,7 +7827,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/student-particulars?student_id=3",
+									"raw": "{{url}}/api/admin/student-particulars?student_id=9",
 									"host": [
 										"{{url}}"
 									],
@@ -7796,7 +7839,7 @@
 									"query": [
 										{
 											"key": "student_id",
-											"value": "3"
+											"value": "9"
 										}
 									]
 								}
@@ -8296,7 +8339,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"student_id\": 4,\r\n            \"class_id\": 1,\r\n            \"section_id\": 1,\r\n            \"months\": \"Ashar, Shrawan,Bhadra\",\r\n            \"year_bs\": \"2080\",\r\n            \"total_amount\": 5000.00,\r\n            \"due_amount\": 5000.00,\r\n            \"generated_date_ad\": \"2023-04-15\",\r\n            \"generated_date_bs\": \"2080-01-02\",\r\n            \"items\": [\r\n                {\r\n                    \"student_particular_id\": 1,\r\n                    \"particular_id\":1,\r\n                    \"school_account_head_id\":1,\r\n                    \"amount\": 3000.00,\r\n                    \"months\": \"Baisakh, Jestha,Bhadra\",\r\n                    \"year_bs\": \"2080\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"class_id\": 1,\r\n            \"section_id\": 1,\r\n            \"months\": \"Ashar, Shrawan,Bhadra\",\r\n            \"year_bs\": \"2080\",\r\n            \"total_amount\": 5000.00,\r\n            \"due_amount\": 5000.00,\r\n            \"generated_date_ad\": \"2023-04-15\",\r\n            \"generated_date_bs\": \"2080-01-02\",\r\n            \"items\": [\r\n                {\r\n                    \"student_particular_id\": 1,\r\n                    \"particular_id\":1,\r\n                    \"school_account_head_id\":1,\r\n                    \"amount\": 3000.00,\r\n                    \"months\": \"Baisakh, Jestha,Bhadra\",\r\n                    \"year_bs\": \"2080\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -8401,7 +8444,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"invoice_id\": 9,\r\n    \"student_id\": 4,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"payment_method_id\": 1,\r\n    \"invoice_no\": \"INV-2023-001\",\r\n    \"months\": \"Baisakh, Jestha\",\r\n    \"year_bs\": \"2080\",\r\n    \"total_amount\": 5000,\r\n    \"total_discount\": 500,\r\n    \"paid_amount\": 4500,\r\n    \"due_amount\": 0,\r\n    \"remarks\": \"Paid in full\",\r\n    \"payment_date_ad\": \"2023-05-15\",\r\n    \"payment_date_bs\": \"2080-02-01\",\r\n    \"student_payment_items\": [\r\n        {\r\n            \"student_particular_id\": 1,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 1,\r\n            \"total_amount\": 3000,\r\n            \"discount_amount\": 300,\r\n            \"paid_amount\": 2700,\r\n            \"due_amount\": 0\r\n        },\r\n        {\r\n            \"student_particular_id\": 2,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 2,\r\n            \"total_amount\": 2000,\r\n            \"discount_amount\": 200,\r\n            \"paid_amount\": 1800,\r\n            \"due_amount\": 0\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"invoice_id\": 3,\r\n    \"student_id\": 9,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"payment_method_id\": 1,\r\n    \"invoice_no\": \"INV-2023-001\",\r\n    \"months\": \"Baisakh, Jestha\",\r\n    \"year_bs\": \"2080\",\r\n    \"total_amount\": 5000,\r\n    \"total_discount\": 0,\r\n    \"paid_amount\": 4500,\r\n    \"due_amount\": 500,\r\n    \"remarks\": \"Paid in full\",\r\n    \"payment_date_ad\": \"2023-05-15\",\r\n    \"payment_date_bs\": \"2080-02-01\",\r\n    \"student_payment_items\": [\r\n        {\r\n            \"student_particular_id\": 1,\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\": 1,\r\n            \"invoice_item_id\": 1,\r\n            \"total_amount\": 3000,\r\n            \"discount_amount\": 300,\r\n            \"paid_amount\": 2700,\r\n            \"due_amount\": 0\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -11824,7 +11867,7 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "hanciephago@example.com",
+											"value": "hanciephago4@example.com",
 											"type": "text"
 										},
 										{
@@ -12908,6 +12951,95 @@
 									"body": "{\n    \"data\": [\n        {\n            \"id\": 18,\n            \"invoice_id\": 9,\n            \"student_id\": 4,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"payment_method_id\": 1,\n            \"payment_date_ad\": \"2023-05-15\",\n            \"payment_date_bs\": \"2080-02-01\",\n            \"invoice_no\": \"INV-2023-001\",\n            \"months\": \"Baisakh, Jestha\",\n            \"year_bs\": \"2080\",\n            \"total_amount\": \"5000.00\",\n            \"total_discount\": \"500.00\",\n            \"paid_amount\": \"4500.00\",\n            \"due_amount\": \"0.00\",\n            \"remarks\": \"Paid in full\",\n            \"status\": \"paid\",\n            \"student_payment_items\": [\n                {\n                    \"id\": 35,\n                    \"student_payment_id\": 18,\n                    \"invoice_item_id\": 1,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"3000.00\",\n                    \"discount_amount\": \"300.00\",\n                    \"paid_amount\": \"2700.00\",\n                    \"due_amount\": \"0.00\"\n                },\n                {\n                    \"id\": 36,\n                    \"student_payment_id\": 18,\n                    \"invoice_item_id\": 2,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"2000.00\",\n                    \"discount_amount\": \"200.00\",\n                    \"paid_amount\": \"1800.00\",\n                    \"due_amount\": \"0.00\"\n                }\n            ]\n        },\n        {\n            \"id\": 17,\n            \"invoice_id\": 1,\n            \"student_id\": 4,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"payment_method_id\": 1,\n            \"payment_date_ad\": \"2023-05-15\",\n            \"payment_date_bs\": \"2080-02-01\",\n            \"invoice_no\": \"INV-2023-001\",\n            \"months\": \"Baisakh, Jestha\",\n            \"year_bs\": \"2080\",\n            \"total_amount\": \"5000.00\",\n            \"total_discount\": \"500.00\",\n            \"paid_amount\": \"4500.00\",\n            \"due_amount\": \"0.00\",\n            \"remarks\": \"Paid in full\",\n            \"status\": \"paid\",\n            \"student_payment_items\": [\n                {\n                    \"id\": 33,\n                    \"student_payment_id\": 17,\n                    \"invoice_item_id\": 1,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"3000.00\",\n                    \"discount_amount\": \"300.00\",\n                    \"paid_amount\": \"2700.00\",\n                    \"due_amount\": \"0.00\"\n                },\n                {\n                    \"id\": 34,\n                    \"student_payment_id\": 17,\n                    \"invoice_item_id\": 2,\n                    \"particular\": \"Admission Fee\",\n                    \"total_amount\": \"2000.00\",\n                    \"discount_amount\": \"200.00\",\n                    \"paid_amount\": \"1800.00\",\n                    \"due_amount\": \"0.00\"\n                }\n            ]\n        }\n    ]\n}"
 								}
 							]
+						},
+						{
+							"name": "show student due amount",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"particulars\": [\r\n        {\r\n            \"particular_id\": 1,\r\n            \"school_account_head_id\":1,\r\n            \"student_id\": 9,\r\n            \"scholarship_id\": 1,\r\n            \"discount_amount\": 50.00,\r\n            \"discount_percent\": 0,\r\n            \"rate\": 500.00\r\n        },\r\n        {\r\n            \"particular_id\": 2,\r\n            \"school_account_head_id\":3,\r\n            \"student_id\": 10,\r\n            \"scholarship_id\": 1,\r\n            \"discount_amount\": 2,\r\n            \"discount_percent\": 5.25,\r\n            \"rate\": 750.50\r\n        }\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/student/student-dues/9",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"student-dues",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show student invoice",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/student/student-invoice/9",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"student",
+										"student-invoice",
+										"9"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
