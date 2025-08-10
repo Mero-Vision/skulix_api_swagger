@@ -11844,10 +11844,121 @@
 								{
 									"name": "show low stocks",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
-										"header": []
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-dashboard/low-stocks?days=365",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-dashboard",
+												"low-stocks"
+											],
+											"query": [
+												{
+													"key": "days",
+													"value": "365"
+												}
+											]
+										}
 									},
-									"response": []
+									"response": [
+										{
+											"name": "show low stocks",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/inventory-dashboard/low-stocks?days=365",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"inventory-dashboard",
+														"low-stocks"
+													],
+													"query": [
+														{
+															"key": "days",
+															"value": "365"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 10 Aug 2025 11:30:17 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 25,\n        \"total\": 1\n    },\n    \"data\": [\n        {\n            \"product_id\": 1,\n            \"name\": \"Tie\",\n            \"sku\": \"3454366\",\n            \"on_hand\": 390,\n            \"avg_daily_use\": 0.01,\n            \"low_stock_threshold\": 400,\n            \"reorder_point\": 400,\n            \"target_level\": 400,\n            \"gap_vs_rop\": -10,\n            \"suggest_qty\": 10,\n            \"status\": \"low\"\n        }\n    ],\n    \"params\": {\n        \"days\": 365\n    }\n}"
+										}
+									]
 								}
 							]
 						},
