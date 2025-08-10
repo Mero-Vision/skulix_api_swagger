@@ -8387,7 +8387,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/unpaid-invoices?student_id=4",
+									"raw": "{{url}}/api/admin/unpaid-invoices?student_id=9",
 									"host": [
 										"{{url}}"
 									],
@@ -8399,7 +8399,7 @@
 									"query": [
 										{
 											"key": "student_id",
-											"value": "4"
+											"value": "9"
 										}
 									]
 								}
@@ -11444,6 +11444,414 @@
 							]
 						},
 						{
+							"name": "Inventory Adjustment",
+							"item": [
+								{
+									"name": "store inventory adjustment data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"date\": \"2025-08-10\",\r\n    \"reason\": \"Year-end stock reconciliation\",\r\n    \"description\": \"Adjusting discrepancies found during annual inventory count\",\r\n    \"products\": [\r\n        {\r\n            \"inventory_product_id\": 1,\r\n            \"quantity_on_hand\": 50,\r\n            \"adjusted_quantity\": 45,\r\n            \"adjust_quantity\": -5\r\n        }\r\n      \r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-adjustments",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-adjustments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show inventory adjustment list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-adjustments?pagination_limit=8&search_query=hy",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-adjustments"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_query",
+													"value": "hy"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show single inventory data",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Inventory Dashboard",
+							"item": [
+								{
+									"name": "show inventory due paid summary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-dashboard/due-paid-summary?academic_session_id=1&supplier_id=1&date_from&date_to",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-dashboard",
+												"due-paid-summary"
+											],
+											"query": [
+												{
+													"key": "academic_session_id",
+													"value": "1"
+												},
+												{
+													"key": "supplier_id",
+													"value": "1"
+												},
+												{
+													"key": "date_from",
+													"value": null
+												},
+												{
+													"key": "date_to",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "show inventory due paid summary",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/inventory-dashboard/due-paid-summary?academic_session_id=1&supplier_id=1&date_from&date_to",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"inventory-dashboard",
+														"due-paid-summary"
+													],
+													"query": [
+														{
+															"key": "academic_session_id",
+															"value": "1"
+														},
+														{
+															"key": "supplier_id",
+															"value": "1"
+														},
+														{
+															"key": "date_from",
+															"value": null
+														},
+														{
+															"key": "date_to",
+															"value": null
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 10 Aug 2025 11:06:56 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"filters\": {\n        \"supplier_id\": \"1\",\n        \"academic_session_id\": \"1\",\n        \"date_from\": null,\n        \"date_to\": null,\n        \"group_by\": \"month\"\n    },\n    \"totals\": {\n        \"purchase_total\": 3064.5,\n        \"paid_total\": 100,\n        \"due_total\": 2964.5\n    },\n    \"by_supplier\": [\n        {\n            \"supplier_id\": 1,\n            \"purchase_total\": \"3064.50\",\n            \"paid_total\": \"100.00\",\n            \"due_total\": \"2964.50\"\n        }\n    ],\n    \"series\": [\n        {\n            \"period\": \"2025-08\",\n            \"purchase_total\": \"3064.50\",\n            \"paid_total\": \"100.00\",\n            \"due_total\": \"2964.50\"\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "show stock ledger graph",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-dashboard/stock-ledger?academic_session_id=1&date_from&date_to",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-dashboard",
+												"stock-ledger"
+											],
+											"query": [
+												{
+													"key": "academic_session_id",
+													"value": "1"
+												},
+												{
+													"key": "date_from",
+													"value": null
+												},
+												{
+													"key": "date_to",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "show stock ledger graph",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/inventory-dashboard/stock-ledger?academic_session_id=1&date_from&date_to",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"inventory-dashboard",
+														"stock-ledger"
+													],
+													"query": [
+														{
+															"key": "academic_session_id",
+															"value": "1"
+														},
+														{
+															"key": "date_from",
+															"value": null
+														},
+														{
+															"key": "date_to",
+															"value": null
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 10 Aug 2025 11:06:39 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"filters\": {\n        \"academic_session_id\": \"1\",\n        \"date_from\": null,\n        \"date_to\": null,\n        \"fill_gaps\": false\n    },\n    \"opening_qty\": 0,\n    \"totals\": {\n        \"in_qty\": 50,\n        \"out_qty\": 5,\n        \"closing\": 45\n    },\n    \"rows\": [\n        {\n            \"date\": \"2025-08-05\",\n            \"in_qty\": 50,\n            \"out_qty\": 0,\n            \"balance\": 50\n        },\n        {\n            \"date\": \"2025-08-10\",\n            \"in_qty\": 0,\n            \"out_qty\": 5,\n            \"balance\": 45\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "show low stocks",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "New Request",
 							"request": {
 								"auth": {
@@ -11750,6 +12158,52 @@
 										"admin",
 										"dashboard",
 										"event-summary"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show student leave requests",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/dashboard/student-leave-requests",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"dashboard",
+										"student-leave-requests"
 									]
 								}
 							},
