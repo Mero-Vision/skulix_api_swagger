@@ -87,6 +87,8 @@ tags:
   - name: Admin > Inventory > Inventory Products
   - name: Admin > Inventory > Inventory Product Purchase Bill
   - name: Admin > Inventory > Inventory Supplier Payment
+  - name: Admin > Inventory > Inventory Adjustment
+  - name: Admin > Inventory > Inventory Dashboard
   - name: Admin > Dashboard
   - name: Admin > Reports
   - name: Admin > Roles and Permissions
@@ -5246,7 +5248,7 @@ paths:
           in: query
           schema:
             type: integer
-          example: '4'
+          example: '9'
       responses:
         '200':
           description: Successful response
@@ -7250,6 +7252,279 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/inventory-adjustments:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Adjustment
+      summary: store inventory adjustment data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                date: '2025-08-10'
+                reason: Year-end stock reconciliation
+                description: Adjusting discrepancies found during annual inventory count
+                products:
+                  - inventory_product_id: 1
+                    quantity_on_hand: 50
+                    adjusted_quantity: 45
+                    adjust_quantity: -5
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Adjustment
+      summary: show inventory adjustment list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_query
+          in: query
+          schema:
+            type: string
+          example: hy
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-dashboard/due-paid-summary:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Dashboard
+      summary: show inventory due paid summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic_session_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: supplier_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: date_from
+          in: query
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sun, 10 Aug 2025 11:06:56 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "filters": {
+                        "supplier_id": "1",
+                        "academic_session_id": "1",
+                        "date_from": null,
+                        "date_to": null,
+                        "group_by": "month"
+                    },
+                    "totals": {
+                        "purchase_total": 3064.5,
+                        "paid_total": 100,
+                        "due_total": 2964.5
+                    },
+                    "by_supplier": [
+                        {
+                            "supplier_id": 1,
+                            "purchase_total": "3064.50",
+                            "paid_total": "100.00",
+                            "due_total": "2964.50"
+                        }
+                    ],
+                    "series": [
+                        {
+                            "period": "2025-08",
+                            "purchase_total": "3064.50",
+                            "paid_total": "100.00",
+                            "due_total": "2964.50"
+                        }
+                    ]
+                }
+  /api/admin/inventory-dashboard/stock-ledger:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Dashboard
+      summary: show stock ledger graph
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic_session_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: date_from
+          in: query
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sun, 10 Aug 2025 11:06:39 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "filters": {
+                        "academic_session_id": "1",
+                        "date_from": null,
+                        "date_to": null,
+                        "fill_gaps": false
+                    },
+                    "opening_qty": 0,
+                    "totals": {
+                        "in_qty": 50,
+                        "out_qty": 5,
+                        "closing": 45
+                    },
+                    "rows": [
+                        {
+                            "date": "2025-08-05",
+                            "in_qty": 50,
+                            "out_qty": 0,
+                            "balance": 50
+                        },
+                        {
+                            "date": "2025-08-10",
+                            "in_qty": 0,
+                            "out_qty": 5,
+                            "balance": 45
+                        }
+                    ]
+                }
   /api/admin/sms:
     post:
       tags:
@@ -7407,6 +7682,34 @@ paths:
             type: string
           example: application/json
         - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/student-leave-requests:
+    get:
+      tags:
+        - Admin > Dashboard
+      summary: show student leave requests
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
           in: header
           schema:
             type: integer
