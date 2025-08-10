@@ -7525,6 +7525,91 @@ paths:
                         }
                     ]
                 }
+  /api/admin/inventory-dashboard/low-stocks:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Dashboard
+      summary: show low stocks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: days
+          in: query
+          schema:
+            type: integer
+          example: '365'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sun, 10 Aug 2025 11:30:17 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "meta": {
+                        "page": 1,
+                        "per_page": 25,
+                        "total": 1
+                    },
+                    "data": [
+                        {
+                            "product_id": 1,
+                            "name": "Tie",
+                            "sku": "3454366",
+                            "on_hand": 390,
+                            "avg_daily_use": 0.01,
+                            "low_stock_threshold": 400,
+                            "reorder_point": 400,
+                            "target_level": 400,
+                            "gap_vs_rop": -10,
+                            "suggest_qty": 10,
+                            "status": "low"
+                        }
+                    ],
+                    "params": {
+                        "days": 365
+                    }
+                }
   /api/admin/sms:
     post:
       tags:
