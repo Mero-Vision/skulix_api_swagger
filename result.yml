@@ -48,7 +48,7 @@ tags:
   - name: Admin > Visitor Logs
   - name: Admin > Subjects
   - name: Admin > Employee Types
-  - name: Admin > Staff
+  - name: Admin > Techer/Staff
   - name: Admin > Class Rooms
   - name: Admin > Class Routine
   - name: Admin > Outing Purpose
@@ -90,8 +90,11 @@ tags:
   - name: Admin > Inventory > Inventory Adjustment
   - name: Admin > Inventory > Inventory Dashboard
   - name: Admin > Dashboard
-  - name: Admin > Reports
   - name: Admin > Roles and Permissions
+  - name: Admin > Teacher Subject
+  - name: Admin > Reports
+  - name: Admin > Reports > Student Reports
+  - name: Admin > Reports > Finance & Fees Reports
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -2538,7 +2541,7 @@ paths:
   /api/admin/staffs:
     post:
       tags:
-        - Admin > Staff
+        - Admin > Techer/Staff
       summary: store staff data
       requestBody:
         content:
@@ -2629,7 +2632,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > Staff
+        - Admin > Techer/Staff
       summary: show all staffs
       security:
         - bearerAuth: []
@@ -2660,7 +2663,7 @@ paths:
   /api/admin/staffs/{id}:
     post:
       tags:
-        - Admin > Staff
+        - Admin > Techer/Staff
       summary: update staff data
       requestBody:
         content:
@@ -2759,7 +2762,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > Staff
+        - Admin > Techer/Staff
       summary: show single staff data
       security:
         - bearerAuth: []
@@ -3668,16 +3671,16 @@ paths:
                   example: '1'
                 name:
                   type: string
-                  example: Previous Dues
+                  example: Transportation Fees
                 nepali_heading:
                   type: string
-                  example: Previous Dues
+                  example: Transportation Fees
                 period_name:
                   type: string
                   example: OneTime
                 head_type:
                   type: string
-                  example: Regular, Bus, Misc
+                  example: Regular
       security:
         - bearerAuth: []
       parameters:
@@ -7326,6 +7329,22 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/inventory-adjustments/{id}:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Adjustment
+      summary: show single inventory data
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/inventory-dashboard/due-paid-summary:
     get:
       tags:
@@ -7804,10 +7823,137 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/roles:
+    get:
+      tags:
+        - Admin > Roles and Permissions
+      summary: show all roles
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/teacher-subject:
+    post:
+      tags:
+        - Admin > Teacher Subject
+      summary: store teacher subject data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                teacher_id: 12
+                assignments:
+                  - class_id: 1
+                    section_id: 1
+                    class_subject_ids:
+                      - 1
+                  - class_id: 2
+                    section_id: 2
+                    class_subject_ids:
+                      - 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Teacher Subject
+      summary: show all subject teacher
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/teacher-subject/{id}:
+    delete:
+      tags:
+        - Admin > Teacher Subject
+      summary: delete teacher subjects
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/reports/student-admission-report:
     get:
       tags:
-        - Admin > Reports
+        - Admin > Reports > Student Reports
       summary: student admission report
       security:
         - bearerAuth: []
@@ -7840,7 +7986,7 @@ paths:
   /api/admin/reports/student-summary-report:
     get:
       tags:
-        - Admin > Reports
+        - Admin > Reports > Student Reports
       summary: show student summary report
       security:
         - bearerAuth: []
@@ -7863,7 +8009,7 @@ paths:
   /api/admin/reports/student-list-report:
     get:
       tags:
-        - Admin > Reports
+        - Admin > Reports > Student Reports
       summary: student list report
       security:
         - bearerAuth: []
@@ -7896,7 +8042,7 @@ paths:
   /api/admin/reports/student-list-by-gender-report:
     get:
       tags:
-        - Admin > Reports
+        - Admin > Reports > Student Reports
       summary: student report by gender report
       security:
         - bearerAuth: []
@@ -7916,11 +8062,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/roles:
+  /api/admin/reports/fees-collection-report:
     get:
       tags:
-        - Admin > Roles and Permissions
-      summary: show all roles
+        - Admin > Reports > Finance & Fees Reports
+      summary: Fees Collection Report
       security:
         - bearerAuth: []
       parameters:
@@ -7934,11 +8080,180 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2082-02-01'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2082-02-01'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: months
+          in: query
+          schema:
+            type: string
+          example: Jestha
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
+  /api/admin/reports/due-report:
+    get:
+      tags:
+        - Admin > Reports > Finance & Fees Reports
+      summary: show Due Report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: months
+          in: query
+          schema:
+            type: string
+          example: Baisakh
+        - name: student_id
+          in: query
+          schema:
+            type: integer
+          example: '9'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2082-01-02'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2082-01-02'
+        - name: academic_session_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: invoice_no
+          in: query
+          schema:
+            type: string
+          example: INV-2023-001
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Mon, 11 Aug 2025 12:27:57 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 1,
+                            "school_id": 1,
+                            "academic_session_id": 1,
+                            "student_id": 9,
+                            "class_id": 1,
+                            "section_id": 1,
+                            "invoice_no": "INV-2025-00001",
+                            "months": "Ashar, Shrawan,Bhadra",
+                            "year_bs": "2080",
+                            "total_amount": "5000.00",
+                            "total_amount_in_word": "Five Thousand Rupees Only",
+                            "generated_date_ad": "2023-04-15",
+                            "generated_date_bs": "2082-01-02",
+                            "status": "paid",
+                            "student_short_detail": {
+                                "id": 9,
+                                "name": "Hancie  Phago",
+                                "student_username": "SHP200305",
+                                "email": "hanciephago4@example.com"
+                            },
+                            "invoice_items": [
+                                {
+                                    "id": 1,
+                                    "invoice_id": 1,
+                                    "student_particular_id": 1,
+                                    "particular_id": 1,
+                                    "school_account_head_id": 1,
+                                    "amount": "3000.00",
+                                    "months": "Baisakh, Jestha,Bhadra",
+                                    "year_bs": "2080",
+                                    "status": "paid",
+                                    "school_account_head": {
+                                        "id": 1,
+                                        "account_head_id": 1,
+                                        "account_sub_head_id": 1,
+                                        "account_sub_sub_head_id": 1,
+                                        "name": "Monthly Fees",
+                                        "nepali_heading": "Monthly Fees",
+                                        "period_name": "OneTime",
+                                        "head_type": "Regular"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
   /api/student/login:
     post:
       tags:
