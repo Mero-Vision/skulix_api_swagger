@@ -3986,7 +3986,7 @@
 					]
 				},
 				{
-					"name": "Staff",
+					"name": "Techer/Staff",
 					"item": [
 						{
 							"name": "store staff data",
@@ -5793,12 +5793,12 @@
 										},
 										{
 											"key": "name",
-											"value": "Previous Dues",
+											"value": "Transportation Fees",
 											"type": "text"
 										},
 										{
 											"key": "nepali_heading",
-											"value": "Previous Dues",
+											"value": "Transportation Fees",
 											"type": "text"
 										},
 										{
@@ -5808,7 +5808,7 @@
 										},
 										{
 											"key": "head_type",
-											"value": "Regular, Bus, Misc",
+											"value": "Regular",
 											"type": "text"
 										}
 									]
@@ -11554,7 +11554,19 @@
 									"name": "show single inventory data",
 									"request": {
 										"method": "GET",
-										"header": []
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-adjustments/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-adjustments",
+												"{id}"
+											]
+										}
 									},
 									"response": []
 								}
@@ -11670,7 +11682,7 @@
 											},
 											"status": "OK",
 											"code": 200,
-											"_postman_previewlanguage": "",
+											"_postman_previewlanguage": null,
 											"header": [
 												{
 													"key": "Host",
@@ -11805,7 +11817,7 @@
 											},
 											"status": "OK",
 											"code": 200,
-											"_postman_previewlanguage": "",
+											"_postman_previewlanguage": null,
 											"header": [
 												{
 													"key": "Host",
@@ -12323,195 +12335,6 @@
 					]
 				},
 				{
-					"name": "Reports",
-					"item": [
-						{
-							"name": "student admission report",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/reports/student-admission-report?from_date=2025-01-20&to_date=2025-09-20",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"reports",
-										"student-admission-report"
-									],
-									"query": [
-										{
-											"key": "from_date",
-											"value": "2025-01-20"
-										},
-										{
-											"key": "to_date",
-											"value": "2025-09-20"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show student summary report",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/reports/student-summary-report",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"reports",
-										"student-summary-report"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "student list report",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/reports/student-list-report?class_id=1&section_id=1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"reports",
-										"student-list-report"
-									],
-									"query": [
-										{
-											"key": "class_id",
-											"value": "1"
-										},
-										{
-											"key": "section_id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "student report by gender report",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/reports/student-list-by-gender-report",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"reports",
-										"student-list-by-gender-report"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Roles and Permissions",
 					"item": [
 						{
@@ -12553,6 +12376,615 @@
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "Teacher Subject",
+					"item": [
+						{
+							"name": "store teacher subject data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"teacher_id\": 12,\r\n  \"assignments\": [\r\n    {\r\n      \"class_id\": 1,\r\n      \"section_id\": 1,\r\n      \"class_subject_ids\": [1]\r\n    },\r\n    {    \r\n      \"class_id\": 2,\r\n      \"section_id\": 2,\r\n      \"class_subject_ids\": [2]\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/teacher-subject",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"teacher-subject"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "123,456,789",
+											"disabled": true
+										},
+										{
+											"key": "invoice_no",
+											"value": "INV-2023-001",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all subject teacher",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/teacher-subject",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"teacher-subject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete teacher subjects",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/teacher-subject/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"teacher-subject",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reports",
+					"item": [
+						{
+							"name": "Student Reports",
+							"item": [
+								{
+									"name": "student admission report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/student-admission-report?from_date=2025-01-20&to_date=2025-09-20",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"student-admission-report"
+											],
+											"query": [
+												{
+													"key": "from_date",
+													"value": "2025-01-20"
+												},
+												{
+													"key": "to_date",
+													"value": "2025-09-20"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show student summary report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/student-summary-report",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"student-summary-report"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "student list report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/student-list-report?class_id=1&section_id=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"student-list-report"
+											],
+											"query": [
+												{
+													"key": "class_id",
+													"value": "1"
+												},
+												{
+													"key": "section_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "student report by gender report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/student-list-by-gender-report",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"student-list-by-gender-report"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Finance & Fees Reports",
+							"item": [
+								{
+									"name": "Fees Collection Report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/fees-collection-report?start_date=2082-02-01&end_date=2082-02-01&class_id=1&section_id=1&months=Jestha",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"fees-collection-report"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "2082-02-01"
+												},
+												{
+													"key": "end_date",
+													"value": "2082-02-01"
+												},
+												{
+													"key": "student_id",
+													"value": "123,456,789",
+													"disabled": true
+												},
+												{
+													"key": "class_id",
+													"value": "1"
+												},
+												{
+													"key": "section_id",
+													"value": "1"
+												},
+												{
+													"key": "months",
+													"value": "Jestha"
+												},
+												{
+													"key": "invoice_no",
+													"value": "INV-2023-001",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show Due Report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/due-report?months=Baisakh&student_id=9&class_id=1&section_id=1&start_date=2082-01-02&end_date=2082-01-02&academic_session_id=1&invoice_no=INV-2023-001",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"due-report"
+											],
+											"query": [
+												{
+													"key": "months",
+													"value": "Baisakh"
+												},
+												{
+													"key": "student_id",
+													"value": "9"
+												},
+												{
+													"key": "class_id",
+													"value": "1"
+												},
+												{
+													"key": "section_id",
+													"value": "1"
+												},
+												{
+													"key": "start_date",
+													"value": "2082-01-02"
+												},
+												{
+													"key": "end_date",
+													"value": "2082-01-02"
+												},
+												{
+													"key": "academic_session_id",
+													"value": "1"
+												},
+												{
+													"key": "invoice_no",
+													"value": "INV-2023-001"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "show Due Report",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/reports/due-report?months=Baisakh&student_id=9&class_id=1&section_id=1&start_date=2082-01-02&end_date=2082-01-02&academic_session_id=1&invoice_no=INV-2023-001",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"reports",
+														"due-report"
+													],
+													"query": [
+														{
+															"key": "months",
+															"value": "Baisakh"
+														},
+														{
+															"key": "student_id",
+															"value": "9"
+														},
+														{
+															"key": "class_id",
+															"value": "1"
+														},
+														{
+															"key": "section_id",
+															"value": "1"
+														},
+														{
+															"key": "start_date",
+															"value": "2082-01-02"
+														},
+														{
+															"key": "end_date",
+															"value": "2082-01-02"
+														},
+														{
+															"key": "academic_session_id",
+															"value": "1"
+														},
+														{
+															"key": "invoice_no",
+															"value": "INV-2023-001"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 11 Aug 2025 12:27:57 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"school_id\": 1,\n            \"academic_session_id\": 1,\n            \"student_id\": 9,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"invoice_no\": \"INV-2025-00001\",\n            \"months\": \"Ashar, Shrawan,Bhadra\",\n            \"year_bs\": \"2080\",\n            \"total_amount\": \"5000.00\",\n            \"total_amount_in_word\": \"Five Thousand Rupees Only\",\n            \"generated_date_ad\": \"2023-04-15\",\n            \"generated_date_bs\": \"2082-01-02\",\n            \"status\": \"paid\",\n            \"student_short_detail\": {\n                \"id\": 9,\n                \"name\": \"Hancie  Phago\",\n                \"student_username\": \"SHP200305\",\n                \"email\": \"hanciephago4@example.com\"\n            },\n            \"invoice_items\": [\n                {\n                    \"id\": 1,\n                    \"invoice_id\": 1,\n                    \"student_particular_id\": 1,\n                    \"particular_id\": 1,\n                    \"school_account_head_id\": 1,\n                    \"amount\": \"3000.00\",\n                    \"months\": \"Baisakh, Jestha,Bhadra\",\n                    \"year_bs\": \"2080\",\n                    \"status\": \"paid\",\n                    \"school_account_head\": {\n                        \"id\": 1,\n                        \"account_head_id\": 1,\n                        \"account_sub_head_id\": 1,\n                        \"account_sub_sub_head_id\": 1,\n                        \"name\": \"Monthly Fees\",\n                        \"nepali_heading\": \"Monthly Fees\",\n                        \"period_name\": \"OneTime\",\n                        \"head_type\": \"Regular\"\n                    }\n                }\n            ]\n        }\n    ]\n}"
+										}
+									]
+								}
+							]
 						}
 					]
 				}
