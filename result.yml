@@ -113,6 +113,8 @@ tags:
   - name: Teacher
   - name: Teacher > Auth
   - name: Teacher > Teacher
+  - name: Teacher > Teacher Subject
+  - name: Teacher > Student Attendance
 paths:
   /api/superadmin/login:
     post:
@@ -4284,8 +4286,8 @@ paths:
             schema:
               type: object
               example:
-                date: '2025-08-09'
-                nep_date: '2082-04-24'
+                date: '2025-08-20'
+                nep_date: '2082-04-28'
                 class_id: 1
                 section_id: 1
                 entries:
@@ -6848,6 +6850,23 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: category_id
+          in: query
+          schema:
+            type: string
+        - name: unit_id
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
@@ -9161,6 +9180,211 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/teacher/teacher-subjects/{teacher_id}:
+    get:
+      tags:
+        - Teacher > Teacher Subject
+      summary: show teacher subjects
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: teacher_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Wed, 13 Aug 2025 12:34:38 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 17,
+                            "created_user_id": 2,
+                            "teacher_id": 12,
+                            "class_subject_id": 1,
+                            "class_id": 1,
+                            "section_id": 1,
+                            "class": {
+                                "id": 1,
+                                "name": "Four",
+                                "faculty_id": 1,
+                                "level_id": 1,
+                                "school_id": 1
+                            },
+                            "section": {
+                                "id": 1,
+                                "name": "A",
+                                "faculty_id": 1,
+                                "level_id": 1,
+                                "program_id": 1,
+                                "school_id": 1
+                            },
+                            "class_subject": {
+                                "id": 1,
+                                "subject_id": 1,
+                                "class_id": 1,
+                                "theory_full_marks": 100,
+                                "theory_pass_marks": 40,
+                                "practical_full_marks": 25,
+                                "practical_pass_marks": 10,
+                                "credit_hours": 4,
+                                "subject": {
+                                    "id": 1,
+                                    "school_id": 1,
+                                    "subject_code": "NPL 002",
+                                    "subject_name": "Compulsory Nepali",
+                                    "theory_full_marks": 50,
+                                    "theory_pass_marks": 20,
+                                    "practical_full_marks": 50,
+                                    "practical_pass_marks": 20,
+                                    "created_at": "2025-08-13T09:06:55.000000Z",
+                                    "updated_at": "2025-08-13T09:06:55.000000Z"
+                                }
+                            }
+                        },
+                        {
+                            "id": 18,
+                            "created_user_id": 2,
+                            "teacher_id": 12,
+                            "class_subject_id": 2,
+                            "class_id": 2,
+                            "section_id": 2,
+                            "class": {
+                                "id": 2,
+                                "name": "Three",
+                                "faculty_id": 1,
+                                "level_id": 1,
+                                "school_id": 1
+                            },
+                            "section": {
+                                "id": 2,
+                                "name": "B",
+                                "faculty_id": 1,
+                                "level_id": 1,
+                                "program_id": 1,
+                                "school_id": 1
+                            },
+                            "class_subject": {
+                                "id": 2,
+                                "subject_id": 1,
+                                "class_id": 2,
+                                "theory_full_marks": 100,
+                                "theory_pass_marks": 40,
+                                "practical_full_marks": 25,
+                                "practical_pass_marks": 10,
+                                "credit_hours": 4,
+                                "subject": {
+                                    "id": 1,
+                                    "school_id": 1,
+                                    "subject_code": "NPL 002",
+                                    "subject_name": "Compulsory Nepali",
+                                    "theory_full_marks": 50,
+                                    "theory_pass_marks": 20,
+                                    "practical_full_marks": 50,
+                                    "practical_pass_marks": 20,
+                                    "created_at": "2025-08-13T09:06:55.000000Z",
+                                    "updated_at": "2025-08-13T09:06:55.000000Z"
+                                }
+                            }
+                        }
+                    ]
+                }
+  /api/teacher/student-attendance:
+    post:
+      tags:
+        - Teacher > Student Attendance
+      summary: store student attendance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                date: '2025-08-20'
+                nep_date: '2082-04-28'
+                class_id: 1
+                section_id: 1
+                entries:
+                  - student_id: 9
+                    status: present
+                    remarks: On time
+                    time: 08:20 PM
+                  - student_id: 10
+                    status: late
+                    remarks: Traffic delay
+                    time: 08:20 PM
+                  - student_id: 11
+                    status: leave
+                    remarks: Sick leave
+                    time: 08:20 PM
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
