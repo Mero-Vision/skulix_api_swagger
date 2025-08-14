@@ -6876,7 +6876,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"date\": \"2025-08-09\",\r\n    \"nep_date\": \"2082-04-24\",\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"entries\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"status\": \"present\",\r\n            \"remarks\": \"On time\",\r\n            \"time\":\"08:20 PM\"\r\n        },\r\n        {\r\n            \"student_id\": 10,\r\n            \"status\": \"late\",\r\n            \"remarks\": \"Traffic delay\",\r\n            \"time\":\"08:20 PM\"\r\n        },\r\n        {\r\n            \"student_id\": 11,\r\n            \"status\": \"leave\",\r\n            \"remarks\": \"Sick leave\",\r\n            \"time\":\"08:20 PM\"\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"date\": \"2025-08-20\",\r\n    \"nep_date\": \"2082-04-28\",\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"entries\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"status\": \"present\",\r\n            \"remarks\": \"On time\",\r\n            \"time\":\"08:20 PM\"\r\n        },\r\n        {\r\n            \"student_id\": 10,\r\n            \"status\": \"late\",\r\n            \"remarks\": \"Traffic delay\",\r\n            \"time\":\"08:20 PM\"\r\n        },\r\n        {\r\n            \"student_id\": 11,\r\n            \"status\": \"leave\",\r\n            \"remarks\": \"Sick leave\",\r\n            \"time\":\"08:20 PM\"\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -10908,7 +10908,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/inventory-products",
+											"raw": "{{url}}/api/admin/inventory-products?pagination_limit=8&search_keyword&category_id&unit_id",
 											"host": [
 												"{{url}}"
 											],
@@ -10916,6 +10916,24 @@
 												"api",
 												"admin",
 												"inventory-products"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												},
+												{
+													"key": "category_id",
+													"value": null
+												},
+												{
+													"key": "unit_id",
+													"value": null
+												}
 											]
 										}
 									},
@@ -14437,6 +14455,182 @@
 										"teacher",
 										"teacher-details",
 										"{teacher_id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Teacher Subject",
+					"item": [
+						{
+							"name": "show teacher subjects",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/teacher/teacher-subjects/{teacher_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"teacher",
+										"teacher-subjects",
+										"{teacher_id}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show teacher subjects",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/teacher/teacher-subjects/{teacher_id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"teacher",
+												"teacher-subjects",
+												"{teacher_id}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 13 Aug 2025 12:34:38 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 17,\n            \"created_user_id\": 2,\n            \"teacher_id\": 12,\n            \"class_subject_id\": 1,\n            \"class_id\": 1,\n            \"section_id\": 1,\n            \"class\": {\n                \"id\": 1,\n                \"name\": \"Four\",\n                \"faculty_id\": 1,\n                \"level_id\": 1,\n                \"school_id\": 1\n            },\n            \"section\": {\n                \"id\": 1,\n                \"name\": \"A\",\n                \"faculty_id\": 1,\n                \"level_id\": 1,\n                \"program_id\": 1,\n                \"school_id\": 1\n            },\n            \"class_subject\": {\n                \"id\": 1,\n                \"subject_id\": 1,\n                \"class_id\": 1,\n                \"theory_full_marks\": 100,\n                \"theory_pass_marks\": 40,\n                \"practical_full_marks\": 25,\n                \"practical_pass_marks\": 10,\n                \"credit_hours\": 4,\n                \"subject\": {\n                    \"id\": 1,\n                    \"school_id\": 1,\n                    \"subject_code\": \"NPL 002\",\n                    \"subject_name\": \"Compulsory Nepali\",\n                    \"theory_full_marks\": 50,\n                    \"theory_pass_marks\": 20,\n                    \"practical_full_marks\": 50,\n                    \"practical_pass_marks\": 20,\n                    \"created_at\": \"2025-08-13T09:06:55.000000Z\",\n                    \"updated_at\": \"2025-08-13T09:06:55.000000Z\"\n                }\n            }\n        },\n        {\n            \"id\": 18,\n            \"created_user_id\": 2,\n            \"teacher_id\": 12,\n            \"class_subject_id\": 2,\n            \"class_id\": 2,\n            \"section_id\": 2,\n            \"class\": {\n                \"id\": 2,\n                \"name\": \"Three\",\n                \"faculty_id\": 1,\n                \"level_id\": 1,\n                \"school_id\": 1\n            },\n            \"section\": {\n                \"id\": 2,\n                \"name\": \"B\",\n                \"faculty_id\": 1,\n                \"level_id\": 1,\n                \"program_id\": 1,\n                \"school_id\": 1\n            },\n            \"class_subject\": {\n                \"id\": 2,\n                \"subject_id\": 1,\n                \"class_id\": 2,\n                \"theory_full_marks\": 100,\n                \"theory_pass_marks\": 40,\n                \"practical_full_marks\": 25,\n                \"practical_pass_marks\": 10,\n                \"credit_hours\": 4,\n                \"subject\": {\n                    \"id\": 1,\n                    \"school_id\": 1,\n                    \"subject_code\": \"NPL 002\",\n                    \"subject_name\": \"Compulsory Nepali\",\n                    \"theory_full_marks\": 50,\n                    \"theory_pass_marks\": 20,\n                    \"practical_full_marks\": 50,\n                    \"practical_pass_marks\": 20,\n                    \"created_at\": \"2025-08-13T09:06:55.000000Z\",\n                    \"updated_at\": \"2025-08-13T09:06:55.000000Z\"\n                }\n            }\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Student Attendance",
+					"item": [
+						{
+							"name": "store student attendance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school_id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2025-08-20\",\r\n    \"nep_date\": \"2082-04-28\",\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"entries\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"status\": \"present\",\r\n            \"remarks\": \"On time\",\r\n            \"time\":\"08:20 PM\"\r\n        },\r\n        {\r\n            \"student_id\": 10,\r\n            \"status\": \"late\",\r\n            \"remarks\": \"Traffic delay\",\r\n            \"time\":\"08:20 PM\"\r\n        },\r\n        {\r\n            \"student_id\": 11,\r\n            \"status\": \"leave\",\r\n            \"remarks\": \"Sick leave\",\r\n            \"time\":\"08:20 PM\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/teacher/student-attendance",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"teacher",
+										"student-attendance"
 									]
 								}
 							},
