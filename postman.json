@@ -14313,6 +14313,529 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Library Books",
+							"item": [
+								{
+									"name": "store book data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "book_author_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "book_category_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "library_shelf_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "library_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "book_publisher_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": " Introduction to Algorithms",
+													"type": "text"
+												},
+												{
+													"key": "slug",
+													"value": " introduction-to-algorithms",
+													"type": "text"
+												},
+												{
+													"key": "isbn_number",
+													"value": " 9780262033848",
+													"type": "text"
+												},
+												{
+													"key": "editor",
+													"value": " Thomas H. Cormen",
+													"type": "text"
+												},
+												{
+													"key": "publication_year",
+													"value": " 2020-05-10",
+													"type": "text"
+												},
+												{
+													"key": "volume",
+													"value": " 3",
+													"type": "text"
+												},
+												{
+													"key": "book_type",
+													"value": " Hardcover",
+													"type": "text"
+												},
+												{
+													"key": "edition",
+													"value": " Third Edition",
+													"type": "text"
+												},
+												{
+													"key": "language",
+													"value": " English",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": " 125.50",
+													"type": "text"
+												},
+												{
+													"key": "copies",
+													"value": " 10",
+													"type": "text"
+												},
+												{
+													"key": "pages",
+													"value": " 1312",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": " Comprehensive book on algorithms, covering theory and practical implementation.",
+													"type": "text"
+												},
+												{
+													"key": "is_issuable",
+													"value": " true",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all library books",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book?pagination_limit=8&search_keyword&book_author_id&book_category_id&library_shelf_id&library_id&book_publisher_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												},
+												{
+													"key": "book_author_id",
+													"value": null
+												},
+												{
+													"key": "book_category_id",
+													"value": null
+												},
+												{
+													"key": "library_shelf_id",
+													"value": null
+												},
+												{
+													"key": "library_id",
+													"value": null
+												},
+												{
+													"key": "book_publisher_id",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "show all library books",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/library/library-book?pagination_limit=8&search_keyword&book_author_id&book_category_id&library_shelf_id&library_id&book_publisher_id",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"library",
+														"library-book"
+													],
+													"query": [
+														{
+															"key": "pagination_limit",
+															"value": "8"
+														},
+														{
+															"key": "search_keyword",
+															"value": null
+														},
+														{
+															"key": "book_author_id",
+															"value": null
+														},
+														{
+															"key": "book_category_id",
+															"value": null
+														},
+														{
+															"key": "library_shelf_id",
+															"value": null
+														},
+														{
+															"key": "library_id",
+															"value": null
+														},
+														{
+															"key": "book_publisher_id",
+															"value": null
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 15 Aug 2025 14:36:34 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"book_author_id\": 1,\n            \"book_category_id\": 1,\n            \"library_shelf_id\": 1,\n            \"library_id\": 1,\n            \"book_publisher_id\": 1,\n            \"name\": \"Introduction to Algorithms\",\n            \"slug\": \"introduction-to-algorithms\",\n            \"isbn_number\": \"9780262033848\",\n            \"editor\": \"Thomas H. Cormen\",\n            \"publication_year\": \"2020-05-10\",\n            \"volume\": \"3\",\n            \"book_type\": \"Hardcover\",\n            \"edition\": \"Third Edition\",\n            \"language\": \"English\",\n            \"price\": \"125.50\",\n            \"copies\": 10,\n            \"pages\": 1312,\n            \"description\": \"Comprehensive book on algorithms, covering theory and practical implementation.\",\n            \"is_issuable\": \"true\",\n            \"created_at\": \"15 Aug, 2025\",\n            \"book_author\": {\n                \"id\": 1,\n                \"name\": \"William Shakeapre\",\n                \"slug\": \"william-shakeapre\",\n                \"biography\": \"hy\"\n            },\n            \"book_category\": {\n                \"id\": 1,\n                \"name\": \"Fiction\",\n                \"slug\": \"fiction\",\n                \"description\": \"hy\"\n            },\n            \"library_shelf\": {\n                \"id\": 1,\n                \"name\": \"Fiction\",\n                \"shelf_code\": \"B3-Row2\",\n                \"description\": \"hy\"\n            },\n            \"library\": {\n                \"id\": 1,\n                \"name\": \"Second Floor - Science\",\n                \"description\": \"hy\"\n            },\n            \"book_publisher\": {\n                \"id\": 1,\n                \"name\": \"William Shakeapre\",\n                \"slug\": \"william-shakeapre\",\n                \"address\": null,\n                \"phone_no\": null,\n                \"email\": null,\n                \"website_url\": null\n            }\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/api/admin/library/library-book?page=1\",\n        \"last\": \"http://127.0.0.1:8000/api/admin/library/library-book?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/admin/library/library-book?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/api/admin/library/library-book\",\n        \"per_page\": 8,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "update library book",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "book_author_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "book_category_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "library_shelf_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "library_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "book_publisher_id",
+													"value": " 1",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": " Introduction to Algorithms",
+													"type": "text"
+												},
+												{
+													"key": "slug",
+													"value": " introduction-to-algorithms",
+													"type": "text"
+												},
+												{
+													"key": "isbn_number",
+													"value": " 9780262033848",
+													"type": "text"
+												},
+												{
+													"key": "editor",
+													"value": " Thomas H. Cormen",
+													"type": "text"
+												},
+												{
+													"key": "publication_year",
+													"value": " 2020-05-10",
+													"type": "text"
+												},
+												{
+													"key": "volume",
+													"value": " 3",
+													"type": "text"
+												},
+												{
+													"key": "book_type",
+													"value": " Hardcover",
+													"type": "text"
+												},
+												{
+													"key": "edition",
+													"value": " Third Edition",
+													"type": "text"
+												},
+												{
+													"key": "language",
+													"value": " English",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": " 125.50",
+													"type": "text"
+												},
+												{
+													"key": "copies",
+													"value": " 10",
+													"type": "text"
+												},
+												{
+													"key": "pages",
+													"value": " 1312",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": " Comprehensive book on algorithms, covering theory and practical implementation.",
+													"type": "text"
+												},
+												{
+													"key": "is_issuable",
+													"value": " true",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show single book data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete library books",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}
@@ -15973,13 +16496,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/get-student-attendance-by-class-section?class_id=1&section_id=1&nep_date=2082-01-20",
+									"raw": "{{url}}/api/teacher/get-student-attendance-by-class-section?class_id=1&section_id=1&nep_date=2082-01-20",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"admin",
+										"teacher",
 										"get-student-attendance-by-class-section"
 									],
 									"query": [
