@@ -101,6 +101,7 @@ tags:
   - name: Admin > Library > Library
   - name: Admin > Library > Book Author
   - name: Admin > Library > Book Publisher
+  - name: Admin > Library > Library Books
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -4330,7 +4331,7 @@ paths:
   /api/admin/get-student-attendance-by-class-section:
     get:
       tags:
-        - Teacher > Student Attendance
+        - Admin > Student Attendance
       summary: get student by class and section
       security:
         - bearerAuth: []
@@ -9058,6 +9059,402 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/library/library-book:
+    post:
+      tags:
+        - Admin > Library > Library Books
+      summary: store book data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                book_author_id:
+                  type: string
+                  example: ' 1'
+                book_category_id:
+                  type: string
+                  example: ' 1'
+                library_shelf_id:
+                  type: string
+                  example: ' 1'
+                library_id:
+                  type: string
+                  example: ' 1'
+                book_publisher_id:
+                  type: string
+                  example: ' 1'
+                name:
+                  type: string
+                  example: ' Introduction to Algorithms'
+                slug:
+                  type: string
+                  example: ' introduction-to-algorithms'
+                isbn_number:
+                  type: string
+                  example: ' 9780262033848'
+                editor:
+                  type: string
+                  example: ' Thomas H. Cormen'
+                publication_year:
+                  type: string
+                  example: ' 2020-05-10'
+                volume:
+                  type: string
+                  example: ' 3'
+                book_type:
+                  type: string
+                  example: ' Hardcover'
+                edition:
+                  type: string
+                  example: ' Third Edition'
+                language:
+                  type: string
+                  example: ' English'
+                price:
+                  type: string
+                  example: ' 125.50'
+                copies:
+                  type: string
+                  example: ' 10'
+                pages:
+                  type: string
+                  example: ' 1312'
+                description:
+                  type: string
+                  example: ' Comprehensive book on algorithms, covering theory and practical implementation.'
+                is_issuable:
+                  type: string
+                  example: ' true'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Library Books
+      summary: show all library books
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: book_author_id
+          in: query
+          schema:
+            type: string
+        - name: book_category_id
+          in: query
+          schema:
+            type: string
+        - name: library_shelf_id
+          in: query
+          schema:
+            type: string
+        - name: library_id
+          in: query
+          schema:
+            type: string
+        - name: book_publisher_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Fri, 15 Aug 2025 14:36:34 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 1,
+                            "book_author_id": 1,
+                            "book_category_id": 1,
+                            "library_shelf_id": 1,
+                            "library_id": 1,
+                            "book_publisher_id": 1,
+                            "name": "Introduction to Algorithms",
+                            "slug": "introduction-to-algorithms",
+                            "isbn_number": "9780262033848",
+                            "editor": "Thomas H. Cormen",
+                            "publication_year": "2020-05-10",
+                            "volume": "3",
+                            "book_type": "Hardcover",
+                            "edition": "Third Edition",
+                            "language": "English",
+                            "price": "125.50",
+                            "copies": 10,
+                            "pages": 1312,
+                            "description": "Comprehensive book on algorithms, covering theory and practical implementation.",
+                            "is_issuable": "true",
+                            "created_at": "15 Aug, 2025",
+                            "book_author": {
+                                "id": 1,
+                                "name": "William Shakeapre",
+                                "slug": "william-shakeapre",
+                                "biography": "hy"
+                            },
+                            "book_category": {
+                                "id": 1,
+                                "name": "Fiction",
+                                "slug": "fiction",
+                                "description": "hy"
+                            },
+                            "library_shelf": {
+                                "id": 1,
+                                "name": "Fiction",
+                                "shelf_code": "B3-Row2",
+                                "description": "hy"
+                            },
+                            "library": {
+                                "id": 1,
+                                "name": "Second Floor - Science",
+                                "description": "hy"
+                            },
+                            "book_publisher": {
+                                "id": 1,
+                                "name": "William Shakeapre",
+                                "slug": "william-shakeapre",
+                                "address": null,
+                                "phone_no": null,
+                                "email": null,
+                                "website_url": null
+                            }
+                        }
+                    ],
+                    "links": {
+                        "first": "http://127.0.0.1:8000/api/admin/library/library-book?page=1",
+                        "last": "http://127.0.0.1:8000/api/admin/library/library-book?page=1",
+                        "prev": null,
+                        "next": null
+                    },
+                    "meta": {
+                        "current_page": 1,
+                        "from": 1,
+                        "last_page": 1,
+                        "links": [
+                            {
+                                "url": null,
+                                "label": "&laquo; Previous",
+                                "active": false
+                            },
+                            {
+                                "url": "http://127.0.0.1:8000/api/admin/library/library-book?page=1",
+                                "label": "1",
+                                "active": true
+                            },
+                            {
+                                "url": null,
+                                "label": "Next &raquo;",
+                                "active": false
+                            }
+                        ],
+                        "path": "http://127.0.0.1:8000/api/admin/library/library-book",
+                        "per_page": 8,
+                        "to": 1,
+                        "total": 1
+                    }
+                }
+  /api/admin/library/library-book/{id}:
+    post:
+      tags:
+        - Admin > Library > Library Books
+      summary: update library book
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                book_author_id:
+                  type: string
+                  example: ' 1'
+                book_category_id:
+                  type: string
+                  example: ' 1'
+                library_shelf_id:
+                  type: string
+                  example: ' 1'
+                library_id:
+                  type: string
+                  example: ' 1'
+                book_publisher_id:
+                  type: string
+                  example: ' 1'
+                name:
+                  type: string
+                  example: ' Introduction to Algorithms'
+                slug:
+                  type: string
+                  example: ' introduction-to-algorithms'
+                isbn_number:
+                  type: string
+                  example: ' 9780262033848'
+                editor:
+                  type: string
+                  example: ' Thomas H. Cormen'
+                publication_year:
+                  type: string
+                  example: ' 2020-05-10'
+                volume:
+                  type: string
+                  example: ' 3'
+                book_type:
+                  type: string
+                  example: ' Hardcover'
+                edition:
+                  type: string
+                  example: ' Third Edition'
+                language:
+                  type: string
+                  example: ' English'
+                price:
+                  type: string
+                  example: ' 125.50'
+                copies:
+                  type: string
+                  example: ' 10'
+                pages:
+                  type: string
+                  example: ' 1312'
+                description:
+                  type: string
+                  example: ' Comprehensive book on algorithms, covering theory and practical implementation.'
+                is_issuable:
+                  type: string
+                  example: ' true'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Library Books
+      summary: show single book data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Library > Library Books
+      summary: delete library books
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/student/login:
     post:
       tags:
@@ -10170,6 +10567,44 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/teacher/get-student-attendance-by-class-section:
+    get:
+      tags:
+        - Teacher > Student Attendance
+      summary: get student by class and section
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: nep_date
+          in: query
+          schema:
+            type: string
+          example: '2082-01-20'
       responses:
         '200':
           description: Successful response
