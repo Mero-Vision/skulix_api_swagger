@@ -95,6 +95,12 @@ tags:
   - name: Admin > Reports
   - name: Admin > Reports > Student Reports
   - name: Admin > Reports > Finance & Fees Reports
+  - name: Admin > Library
+  - name: Admin > Library > Book Category
+  - name: Admin > Library > Library Shelf
+  - name: Admin > Library > Library
+  - name: Admin > Library > Book Author
+  - name: Admin > Library > Book Publisher
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -4324,7 +4330,7 @@ paths:
   /api/admin/get-student-attendance-by-class-section:
     get:
       tags:
-        - Admin > Student Attendance
+        - Teacher > Student Attendance
       summary: get student by class and section
       security:
         - bearerAuth: []
@@ -7106,9 +7112,90 @@ paths:
           example: '1'
       responses:
         '200':
-          description: Successful response
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Thu, 14 Aug 2025 18:51:28 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
           content:
-            application/json: {}
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": {
+                        "id": 4,
+                        "supplier_id": "1",
+                        "bill_date": "2025-08-08",
+                        "reference": "INV-2025-001",
+                        "note": "hy",
+                        "sub_total": "950",
+                        "total_discount": "50",
+                        "non_taxable_total": "400",
+                        "taxable_total": "550",
+                        "vat_amount": "71.5",
+                        "grand_total": "1021.5",
+                        "status": "approved",
+                        "purchase_bill_image": "http://localhost:8000/storage/10/Image-2.jpg",
+                        "purchase_items": [
+                            {
+                                "id": 7,
+                                "inventory_product_purchase_id": 4,
+                                "inventory_product_id": 1,
+                                "quantity": 5,
+                                "rate": 50,
+                                "vat": 5,
+                                "total_amount": "250.00"
+                            },
+                            {
+                                "id": 8,
+                                "inventory_product_purchase_id": 4,
+                                "inventory_product_id": 2,
+                                "quantity": 7,
+                                "rate": 100,
+                                "vat": 13,
+                                "total_amount": "700.00"
+                            }
+                        ],
+                        "supplier": {
+                            "id": 1,
+                            "name": "Nishav Store",
+                            "slug": "nishav-store",
+                            "email": "store@gmail.com",
+                            "phone_no": "23534534",
+                            "address": "Kupondole",
+                            "pan_vat_number": "234235345",
+                            "website_url": "store.com",
+                            "due_amount": 0
+                        }
+                    },
+                    "message": "Product Purchase Data Has Been Saved successfully."
+                }
     get:
       tags:
         - Admin > Inventory > Inventory Product Purchase Bill
@@ -8273,6 +8360,704 @@ paths:
                         }
                     ]
                 }
+  /api/admin/library/book-category:
+    post:
+      tags:
+        - Admin > Library > Book Category
+      summary: store book category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Fiction
+                description:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Book Category
+      summary: show all book category list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/book-category/{id}:
+    delete:
+      tags:
+        - Admin > Library > Book Category
+      summary: delete book category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Library > Book Category
+      summary: update book category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Fiction
+                description:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-shelf:
+    post:
+      tags:
+        - Admin > Library > Library Shelf
+      summary: store library shelf data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                shelf_code:
+                  type: string
+                  example: B3-Row2
+                name:
+                  type: string
+                  example: Second Floor - Science
+                description:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Library Shelf
+      summary: show shelf data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-shelf/{id}:
+    post:
+      tags:
+        - Admin > Library > Library Shelf
+      summary: update library shelf data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                shelf_code:
+                  type: string
+                  example: B3-Row2
+                name:
+                  type: string
+                  example: Second Floor - Science
+                description:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Library > Library Shelf
+      summary: delete library shelf
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-name:
+    post:
+      tags:
+        - Admin > Library > Library
+      summary: store library data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: School Library
+                description:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Library
+      summary: show all library
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-name/{id}:
+    post:
+      tags:
+        - Admin > Library > Library
+      summary: update library data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: School Library
+                description:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Library > Library
+      summary: delete library
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/book-author:
+    post:
+      tags:
+        - Admin > Library > Book Author
+      summary: store book author data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: William Shakeapre
+                biography:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Book Author
+      summary: show all book authors
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/book-author/{id}:
+    post:
+      tags:
+        - Admin > Library > Book Author
+      summary: update book author data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: William Shakeapre
+                biography:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Library > Book Author
+      summary: delete book author
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/book-publisher:
+    post:
+      tags:
+        - Admin > Library > Book Publisher
+      summary: store book publisher data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ekta
+                address:
+                  type: string
+                  example: hy
+                phone_no:
+                  type: string
+                email:
+                  type: string
+                website_url:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Book Publisher
+      summary: show all book publisher data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/book-publisher/{id}:
+    post:
+      tags:
+        - Admin > Library > Book Publisher
+      summary: update book publisher
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ekta
+                address:
+                  type: string
+                  example: hy
+                phone_no:
+                  type: string
+                email:
+                  type: string
+                website_url:
+                  type: string
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Library > Book Publisher
+      summary: delete book publisher
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/student/login:
     post:
       tags:
