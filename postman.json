@@ -11215,7 +11215,192 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"name": "store purchase bill data",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "school-id",
+														"value": "1",
+														"type": "text"
+													},
+													{
+														"key": "academic-session-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "supplier_id",
+															"value": " 1",
+															"type": "text"
+														},
+														{
+															"key": "bill_date",
+															"value": " 2025-08-08",
+															"type": "text"
+														},
+														{
+															"key": "reference",
+															"value": " INV-2025-001",
+															"type": "text"
+														},
+														{
+															"key": "note",
+															"value": " hy",
+															"type": "text"
+														},
+														{
+															"key": "sub_total",
+															"value": " 950",
+															"type": "text"
+														},
+														{
+															"key": "total_discount",
+															"value": " 50",
+															"type": "text"
+														},
+														{
+															"key": "non_taxable_total",
+															"value": " 400",
+															"type": "text"
+														},
+														{
+															"key": "taxable_total",
+															"value": " 550",
+															"type": "text"
+														},
+														{
+															"key": "vat_amount",
+															"value": " 71.5",
+															"type": "text"
+														},
+														{
+															"key": "grand_total",
+															"value": " 1021.5",
+															"type": "text"
+														},
+														{
+															"key": "status",
+															"value": " approved",
+															"type": "text"
+														},
+														{
+															"key": "purchase_bill_image",
+															"type": "file",
+															"src": "/C:/Users/user/Pictures/Desktop Backgrounds/Image 2.jpg"
+														},
+														{
+															"key": "purchaseProducts[0][inventory_product_id]",
+															"value": " 1",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[0][quantity]",
+															"value": " 5",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[0][rate]",
+															"value": " 50",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[0][vat]",
+															"value": " 5",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[0][total_amount]",
+															"value": " 250",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[1][inventory_product_id]",
+															"value": " 2",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[1][quantity]",
+															"value": " 7",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[1][rate]",
+															"value": " 100",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[1][vat]",
+															"value": " 13",
+															"type": "text"
+														},
+														{
+															"key": "purchaseProducts[1][total_amount]",
+															"value": " 700",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/inventory-product-purchase",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"inventory-product-purchase"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.12"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 14 Aug 2025 18:51:28 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"id\": 4,\n        \"supplier_id\": \"1\",\n        \"bill_date\": \"2025-08-08\",\n        \"reference\": \"INV-2025-001\",\n        \"note\": \"hy\",\n        \"sub_total\": \"950\",\n        \"total_discount\": \"50\",\n        \"non_taxable_total\": \"400\",\n        \"taxable_total\": \"550\",\n        \"vat_amount\": \"71.5\",\n        \"grand_total\": \"1021.5\",\n        \"status\": \"approved\",\n        \"purchase_bill_image\": \"http://localhost:8000/storage/10/Image-2.jpg\",\n        \"purchase_items\": [\n            {\n                \"id\": 7,\n                \"inventory_product_purchase_id\": 4,\n                \"inventory_product_id\": 1,\n                \"quantity\": 5,\n                \"rate\": 50,\n                \"vat\": 5,\n                \"total_amount\": \"250.00\"\n            },\n            {\n                \"id\": 8,\n                \"inventory_product_purchase_id\": 4,\n                \"inventory_product_id\": 2,\n                \"quantity\": 7,\n                \"rate\": 100,\n                \"vat\": 13,\n                \"total_amount\": \"700.00\"\n            }\n        ],\n        \"supplier\": {\n            \"id\": 1,\n            \"name\": \"Nishav Store\",\n            \"slug\": \"nishav-store\",\n            \"email\": \"store@gmail.com\",\n            \"phone_no\": \"23534534\",\n            \"address\": \"Kupondole\",\n            \"pan_vat_number\": \"234235345\",\n            \"website_url\": \"store.com\",\n            \"due_amount\": 0\n        }\n    },\n    \"message\": \"Product Purchase Data Has Been Saved successfully.\"\n}"
+										}
+									]
 								},
 								{
 									"name": "show inventory product purchase list",
@@ -13005,6 +13190,1131 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Library",
+					"item": [
+						{
+							"name": "Book Category",
+							"item": [
+								{
+									"name": "store book category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Fiction",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-category",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-category"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all book category list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-category?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-category"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete book category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-category/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-category",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update book category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Fiction",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-category/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-category",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Library Shelf",
+							"item": [
+								{
+									"name": "store library shelf data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "shelf_code",
+													"value": "B3-Row2",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "Second Floor - Science",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-shelf",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-shelf"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show shelf data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-shelf?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-shelf"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update library shelf data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "shelf_code",
+													"value": "B3-Row2",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "Second Floor - Science",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-shelf/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-shelf",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete library shelf",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-shelf/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-shelf",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Library",
+							"item": [
+								{
+									"name": "store library data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "School Library",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-name",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-name"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all library",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-name?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-name"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update library data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "School Library",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-name/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-name",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete library",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-name/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-name",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Book Author",
+							"item": [
+								{
+									"name": "store book author data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "William Shakeapre",
+													"type": "text"
+												},
+												{
+													"key": "biography",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-author",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-author"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all book authors",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-author?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-author"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update book author data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "William Shakeapre",
+													"type": "text"
+												},
+												{
+													"key": "biography",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-author/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-author",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete book author",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-author/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-author",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Book Publisher",
+							"item": [
+								{
+									"name": "store book publisher data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Ekta",
+													"type": "text"
+												},
+												{
+													"key": "address",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "phone_no",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "website_url",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-publisher",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-publisher"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all book publisher data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-publisher?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-publisher"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update book publisher",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Ekta",
+													"type": "text"
+												},
+												{
+													"key": "address",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "phone_no",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "website_url",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-publisher/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-publisher",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete book publisher",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/book-publisher/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"book-publisher",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				}
 			]
 		},
@@ -14631,6 +15941,60 @@
 										"api",
 										"teacher",
 										"student-attendance"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get student by class and section",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school_id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/get-student-attendance-by-class-section?class_id=1&section_id=1&nep_date=2082-01-20",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"get-student-attendance-by-class-section"
+									],
+									"query": [
+										{
+											"key": "class_id",
+											"value": "1"
+										},
+										{
+											"key": "section_id",
+											"value": "1"
+										},
+										{
+											"key": "nep_date",
+											"value": "2082-01-20"
+										}
 									]
 								}
 							},
