@@ -516,6 +516,182 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Backup",
+					"item": [
+						{
+							"name": "db backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://api.skulix.com/api/superadmin/db-backup",
+									"protocol": "https",
+									"host": [
+										"api",
+										"skulix",
+										"com"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"db-backup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "storage zip",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/superadmin/export/storage-zip",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"export",
+										"storage-zip"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/superadmin/export/storage-zip",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"export",
+												"storage-zip"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 15 Aug 2025 18:03:33 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Length",
+											"value": "4512"
+										},
+										{
+											"key": "X-Accel-Buffering",
+											"value": "no"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/x-zip"
+										},
+										{
+											"key": "Content-Disposition",
+											"value": "attachment; filename*=UTF-8''storage_backup_20250815_234833.zip"
+										},
+										{
+											"key": "Pragma",
+											"value": "public"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "public, must-revalidate"
+										},
+										{
+											"key": "Content-Transfer-Encoding",
+											"value": "binary"
+										}
+									],
+									"cookie": [],
+									"body": "PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app/public_6/Image-1.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000media/Image-1.jpgPK\u0007\b\u000e)6 \u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        @\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app/public_11/Image-2.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000media/Image-2.jpgPK\u0007\b S  \u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app/public_9/Image-9.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000media/Image-9.jpgPK\u0007\b bF \u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        5\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_.gitignore\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\.gitignorePK\u0007\b=a 5\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        =\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_private_.gitignore\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\private\\.gitignorePK\u0007\b  L*\u001b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001b\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        @\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_10_Image-2.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\10\\Image-2.jpgPK\u0007\b\u0000b i\u001e\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001e\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        @\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_11_Image-2.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\11\\Image-2.jpgPK\u0007\b  | \u001e\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001e\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_2_Image-1.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\2\\Image-1.jpgPK\u0007\b  2E\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_3_Image-2.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\3\\Image-2.jpgPK\u0007\b \u0000\u0004 \u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_4_Image-1.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\4\\Image-1.jpgPK\u0007\bt|  \u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_5_Image-2.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\5\\Image-2.jpgPK\u0007\b!  \u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_6_Image-1.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\6\\Image-1.jpgPK\u0007\b?ɋ \u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_7_Image-2.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\7\\Image-2.jpgPK\u0007\bjj \u001f\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_8_Image-9.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\8\\Image-9.jpgPK\u0007\bN \u001dO\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ?\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_9_Image-9.jpg\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\9\\Image-9.jpgPK\u0007\b W  \u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000\u0000\u0000\u0000        ]\u0000\u0018\u0000F__Laravel Projects_skulix_api_storage_app_public_backup_skulix_backup_db_20250815_232921.sql\u0001\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000SV\u0000\u0000storage/\\public\\backup\\skulix_backup_db_20250815_232921.sqlPK\u0007\bS\u0014 \u0005;\u0000\u0000\u0000\u0000\u0000\u0000\u0000;\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[\u000e)6 \u0011\u0000\u0000\u0000\u0011\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0000\u0000\u0000\u0000F__Laravel Projects_skulix_api_storage_app/public_6/Image-1.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[ S  \u0011\u0000\u0000\u0000\u0011\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000 \u0000\u0000\u0000F__Laravel Projects_skulix_api_storage_app/public_11/Image-2.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[ bF \u0011\u0000\u0000\u0000\u0011\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000=\u0001\u0000\u0000F__Laravel Projects_skulix_api_storage_app/public_9/Image-9.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[=a 5\u0013\u0000\u0000\u0000\u0013\u0000\u0000\u00005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000 \u0001\u0000\u0000F__Laravel Projects_skulix_api_storage_app_.gitignorePK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[  L*\u001b\u0000\u0000\u0000\u001b\u0000\u0000\u0000=\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000q\u0002\u0000\u0000F__Laravel Projects_skulix_api_storage_app_private_.gitignorePK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[\u0000b i\u001e\u0000\u0000\u0000\u001e\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0017\u0003\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_10_Image-2.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[  | \u001e\u0000\u0000\u0000\u001e\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000 \u0003\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_11_Image-2.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[  2E\u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000o\u0004\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_2_Image-1.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[ \u0000\u0004 \u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0019\u0005\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_3_Image-2.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[t|  \u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000 \u0005\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_4_Image-1.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[!  \u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000m\u0006\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_5_Image-2.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[?ɋ \u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0017\u0007\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_6_Image-1.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[jj \u001f\u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000 \u0007\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_7_Image-2.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[N \u001dO\u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000k\b\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_8_Image-9.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[ W  \u001d\u0000\u0000\u0000\u001d\u0000\u0000\u0000?\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0015\t\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_9_Image-9.jpgPK\u0001\u0002\u0003\u0006-\u0000\b\b\u0000\u0000\u0010 \u000f[S\u0014 \u0005;\u0000\u0000\u0000;\u0000\u0000\u0000]\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000 \t\u0000\u0000F__Laravel Projects_skulix_api_storage_app_public_backup_skulix_backup_db_20250815_232921.sqlPK\u0005\u0006\u0000\u0000\u0000\u0000\u0010\u0000\u0010\u0000 \u0006\u0000\u0000 \n\u0000\u0000\u0000\u0000"
+								}
+							]
+						},
+						{
+							"name": "upload image",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "debug s3",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -11051,6 +11227,65 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "show inventory product adjust data",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "email",
+													"value": "hanciephago@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "Password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products-adjustment/{inventory_product_id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products-adjustment",
+												"{inventory_product_id}"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -12083,7 +12318,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/inventory-dashboard/low-stocks?days=365",
+											"raw": "{{url}}/api/admin/inventory-dashboard/low-stocks?days=500",
 											"host": [
 												"{{url}}"
 											],
@@ -12096,7 +12331,7 @@
 											"query": [
 												{
 													"key": "days",
-													"value": "365"
+													"value": "500"
 												}
 											]
 										}
@@ -14830,6 +15065,782 @@
 												"library",
 												"library-book",
 												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Library Member Type",
+							"item": [
+								{
+									"name": "store library member type data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "member_type",
+													"value": "Student",
+													"type": "text"
+												},
+												{
+													"key": "maximum_book",
+													"value": "5",
+													"type": "text"
+												},
+												{
+													"key": "maximum_days",
+													"value": "20",
+													"type": "text"
+												},
+												{
+													"key": "fine_per_day",
+													"value": "10",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-member-type",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-member-type"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all library member types",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-member-type?pagination_limit=8&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-member-type"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update library member data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "member_type",
+													"value": "Student",
+													"type": "text"
+												},
+												{
+													"key": "maximum_book",
+													"value": "5",
+													"type": "text"
+												},
+												{
+													"key": "maximum_days",
+													"value": "20",
+													"type": "text"
+												},
+												{
+													"key": "fine_per_day",
+													"value": "10",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-member-type/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-member-type",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete member type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-member-type/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-member-type",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Library Member",
+							"item": [
+								{
+									"name": "store library member data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "user_id",
+													"value": "10",
+													"type": "text"
+												},
+												{
+													"key": "member_type_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "join_date",
+													"value": "2025-08-17",
+													"type": "text"
+												},
+												{
+													"key": "expiry_date",
+													"value": "2025-09-17",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-members",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-members"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all library members",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-members?pagination_limit=8&search_keyword=MEM1-00001&status=active",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-members"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "search_keyword",
+													"value": "MEM1-00001"
+												},
+												{
+													"key": "status",
+													"value": "active"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update status of library member",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "status",
+													"value": "active6",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PATCH",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-members/{id}/status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-members",
+												"{id}",
+												"status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update library member",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "",
+												"value": "",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "member_type_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-members/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-members",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete library member",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-members/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-members",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Library Book Issue",
+							"item": [
+								{
+									"name": "store book issue data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "library_member_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "library_book_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "issue_date",
+													"value": "2025-08-17",
+													"type": "text"
+												},
+												{
+													"key": "due_date",
+													"value": "2025-08-18",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book-issue",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book-issue"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "return library book",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "library_member_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "library_book_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "issue_date",
+													"value": "2025-08-17",
+													"type": "text"
+												},
+												{
+													"key": "due_date",
+													"value": "2025-08-18",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book-return/4?return_date=2025-08-20",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book-return",
+												"4"
+											],
+											"query": [
+												{
+													"key": "return_date",
+													"value": "2025-08-20"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all library book issue",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book-issue?pagination_limit=8&library_member_id=1&from_date=2025-08-17&to_date=2025-08-17",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book-issue"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "library_member_id",
+													"value": "1"
+												},
+												{
+													"key": "from_date",
+													"value": "2025-08-17"
+												},
+												{
+													"key": "to_date",
+													"value": "2025-08-17"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all library book return",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-book-return?pagination_limit=8&library_member_id=1&from_date=2025-08-10&to_date=2025-08-10",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-book-return"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												},
+												{
+													"key": "library_member_id",
+													"value": "1"
+												},
+												{
+													"key": "from_date",
+													"value": "2025-08-10"
+												},
+												{
+													"key": "to_date",
+													"value": "2025-08-10"
+												}
 											]
 										}
 									},
