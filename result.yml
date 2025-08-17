@@ -31,6 +31,7 @@ tags:
   - name: Super Admin > Auth
   - name: Super Admin > School
   - name: Super Admin > Set or update school sms credentials
+  - name: Super Admin > Backup
   - name: Admin
   - name: Admin > Auth
   - name: Admin > Academic Sessions
@@ -102,6 +103,9 @@ tags:
   - name: Admin > Library > Book Author
   - name: Admin > Library > Book Publisher
   - name: Admin > Library > Library Books
+  - name: Admin > Library > Library Member Type
+  - name: Admin > Library > Library Member
+  - name: Admin > Library > Library Book Issue
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -422,6 +426,98 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/superadmin/db-backup:
+    post:
+      tags:
+        - Super Admin > Backup
+      summary: db backup
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/export/storage-zip:
+    get:
+      tags:
+        - Super Admin > Backup
+      summary: storage zip
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Date:
+              schema:
+                type: string
+                example: Fri, 15 Aug 2025 18:03:33 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '4512'
+            X-Accel-Buffering:
+              schema:
+                type: string
+                example: 'no'
+            Content-Type:
+              schema:
+                type: string
+                example: application/x-zip
+            Content-Disposition:
+              schema:
+                type: string
+                example: >-
+                  attachment;
+                  filename*=UTF-8''storage_backup_20250815_234833.zip
+            Pragma:
+              schema:
+                type: string
+                example: public
+            Cache-Control:
+              schema:
+                type: string
+                example: public, must-revalidate
+            Content-Transfer-Encoding:
+              schema:
+                type: string
+                example: binary
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app/public_6/Image-1.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0media/Image-1.jpgPK\a\b\x0E)6 \x11\0\0\0\0\0\0\0\x11\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        @\0\x18\0F__Laravel Projects_skulix_api_storage_app/public_11/Image-2.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0media/Image-2.jpgPK\a\b S  \x11\0\0\0\0\0\0\0\x11\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app/public_9/Image-9.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0media/Image-9.jpgPK\a\b bF \x11\0\0\0\0\0\0\0\x11\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        5\0\x18\0F__Laravel Projects_skulix_api_storage_app_.gitignore\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\.gitignorePK\a\b=a 5\x13\0\0\0\0\0\0\0\x13\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        =\0\x18\0F__Laravel Projects_skulix_api_storage_app_private_.gitignore\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\private\\.gitignorePK\a\b  L*\e\0\0\0\0\0\0\0\e\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        @\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_10_Image-2.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\10\\Image-2.jpgPK\a\b\0b i\x1E\0\0\0\0\0\0\0\x1E\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        @\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_11_Image-2.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\11\\Image-2.jpgPK\a\b  | \x1E\0\0\0\0\0\0\0\x1E\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_2_Image-1.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\2\\Image-1.jpgPK\a\b  2E\x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_3_Image-2.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\3\\Image-2.jpgPK\a\b \0\x04 \x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_4_Image-1.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\4\\Image-1.jpgPK\a\bt|  \x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_5_Image-2.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\5\\Image-2.jpgPK\a\b!  \x7F\x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_6_Image-1.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\6\\Image-1.jpgPK\a\b?ɋ \x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_7_Image-2.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\7\\Image-2.jpgPK\a\bjj \x1F\x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_8_Image-9.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\8\\Image-9.jpgPK\a\bN \x1DO\x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ?\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_9_Image-9.jpg\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\9\\Image-9.jpgPK\a\b W  \x1D\0\0\0\0\0\0\0\x1D\0\0\0\0\0\0\0PK\x03\x04-\0\b\b\0\0\x10 \x0F[\0\0\0\0        ]\0\x18\0F__Laravel Projects_skulix_api_storage_app_public_backup_skulix_backup_db_20250815_232921.sql\x01\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0SV\0\0storage/\\public\\backup\\skulix_backup_db_20250815_232921.sqlPK\a\bS\x14 \x05;\0\0\0\0\0\0\0;\0\0\0\0\0\0\0PK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[\x0E)6 \x11\0\0\0\x11\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0\0\0\0\0F__Laravel Projects_skulix_api_storage_app/public_6/Image-1.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[ S  \x11\0\0\0\x11\0\0\0@\0\0\0\0\0\0\0\0\0 \0\0\0 \0\0\0F__Laravel Projects_skulix_api_storage_app/public_11/Image-2.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[ bF \x11\0\0\0\x11\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0=\x01\0\0F__Laravel Projects_skulix_api_storage_app/public_9/Image-9.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[=a 5\x13\0\0\0\x13\0\0\05\0\0\0\0\0\0\0\0\0 \0\0\0 \x01\0\0F__Laravel Projects_skulix_api_storage_app_.gitignorePK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[  L*\e\0\0\0\e\0\0\0=\0\0\0\0\0\0\0\0\0 \0\0\0q\x02\0\0F__Laravel Projects_skulix_api_storage_app_private_.gitignorePK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[\0b i\x1E\0\0\0\x1E\0\0\0@\0\0\0\0\0\0\0\0\0 \0\0\0\x17\x03\0\0F__Laravel Projects_skulix_api_storage_app_public_10_Image-2.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[  | \x1E\0\0\0\x1E\0\0\0@\0\0\0\0\0\0\0\0\0 \0\0\0 \x03\0\0F__Laravel Projects_skulix_api_storage_app_public_11_Image-2.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[  2E\x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0o\x04\0\0F__Laravel Projects_skulix_api_storage_app_public_2_Image-1.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[ \0\x04 \x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0\x19\x05\0\0F__Laravel Projects_skulix_api_storage_app_public_3_Image-2.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[t|  \x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0 \x05\0\0F__Laravel Projects_skulix_api_storage_app_public_4_Image-1.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[!  \x7F\x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0m\x06\0\0F__Laravel Projects_skulix_api_storage_app_public_5_Image-2.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[?ɋ \x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0\x17\a\0\0F__Laravel Projects_skulix_api_storage_app_public_6_Image-1.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[jj \x1F\x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0 \a\0\0F__Laravel Projects_skulix_api_storage_app_public_7_Image-2.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[N \x1DO\x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0k\b\0\0F__Laravel Projects_skulix_api_storage_app_public_8_Image-9.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[ W  \x1D\0\0\0\x1D\0\0\0?\0\0\0\0\0\0\0\0\0 \0\0\0\x15\t\0\0F__Laravel Projects_skulix_api_storage_app_public_9_Image-9.jpgPK\x01\x02\x03\x06-\0\b\b\0\0\x10 \x0F[S\x14 \x05;\0\0\0;\0\0\0]\0\0\0\0\0\0\0\0\0 \0\0\0 \t\0\0F__Laravel Projects_skulix_api_storage_app_public_backup_skulix_backup_db_20250815_232921.sqlPK\x05\x06\0\0\0\0\x10\0\x10\0 \x06\0\0 \n\0\0\0\0"
   /api/admin/login:
     post:
       tags:
@@ -7016,6 +7112,34 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/inventory-products-adjustment/{inventory_product_id}:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: show inventory product adjust data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: inventory_product_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/inventory-product-purchase:
     post:
       tags:
@@ -7673,7 +7797,7 @@ paths:
           in: query
           schema:
             type: integer
-          example: '365'
+          example: '500'
       responses:
         '200':
           description: OK
@@ -9450,6 +9574,505 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-member-type:
+    post:
+      tags:
+        - Admin > Library > Library Member Type
+      summary: store library member type data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                member_type:
+                  type: string
+                  example: Student
+                maximum_book:
+                  type: integer
+                  example: '5'
+                maximum_days:
+                  type: integer
+                  example: '20'
+                fine_per_day:
+                  type: integer
+                  example: '10'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Library Member Type
+      summary: show all library member types
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-member-type/{id}:
+    post:
+      tags:
+        - Admin > Library > Library Member Type
+      summary: update library member data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                member_type:
+                  type: string
+                  example: Student
+                maximum_book:
+                  type: integer
+                  example: '5'
+                maximum_days:
+                  type: integer
+                  example: '20'
+                fine_per_day:
+                  type: integer
+                  example: '10'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Library > Library Member Type
+      summary: delete member type
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-members:
+    post:
+      tags:
+        - Admin > Library > Library Member
+      summary: store library member data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  example: '10'
+                member_type_id:
+                  type: integer
+                  example: '1'
+                join_date:
+                  type: string
+                  example: '2025-08-17'
+                expiry_date:
+                  type: string
+                  example: '2025-09-17'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Library Member
+      summary: show all library members
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: MEM1-00001
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: active
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-members/{id}/status:
+    post:
+      tags:
+        - Admin > Library > Library Member
+      summary: update status of library member
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: active6
+                _method:
+                  type: string
+                  example: PATCH
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-members/{id}:
+    post:
+      tags:
+        - Admin > Library > Library Member
+      summary: update library member
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                member_type_id:
+                  type: integer
+                  example: '1'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: ''
+          in: header
+          schema:
+            type: string
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Library > Library Member
+      summary: delete library member
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-book-issue:
+    post:
+      tags:
+        - Admin > Library > Library Book Issue
+      summary: store book issue data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                library_member_id:
+                  type: integer
+                  example: '1'
+                library_book_id:
+                  type: integer
+                  example: '1'
+                issue_date:
+                  type: string
+                  example: '2025-08-17'
+                due_date:
+                  type: string
+                  example: '2025-08-18'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Library > Library Book Issue
+      summary: show all library book issue
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: library_member_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: from_date
+          in: query
+          schema:
+            type: string
+          example: '2025-08-17'
+        - name: to_date
+          in: query
+          schema:
+            type: string
+          example: '2025-08-17'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-book-return/4:
+    post:
+      tags:
+        - Admin > Library > Library Book Issue
+      summary: return library book
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                library_member_id:
+                  type: integer
+                  example: '1'
+                library_book_id:
+                  type: integer
+                  example: '1'
+                issue_date:
+                  type: string
+                  example: '2025-08-17'
+                due_date:
+                  type: string
+                  example: '2025-08-18'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: return_date
+          in: query
+          schema:
+            type: string
+          example: '2025-08-20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-book-return:
+    get:
+      tags:
+        - Admin > Library > Library Book Issue
+      summary: show all library book return
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: library_member_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: from_date
+          in: query
+          schema:
+            type: string
+          example: '2025-08-10'
+        - name: to_date
+          in: query
+          schema:
+            type: string
+          example: '2025-08-10'
       responses:
         '200':
           description: Successful response
