@@ -4818,7 +4818,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"routines\": [\r\n    {\r\n      \"class_id\": 1,\r\n      \"section_id\": 1,\r\n      \"subject_id\": 1,\r\n      \"teacher_id\": 1,\r\n      \"day\": \"Tuesday\",\r\n      \"from_time\": \"08:00\",\r\n      \"to_time\": \"08:40\"\r\n    }\r\n    \r\n  ]\r\n}\r\n",
+									"raw": "{\r\n  \"routines\": [\r\n    {\r\n      \"class_id\": 1,\r\n      \"section_id\": 1,\r\n      \"subject_id\": 1,\r\n      \"teacher_id\": 1,\r\n      \"day\": \"Tuesday\",\r\n      \"from_time\": \"08:00\",\r\n      \"to_time\": \"08:40\",\r\n      \"is_break\":\"true\"\r\n    }\r\n    \r\n  ]\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -15929,7 +15929,7 @@
 							"response": []
 						},
 						{
-							"name": "change admin password",
+							"name": "change password",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -17306,6 +17306,61 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "change teacher password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "current_password",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "hy@23456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/teacher/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"teacher",
+										"change-password"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -17532,6 +17587,204 @@
 											"key": "nep_date",
 											"value": "2082-01-20"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Teacher Routine",
+					"item": [
+						{
+							"name": "show teacher routine",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/teacher/teacher-routine/12",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"teacher",
+										"teacher-routine",
+										"12"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show teacher routine",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/teacher/teacher-routine/12",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"teacher",
+												"teacher-routine",
+												"12"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 18 Aug 2025 12:52:09 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"teacher\": {\n        \"id\": 12,\n        \"staff_username\": \"SAS200323\",\n        \"name\": \"Arun Shrestha\"\n    },\n    \"timetable\": {\n        \"Tuesday\": [\n            {\n                \"id\": 1,\n                \"from_time\": \"08:00\",\n                \"to_time\": \"08:40\",\n                \"class\": {\n                    \"id\": 1,\n                    \"name\": \"Four\"\n                },\n                \"section\": {\n                    \"id\": 1,\n                    \"name\": \"A\"\n                },\n                \"subject\": {\n                    \"id\": 1,\n                    \"code\": \"NPL 002\",\n                    \"name\": \"Compulsory Nepali\"\n                },\n                \"teacher\": {\n                    \"id\": 12,\n                    \"staff_username\": \"SAS200323\",\n                    \"name\": \"Arun Shrestha\"\n                }\n            }\n        ],\n        \"Wednesday\": [\n            {\n                \"id\": 2,\n                \"from_time\": \"08:00\",\n                \"to_time\": \"08:40\",\n                \"class\": {\n                    \"id\": 1,\n                    \"name\": \"Four\"\n                },\n                \"section\": {\n                    \"id\": 1,\n                    \"name\": \"A\"\n                },\n                \"subject\": {\n                    \"id\": 1,\n                    \"code\": \"NPL 002\",\n                    \"name\": \"Compulsory Nepali\"\n                },\n                \"teacher\": {\n                    \"id\": 12,\n                    \"staff_username\": \"SAS200323\",\n                    \"name\": \"Arun Shrestha\"\n                }\n            }\n        ]\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Gallery",
+					"item": [
+						{
+							"name": "show all gallery image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/teacher/gallery",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"teacher",
+										"gallery"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single gallery images",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/teacher/gallery/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"teacher",
+										"gallery",
+										"{id}"
 									]
 								}
 							},
