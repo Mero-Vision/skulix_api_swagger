@@ -7576,7 +7576,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/inventory-dashboard/due-paid-summary:
+  /api/admin/inventory-dashboard/out-Of-stock-rate:
     get:
       tags:
         - Admin > Inventory > Inventory Dashboard
@@ -7594,24 +7594,6 @@ paths:
           schema:
             type: integer
           example: '1'
-        - name: academic_session_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: supplier_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: date_from
-          in: query
-          schema:
-            type: string
-        - name: date_to
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -7697,19 +7679,6 @@ paths:
           schema:
             type: integer
           example: '1'
-        - name: academic_session_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: date_from
-          in: query
-          schema:
-            type: string
-        - name: date_to
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -7793,11 +7762,6 @@ paths:
           schema:
             type: integer
           example: '1'
-        - name: days
-          in: query
-          schema:
-            type: integer
-          example: '500'
       responses:
         '200':
           description: OK
@@ -7860,6 +7824,29 @@ paths:
                         "days": 365
                     }
                 }
+  /api/admin/inventory-dashboard/analytics-counts:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Dashboard
+      summary: show analytics count
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/sms:
     post:
       tags:
