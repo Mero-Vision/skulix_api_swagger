@@ -12040,7 +12040,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/inventory-dashboard/due-paid-summary?academic_session_id=1&supplier_id=1&date_from&date_to",
+											"raw": "{{url}}/api/admin/inventory-dashboard/out-Of-stock-rate",
 											"host": [
 												"{{url}}"
 											],
@@ -12048,25 +12048,7 @@
 												"api",
 												"admin",
 												"inventory-dashboard",
-												"due-paid-summary"
-											],
-											"query": [
-												{
-													"key": "academic_session_id",
-													"value": "1"
-												},
-												{
-													"key": "supplier_id",
-													"value": "1"
-												},
-												{
-													"key": "date_from",
-													"value": null
-												},
-												{
-													"key": "date_to",
-													"value": null
-												}
+												"out-Of-stock-rate"
 											]
 										}
 									},
@@ -12183,7 +12165,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/inventory-dashboard/stock-ledger?academic_session_id=1&date_from&date_to",
+											"raw": "{{url}}/api/admin/inventory-dashboard/stock-ledger",
 											"host": [
 												"{{url}}"
 											],
@@ -12192,20 +12174,6 @@
 												"admin",
 												"inventory-dashboard",
 												"stock-ledger"
-											],
-											"query": [
-												{
-													"key": "academic_session_id",
-													"value": "1"
-												},
-												{
-													"key": "date_from",
-													"value": null
-												},
-												{
-													"key": "date_to",
-													"value": null
-												}
 											]
 										}
 									},
@@ -12318,7 +12286,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/inventory-dashboard/low-stocks?days=500",
+											"raw": "{{url}}/api/admin/inventory-dashboard/low-stocks",
 											"host": [
 												"{{url}}"
 											],
@@ -12327,12 +12295,6 @@
 												"admin",
 												"inventory-dashboard",
 												"low-stocks"
-											],
-											"query": [
-												{
-													"key": "days",
-													"value": "500"
-												}
 											]
 										}
 									},
@@ -12409,6 +12371,47 @@
 											"body": "{\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 25,\n        \"total\": 1\n    },\n    \"data\": [\n        {\n            \"product_id\": 1,\n            \"name\": \"Tie\",\n            \"sku\": \"3454366\",\n            \"on_hand\": 390,\n            \"avg_daily_use\": 0.01,\n            \"low_stock_threshold\": 400,\n            \"reorder_point\": 400,\n            \"target_level\": 400,\n            \"gap_vs_rop\": -10,\n            \"suggest_qty\": 10,\n            \"status\": \"low\"\n        }\n    ],\n    \"params\": {\n        \"days\": 365\n    }\n}"
 										}
 									]
+								},
+								{
+									"name": "show analytics count",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-dashboard/analytics-counts",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-dashboard",
+												"analytics-counts"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
