@@ -126,6 +126,8 @@ tags:
   - name: Teacher > Teacher
   - name: Teacher > Teacher Subject
   - name: Teacher > Student Attendance
+  - name: Teacher > Teacher Routine
+  - name: Teacher > Gallery
 paths:
   /api/superadmin/login:
     post:
@@ -3047,6 +3049,7 @@ paths:
                     day: Tuesday
                     from_time: '08:00'
                     to_time: '08:40'
+                    is_break: 'true'
       security:
         - bearerAuth: []
       parameters:
@@ -10105,7 +10108,7 @@ paths:
     post:
       tags:
         - Student > Auth
-      summary: change admin password
+      summary: change password
       requestBody:
         content:
           multipart/form-data:
@@ -10977,6 +10980,39 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/teacher/change-password:
+    post:
+      tags:
+        - Teacher > Teacher
+      summary: change teacher password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  example: hy
+                password:
+                  type: string
+                  example: hy@23456
+                password_confirmation:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/teacher/teacher-subjects/{teacher_id}:
     get:
       tags:
@@ -11215,6 +11251,171 @@ paths:
           schema:
             type: string
           example: '2082-01-20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/teacher/teacher-routine/12:
+    get:
+      tags:
+        - Teacher > Teacher Routine
+      summary: show teacher routine
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.12
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Mon, 18 Aug 2025 12:52:09 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "teacher": {
+                        "id": 12,
+                        "staff_username": "SAS200323",
+                        "name": "Arun Shrestha"
+                    },
+                    "timetable": {
+                        "Tuesday": [
+                            {
+                                "id": 1,
+                                "from_time": "08:00",
+                                "to_time": "08:40",
+                                "class": {
+                                    "id": 1,
+                                    "name": "Four"
+                                },
+                                "section": {
+                                    "id": 1,
+                                    "name": "A"
+                                },
+                                "subject": {
+                                    "id": 1,
+                                    "code": "NPL 002",
+                                    "name": "Compulsory Nepali"
+                                },
+                                "teacher": {
+                                    "id": 12,
+                                    "staff_username": "SAS200323",
+                                    "name": "Arun Shrestha"
+                                }
+                            }
+                        ],
+                        "Wednesday": [
+                            {
+                                "id": 2,
+                                "from_time": "08:00",
+                                "to_time": "08:40",
+                                "class": {
+                                    "id": 1,
+                                    "name": "Four"
+                                },
+                                "section": {
+                                    "id": 1,
+                                    "name": "A"
+                                },
+                                "subject": {
+                                    "id": 1,
+                                    "code": "NPL 002",
+                                    "name": "Compulsory Nepali"
+                                },
+                                "teacher": {
+                                    "id": 12,
+                                    "staff_username": "SAS200323",
+                                    "name": "Arun Shrestha"
+                                }
+                            }
+                        ]
+                    }
+                }
+  /api/teacher/gallery:
+    get:
+      tags:
+        - Teacher > Gallery
+      summary: show all gallery image
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/teacher/gallery/{id}:
+    get:
+      tags:
+        - Teacher > Gallery
+      summary: show single gallery images
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
