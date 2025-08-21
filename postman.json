@@ -2637,6 +2637,11 @@
 										"key": "school-id",
 										"value": "1",
 										"type": "text"
+									},
+									{
+										"key": "academic-session-id",
+										"value": "1",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2872,7 +2877,7 @@
 										},
 										{
 											"key": "email",
-											"value": " hanciephago1@example.com",
+											"value": " hanciephago1@gmail.com",
 											"type": "text"
 										},
 										{
@@ -3047,7 +3052,7 @@
 										},
 										{
 											"key": "guardian_email",
-											"value": " dinesh.thapa@example.com",
+											"value": " dineshthapa@example.com",
 											"type": "text"
 										},
 										{
@@ -3786,12 +3791,12 @@
 									"formdata": [
 										{
 											"key": "subject_code",
-											"value": "NPL 002",
+											"value": "NPL 001",
 											"type": "text"
 										},
 										{
 											"key": "subject_name",
-											"value": "Compulsory Nepali",
+											"value": "sCIENCE",
 											"type": "text"
 										},
 										{
@@ -4779,151 +4784,6 @@
 										"api",
 										"admin",
 										"class-rooms",
-										"{id}"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Class Routine",
-					"item": [
-						{
-							"name": "store class routine",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"routines\": [\r\n    {\r\n      \"class_id\": 1,\r\n      \"section_id\": 1,\r\n      \"subject_id\": 1,\r\n      \"teacher_id\": 1,\r\n      \"day\": \"Tuesday\",\r\n      \"from_time\": \"08:00\",\r\n      \"to_time\": \"08:40\",\r\n      \"is_break\":\"true\"\r\n    }\r\n    \r\n  ]\r\n}\r\n",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/class-routines",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"class-routines"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show class routines",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/class-routines?class_id=1&section_id=1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"class-routines"
-									],
-									"query": [
-										{
-											"key": "class_id",
-											"value": "1"
-										},
-										{
-											"key": "section_id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete class routine",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/class-routines/{id}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"class-routines",
 										"{id}"
 									]
 								}
@@ -8025,223 +7885,6 @@
 					]
 				},
 				{
-					"name": "Class Subject",
-					"item": [
-						{
-							"name": "store class subject data",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "subject_id",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "class_id",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "credit_hours",
-											"value": "4",
-											"type": "text"
-										},
-										{
-											"key": "theory_full_marks",
-											"value": "100",
-											"type": "text"
-										},
-										{
-											"key": "theory_pass_marks",
-											"value": "40",
-											"type": "text"
-										},
-										{
-											"key": "practical_full_marks",
-											"value": "25",
-											"type": "text"
-										},
-										{
-											"key": "practical_pass_marks",
-											"value": "10",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/class-subjects",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"class-subjects"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show all class subject",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/class-subjects?class_id=1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"class-subjects"
-									],
-									"query": [
-										{
-											"key": "class_id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update class subject",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "school-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "subject_id",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "class_id",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "credit_hours",
-											"value": "4",
-											"type": "text"
-										},
-										{
-											"key": "theory_full_marks",
-											"value": "100",
-											"type": "text"
-										},
-										{
-											"key": "theory_pass_marks",
-											"value": "40",
-											"type": "text"
-										},
-										{
-											"key": "practical_full_marks",
-											"value": "25",
-											"type": "text"
-										},
-										{
-											"key": "practical_pass_marks",
-											"value": "10",
-											"type": "text"
-										},
-										{
-											"key": "_method",
-											"value": "PUT",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/class-subjects/{id}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"class-subjects",
-										"{id}"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Payment Options",
 					"item": [
 						{
@@ -8636,6 +8279,119 @@
 										"api",
 										"admin",
 										"student-payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show student payments",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/student-payment?pagination_limit=8&class_id=1&section_id=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-payment"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "class_id",
+											"value": "1"
+										},
+										{
+											"key": "section_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single student payment data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/single-student-payment/{student_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"single-student-payment",
+										"{student_id}"
 									]
 								}
 							},
@@ -11799,6 +11555,48 @@
 												"inventory-product-purchase",
 												"{id}",
 												"status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "export purchase bill pdf",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-product-purchase/{id}/pdf",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-product-purchase",
+												"{id}",
+												"pdf"
 											]
 										}
 									},
@@ -15852,6 +15650,543 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Academic",
+					"item": [
+						{
+							"name": "Class Subject",
+							"item": [
+								{
+									"name": "store class subject data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "subject_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "class_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "credit_hours",
+													"value": "4",
+													"type": "text"
+												},
+												{
+													"key": "theory_full_marks",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "theory_pass_marks",
+													"value": "40",
+													"type": "text"
+												},
+												{
+													"key": "practical_full_marks",
+													"value": "25",
+													"type": "text"
+												},
+												{
+													"key": "practical_pass_marks",
+													"value": "10",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/class-subjects",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"class-subjects"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all class subject",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/class-subjects?class_id=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"class-subjects"
+											],
+											"query": [
+												{
+													"key": "class_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update class subject",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "subject_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "class_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "credit_hours",
+													"value": "4",
+													"type": "text"
+												},
+												{
+													"key": "theory_full_marks",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "theory_pass_marks",
+													"value": "40",
+													"type": "text"
+												},
+												{
+													"key": "practical_full_marks",
+													"value": "25",
+													"type": "text"
+												},
+												{
+													"key": "practical_pass_marks",
+													"value": "10",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/class-subjects/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"class-subjects",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Class Routine",
+							"item": [
+								{
+									"name": "store class routine",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"routines\": [\r\n    {\r\n      \"class_id\": 1,\r\n      \"section_id\": 1,\r\n      \"subject_id\": 1,\r\n      \"teacher_id\": 1,\r\n      \"day\": \"Tuesday\",\r\n      \"from_time\": \"08:00\",\r\n      \"to_time\": \"08:40\",\r\n      \"is_break\":\"true\"\r\n    }\r\n    \r\n  ]\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/class-routines",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"class-routines"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show class routines",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/class-routines?class_id=1&section_id=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"class-routines"
+											],
+											"query": [
+												{
+													"key": "class_id",
+													"value": "1"
+												},
+												{
+													"key": "section_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete class routine",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/class-routines/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"class-routines",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Exam Result",
+							"item": [
+								{
+									"name": "store exam result data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"exam_type_id\": 1,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"subject_id\": 2,\r\n    \"results\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"theory_marks\": 70,\r\n            \"practical_marks\": 25,\r\n            \"theory_full\": 100,\r\n            \"practical_full\": 25\r\n        },\r\n        {\r\n            \"student_id\": 10,\r\n            \"theory_marks\": 60,\r\n            \"practical_marks\": 20,\r\n            \"theory_full\": 75,\r\n            \"practical_full\": 25\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/exam-results",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"exam-results"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get result",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"exam_type_id\": 1,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"subject_id\": 2,\r\n    \"results\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"theory_marks\": 70,\r\n            \"practical_marks\": 25,\r\n            \"theory_full\": 100,\r\n            \"practical_full\": 25\r\n        },\r\n        {\r\n            \"student_id\": 10,\r\n            \"theory_marks\": 60,\r\n            \"practical_marks\": 20,\r\n            \"theory_full\": 75,\r\n            \"practical_full\": 25\r\n        }\r\n    ]\r\n}"
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/exam-results/class-section/{examId}/{classId}/{sectionId}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"exam-results",
+												"class-section",
+												"{examId}",
+												"{classId}",
+												"{sectionId}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show individual student result",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"exam_type_id\": 1,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"subject_id\": 2,\r\n    \"results\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"theory_marks\": 70,\r\n            \"practical_marks\": 25,\r\n            \"theory_full\": 100,\r\n            \"practical_full\": 25\r\n        },\r\n        {\r\n            \"student_id\": 10,\r\n            \"theory_marks\": 60,\r\n            \"practical_marks\": 20,\r\n            \"theory_full\": 75,\r\n            \"practical_full\": 25\r\n        }\r\n    ]\r\n}"
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/exam-results/student-result/{examId}/{studentId}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"exam-results",
+												"student-result",
+												"{examId}",
+												"{studentId}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				}
 			]
 		},
@@ -15899,7 +16234,7 @@
 										},
 										{
 											"key": "password",
-											"value": "12345",
+											"value": "Password@720",
 											"type": "text"
 										},
 										{
@@ -15959,17 +16294,17 @@
 									"formdata": [
 										{
 											"key": "current_password",
-											"value": "12345",
+											"value": "Password@720",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "Password@720",
+											"value": "12345",
 											"type": "text"
 										},
 										{
-											"key": "confirm_password",
-											"value": "Password@720",
+											"key": "password_confirmation",
+											"value": "12345",
 											"type": "text"
 										}
 									]
@@ -17247,7 +17582,7 @@
 										},
 										{
 											"key": "password",
-											"value": "12345",
+											"value": "Hy@23456",
 											"type": "text"
 										}
 									]
