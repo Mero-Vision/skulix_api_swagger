@@ -51,7 +51,6 @@ tags:
   - name: Admin > Employee Types
   - name: Admin > Techer/Staff
   - name: Admin > Class Rooms
-  - name: Admin > Class Routine
   - name: Admin > Outing Purpose
   - name: Admin > Outing
   - name: Admin > Scholarship
@@ -68,7 +67,6 @@ tags:
   - name: Admin > School Message
   - name: Admin > Food Menu
   - name: Admin > Student Particular
-  - name: Admin > Class Subject
   - name: Admin > Payment Options
   - name: Admin > Student Invoice
   - name: Admin > Student Payment
@@ -106,6 +104,10 @@ tags:
   - name: Admin > Library > Library Member Type
   - name: Admin > Library > Library Member
   - name: Admin > Library > Library Book Issue
+  - name: Admin > Academic
+  - name: Admin > Academic > Class Subject
+  - name: Admin > Academic > Class Routine
+  - name: Admin > Academic > Exam Result
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -1712,6 +1714,11 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -1837,7 +1844,7 @@ paths:
                   example: ' Phago'
                 email:
                   type: string
-                  example: ' hanciephago1@example.com'
+                  example: ' hanciephago1@gmail.com'
                 dob:
                   type: string
                   example: ' 2005-03-20'
@@ -1942,7 +1949,7 @@ paths:
                   example: ' 9800000003'
                 guardian_email:
                   type: string
-                  example: ' dinesh.thapa@example.com'
+                  example: ' dineshthapa@example.com'
                 guardian_education:
                   type: string
                   example: ' Bachelor'
@@ -2405,10 +2412,10 @@ paths:
               properties:
                 subject_code:
                   type: string
-                  example: NPL 002
+                  example: NPL 001
                 subject_name:
                   type: string
-                  example: Compulsory Nepali
+                  example: sCIENCE
                 theory_full_marks:
                   type: integer
                   example: '50'
@@ -3007,104 +3014,6 @@ paths:
       tags:
         - Admin > Class Rooms
       summary: delete class room
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-routines:
-    post:
-      tags:
-        - Admin > Class Routine
-      summary: store class routine
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                routines:
-                  - class_id: 1
-                    section_id: 1
-                    subject_id: 1
-                    teacher_id: 1
-                    day: Tuesday
-                    from_time: '08:00'
-                    to_time: '08:40'
-                    is_break: 'true'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Class Routine
-      summary: show class routines
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: class_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: section_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-routines/{id}:
-    delete:
-      tags:
-        - Admin > Class Routine
-      summary: delete class routine
       security:
         - bearerAuth: []
       parameters:
@@ -5007,141 +4916,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/class-subjects:
-    post:
-      tags:
-        - Admin > Class Subject
-      summary: store class subject data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                subject_id:
-                  type: integer
-                  example: '1'
-                class_id:
-                  type: integer
-                  example: '1'
-                credit_hours:
-                  type: integer
-                  example: '4'
-                theory_full_marks:
-                  type: integer
-                  example: '100'
-                theory_pass_marks:
-                  type: integer
-                  example: '40'
-                practical_full_marks:
-                  type: integer
-                  example: '25'
-                practical_pass_marks:
-                  type: integer
-                  example: '10'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Class Subject
-      summary: show all class subject
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: class_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/class-subjects/{id}:
-    post:
-      tags:
-        - Admin > Class Subject
-      summary: update class subject
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                subject_id:
-                  type: integer
-                  example: '1'
-                class_id:
-                  type: integer
-                  example: '1'
-                credit_hours:
-                  type: integer
-                  example: '4'
-                theory_full_marks:
-                  type: integer
-                  example: '100'
-                theory_pass_marks:
-                  type: integer
-                  example: '40'
-                practical_full_marks:
-                  type: integer
-                  example: '25'
-                practical_pass_marks:
-                  type: integer
-                  example: '10'
-                _method:
-                  type: string
-                  example: PUT
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: school-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/admin/payment-options:
     post:
       tags:
@@ -5418,6 +5192,71 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Student Payment
+      summary: show student payments
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/single-student-payment/{student_id}:
+    get:
+      tags:
+        - Admin > Student Payment
+      summary: show single student payment data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -7429,6 +7268,34 @@ paths:
             type: integer
           example: '1'
         - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-product-purchase/{id}/pdf:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product Purchase Bill
+      summary: export purchase bill pdf
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
           in: header
           schema:
             type: integer
@@ -10068,6 +9935,369 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/class-subjects:
+    post:
+      tags:
+        - Admin > Academic > Class Subject
+      summary: store class subject data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                subject_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                credit_hours:
+                  type: integer
+                  example: '4'
+                theory_full_marks:
+                  type: integer
+                  example: '100'
+                theory_pass_marks:
+                  type: integer
+                  example: '40'
+                practical_full_marks:
+                  type: integer
+                  example: '25'
+                practical_pass_marks:
+                  type: integer
+                  example: '10'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Academic > Class Subject
+      summary: show all class subject
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-subjects/{id}:
+    post:
+      tags:
+        - Admin > Academic > Class Subject
+      summary: update class subject
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                subject_id:
+                  type: integer
+                  example: '1'
+                class_id:
+                  type: integer
+                  example: '1'
+                credit_hours:
+                  type: integer
+                  example: '4'
+                theory_full_marks:
+                  type: integer
+                  example: '100'
+                theory_pass_marks:
+                  type: integer
+                  example: '40'
+                practical_full_marks:
+                  type: integer
+                  example: '25'
+                practical_pass_marks:
+                  type: integer
+                  example: '10'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-routines:
+    post:
+      tags:
+        - Admin > Academic > Class Routine
+      summary: store class routine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                routines:
+                  - class_id: 1
+                    section_id: 1
+                    subject_id: 1
+                    teacher_id: 1
+                    day: Tuesday
+                    from_time: '08:00'
+                    to_time: '08:40'
+                    is_break: 'true'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Academic > Class Routine
+      summary: show class routines
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: class_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: section_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/class-routines/{id}:
+    delete:
+      tags:
+        - Admin > Academic > Class Routine
+      summary: delete class routine
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/exam-results:
+    post:
+      tags:
+        - Admin > Academic > Exam Result
+      summary: store exam result data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                exam_type_id: 1
+                class_id: 1
+                section_id: 1
+                subject_id: 2
+                results:
+                  - student_id: 9
+                    theory_marks: 70
+                    practical_marks: 25
+                    theory_full: 100
+                    practical_full: 25
+                  - student_id: 10
+                    theory_marks: 60
+                    practical_marks: 20
+                    theory_full: 75
+                    practical_full: 25
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/exam-results/class-section/{examId}/{classId}/{sectionId}:
+    get:
+      tags:
+        - Admin > Academic > Exam Result
+      summary: get result
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: examId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: classId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: sectionId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/exam-results/student-result/{examId}/{studentId}:
+    get:
+      tags:
+        - Admin > Academic > Exam Result
+      summary: show individual student result
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: examId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: studentId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/student/login:
     post:
       tags:
@@ -10083,8 +10313,8 @@ paths:
                   type: string
                   example: hanciephago4@example.com
                 password:
-                  type: integer
-                  example: '12345'
+                  type: string
+                  example: Password@720
                 device_name:
                   type: string
                   example: Samsung Galaxy S25
@@ -10116,14 +10346,14 @@ paths:
               type: object
               properties:
                 current_password:
+                  type: string
+                  example: Password@720
+                password:
                   type: integer
                   example: '12345'
-                password:
-                  type: string
-                  example: Password@720
-                confirm_password:
-                  type: string
-                  example: Password@720
+                password_confirmation:
+                  type: integer
+                  example: '12345'
       security:
         - bearerAuth: []
       parameters:
@@ -10942,8 +11172,8 @@ paths:
                   type: string
                   example: arun33599@gmail.com
                 password:
-                  type: integer
-                  example: '12345'
+                  type: string
+                  example: Hy@23456
       security:
         - noauthAuth: []
       parameters:
