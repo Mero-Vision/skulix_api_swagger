@@ -104,10 +104,12 @@ tags:
   - name: Admin > Library > Library Member Type
   - name: Admin > Library > Library Member
   - name: Admin > Library > Library Book Issue
+  - name: Admin > Library > Library Analytics
   - name: Admin > Academic
   - name: Admin > Academic > Class Subject
   - name: Admin > Academic > Class Routine
   - name: Admin > Academic > Exam Result
+  - name: Admin > Academic > Exam Result Publish
   - name: Student
   - name: Student > Auth
   - name: Student > Student
@@ -1965,6 +1967,9 @@ paths:
                 student_image:
                   type: string
                   format: binary
+                bus_stop_id:
+                  type: integer
+                  example: '1'
       security:
         - bearerAuth: []
       parameters:
@@ -2157,6 +2162,9 @@ paths:
                 student_image:
                   type: string
                   format: binary
+                bus_stop_id:
+                  type: integer
+                  example: '1'
                 _method:
                   type: string
                   example: PUT
@@ -2268,6 +2276,51 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bus-students:
+    get:
+      tags:
+        - Admin > Student
+      summary: show all bus students
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: class_id
+          in: query
+          schema:
+            type: string
+        - name: section_id
+          in: query
+          schema:
+            type: string
+        - name: export
+          in: query
+          schema:
+            type: string
+          example: pdf or excel
       responses:
         '200':
           description: Successful response
@@ -3558,7 +3611,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '6'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -9935,6 +9988,149 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/library/library-analytics/counts:
+    get:
+      tags:
+        - Admin > Library > Library Analytics
+      summary: show library analytics data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-analytics/book-checkout-series:
+    get:
+      tags:
+        - Admin > Library > Library Analytics
+      summary: show library book checkout series'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-analytics/overdue-history:
+    get:
+      tags:
+        - Admin > Library > Library Analytics
+      summary: show overdue history
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-analytics/recent-checkout:
+    get:
+      tags:
+        - Admin > Library > Library Analytics
+      summary: list recent checkout books
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-analytics/top-books:
+    get:
+      tags:
+        - Admin > Library > Library Analytics
+      summary: show top library books
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/library/library-analytics/new-arrival-books:
+    get:
+      tags:
+        - Admin > Library > Library Analytics
+      summary: show new arrival books
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/class-subjects:
     post:
       tags:
@@ -10221,7 +10417,7 @@ paths:
     get:
       tags:
         - Admin > Academic > Exam Result
-      summary: get result
+      summary: get result base on class and section
       security:
         - bearerAuth: []
       parameters:
@@ -10260,7 +10456,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/exam-results/student-result/{examId}/{studentId}:
+  /api/admin/exam-results/student-result/{examID}/{StudentID}:
     get:
       tags:
         - Admin > Academic > Exam Result
@@ -10283,16 +10479,59 @@ paths:
           schema:
             type: integer
           example: '1'
-        - name: examId
+        - name: examID
           in: path
           schema:
             type: string
           required: true
-        - name: studentId
+        - name: StudentID
           in: path
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/exam-result-publish:
+    post:
+      tags:
+        - Admin > Academic > Exam Result Publish
+      summary: store exam result publish data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                exam_type_id:
+                  type: integer
+                  example: '1'
+                publish_date:
+                  type: string
+                  example: '2025-08-25'
+                publish_time:
+                  type: string
+                  example: '23:30'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: academic-session-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
