@@ -3079,6 +3079,11 @@
 											"key": "student_image",
 											"type": "file",
 											"src": "/C:/Users/Hanci/Downloads/SnapInsta.to_358166480_1443076193115037_4513170074595818851_n.jpg"
+										},
+										{
+											"key": "bus_stop_id",
+											"value": "1",
+											"type": "text"
 										}
 									]
 								},
@@ -3409,6 +3414,11 @@
 											"src": "/C:/Users/Hanci/Pictures/IMG_1534_11zon.jpg"
 										},
 										{
+											"key": "bus_stop_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
 											"key": "_method",
 											"value": "PUT",
 											"type": "text"
@@ -3556,6 +3566,68 @@
 										"api",
 										"admin",
 										"student-leave"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all bus students",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/bus-students?pagination_limit=20&search_keyword&class_id&section_id&export=pdf or excel",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"bus-students"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "20"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										},
+										{
+											"key": "class_id",
+											"value": null
+										},
+										{
+											"key": "section_id",
+											"value": null
+										},
+										{
+											"key": "export",
+											"value": "pdf or excel"
+										}
 									]
 								}
 							},
@@ -5577,7 +5649,7 @@
 									},
 									{
 										"key": "school-id",
-										"value": "6",
+										"value": "1",
 										"type": "text"
 									}
 								],
@@ -15648,6 +15720,269 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Library Analytics",
+							"item": [
+								{
+									"name": "show library analytics data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-analytics/counts",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-analytics",
+												"counts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show library book checkout series'",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-analytics/book-checkout-series",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-analytics",
+												"book-checkout-series"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show overdue history",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-analytics/overdue-history?pagination_limit=8",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-analytics",
+												"overdue-history"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "8"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "list recent checkout books",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-analytics/recent-checkout",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-analytics",
+												"recent-checkout"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show top library books",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-analytics/top-books",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-analytics",
+												"top-books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show new arrival books",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/library/library-analytics/new-arrival-books",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"library",
+												"library-analytics",
+												"new-arrival-books"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				},
@@ -16074,7 +16409,7 @@
 									"response": []
 								},
 								{
-									"name": "get result",
+									"name": "get result base on class and section",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -16168,7 +16503,7 @@
 											"raw": "{\r\n    \"exam_type_id\": 1,\r\n    \"class_id\": 1,\r\n    \"section_id\": 1,\r\n    \"subject_id\": 2,\r\n    \"results\": [\r\n        {\r\n            \"student_id\": 9,\r\n            \"theory_marks\": 70,\r\n            \"practical_marks\": 25,\r\n            \"theory_full\": 100,\r\n            \"practical_full\": 25\r\n        },\r\n        {\r\n            \"student_id\": 10,\r\n            \"theory_marks\": 60,\r\n            \"practical_marks\": 20,\r\n            \"theory_full\": 75,\r\n            \"practical_full\": 25\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/exam-results/student-result/{examId}/{studentId}",
+											"raw": "{{url}}/api/admin/exam-results/student-result/{examID}/{StudentID}",
 											"host": [
 												"{{url}}"
 											],
@@ -16177,8 +16512,78 @@
 												"admin",
 												"exam-results",
 												"student-result",
-												"{examId}",
-												"{studentId}"
+												"{examID}",
+												"{StudentID}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Exam Result Publish",
+							"item": [
+								{
+									"name": "store exam result publish data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "school-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "academic-session-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "exam_type_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "publish_date",
+													"value": "2025-08-25",
+													"type": "text"
+												},
+												{
+													"key": "publish_time",
+													"value": "23:30",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/exam-result-publish",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"exam-result-publish"
 											]
 										}
 									},
