@@ -3632,6 +3632,136 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "download student admission form pdf",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/student-admission/pdf",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-admission",
+										"pdf"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "excel export student payment",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school_id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Exam Reminder\",\r\n  \"message\": \"Your math exam is scheduled for tomorrow.\",\r\n  \"type\": \"individual\",\r\n  \"student_ids\": [9]\r\n}\r\n\r\n\r\n"
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/excel-export-student-payment/{student_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"excel-export-student-payment",
+										"{student_id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export student payment statement to pdf",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "school-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/student-payment-pdf-statement/{student_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"student-payment-pdf-statement",
+										"{student_id}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -6394,7 +6524,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"title\": \"Exam Reminder\",\r\n  \"message\": \"Your math exam is scheduled for tomorrow.\",\r\n  \"type\": \"individual\",\r\n  \"student_ids\": [1, 2, 3]\r\n},\r\n{\r\n  \"title\": \"Class Cancelled\",\r\n  \"message\": \"Class is cancelled due to maintenance.\",\r\n  \"type\": \"class\",\r\n  \"class_ids\": [1, 4]\r\n},\r\n{\r\n  \"title\": \"Holiday Notice\",\r\n  \"message\": \"All schools will be closed tomorrow.\",\r\n  \"type\": \"general\"\r\n}\r\n\r\n\r\n",
+									"raw": "{\r\n  \"title\": \"Exam Reminder\",\r\n  \"message\": \"Your math exam is scheduled for tomorrow.\",\r\n  \"type\": \"individual\",\r\n  \"student_ids\": [9]\r\n}\r\n\r\n\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -12501,7 +12631,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/dashboard/today-student-attendance",
+									"raw": "{{url}}/api/admin/dashboard/today-student-attendance?nep_date=2082-04-20",
 									"host": [
 										"{{url}}"
 									],
@@ -12510,6 +12640,12 @@
 										"admin",
 										"dashboard",
 										"today-student-attendance"
+									],
+									"query": [
+										{
+											"key": "nep_date",
+											"value": "2082-04-20"
+										}
 									]
 								}
 							},
