@@ -2326,6 +2326,85 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/student-admission/pdf:
+    get:
+      tags:
+        - Admin > Student
+      summary: download student admission form pdf
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/excel-export-student-payment/{student_id}:
+    get:
+      tags:
+        - Admin > Student
+      summary: excel export student payment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/student-payment-pdf-statement/{student_id}:
+    get:
+      tags:
+        - Admin > Student
+      summary: export student payment statement to pdf
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: school-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: student_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/visitor-logs:
     post:
       tags:
@@ -4045,7 +4124,12 @@ paths:
           application/json:
             schema:
               type: object
-              example: "{\r\n  \"title\": \"Exam Reminder\",\r\n  \"message\": \"Your math exam is scheduled for tomorrow.\",\r\n  \"type\": \"individual\",\r\n  \"student_ids\": [1, 2, 3]\r\n},\r\n{\r\n  \"title\": \"Class Cancelled\",\r\n  \"message\": \"Class is cancelled due to maintenance.\",\r\n  \"type\": \"class\",\r\n  \"class_ids\": [1, 4]\r\n},\r\n{\r\n  \"title\": \"Holiday Notice\",\r\n  \"message\": \"All schools will be closed tomorrow.\",\r\n  \"type\": \"general\"\r\n}\r\n\r\n\r\n"
+              example:
+                title: Exam Reminder
+                message: Your math exam is scheduled for tomorrow.
+                type: individual
+                student_ids:
+                  - 9
       security:
         - bearerAuth: []
       parameters:
@@ -7885,6 +7969,11 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: nep_date
+          in: query
+          schema:
+            type: string
+          example: '2082-04-20'
       responses:
         '200':
           description: Successful response
